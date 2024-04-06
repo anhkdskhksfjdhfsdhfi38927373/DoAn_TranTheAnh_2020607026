@@ -385,7 +385,6 @@
     <Content Include="assets\images\logo.jpg" />
     <Content Include="assets\images\logo\logo.png" />
     <Content Include="assets\images\logo\logo.svg" />
-    <Content Include="assets\images\product\2.png" />
     <Content Include="assets\images\product\4.png" />
     <Content Include="assets\images\product\9.png" />
     <Content Include="assets\images\register\res-image1.jpg" />
