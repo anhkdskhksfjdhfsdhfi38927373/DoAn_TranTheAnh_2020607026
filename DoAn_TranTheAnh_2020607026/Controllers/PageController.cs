@@ -13,7 +13,7 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         // GET: Page
         public ActionResult Index()
         {
-           
+            
             return View();
         }
         
@@ -40,6 +40,11 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
             }
             return View();
             
+        }
+        public ActionResult Logout()
+        {
+            Session.Remove("Username");
+            return RedirectToAction("Login", "Page");
         }
 
     }
