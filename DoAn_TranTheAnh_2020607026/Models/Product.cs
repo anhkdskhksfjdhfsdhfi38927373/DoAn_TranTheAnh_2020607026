@@ -1,4 +1,4 @@
-namespace DoAn_TranTheAnh_2020607026
+namespace DoAn_TranTheAnh_2020607026.Models
 {
     using System;
     using System.Collections.Generic;
@@ -13,6 +13,7 @@ namespace DoAn_TranTheAnh_2020607026
         {
             Carts = new HashSet<Cart>();
             OrderDetails = new HashSet<OrderDetail>();
+            Rates = new HashSet<Rate>();
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -25,8 +26,6 @@ namespace DoAn_TranTheAnh_2020607026
         [StringLength(255)]
         public string Description { get; set; }
 
-        public decimal Price { get; set; }
-
         public int QuantityInStock { get; set; }
 
         public int CategoryID { get; set; }
@@ -35,6 +34,10 @@ namespace DoAn_TranTheAnh_2020607026
 
         [StringLength(255)]
         public string Images { get; set; }
+
+        public double? SaleOff { get; set; }
+
+        public double? Price { get; set; }
 
         public virtual Brand Brand { get; set; }
 
@@ -45,5 +48,8 @@ namespace DoAn_TranTheAnh_2020607026
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rate> Rates { get; set; }
     }
 }

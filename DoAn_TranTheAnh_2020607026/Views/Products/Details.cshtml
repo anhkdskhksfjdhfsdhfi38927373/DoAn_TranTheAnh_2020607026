@@ -4,30 +4,7 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/LayoutAdmin.cshtml";
 }
-<style>
 
-    .nut a {
-        display: inline-block;
-        text-align: center;
-        padding: 5px 15px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        margin-bottom: 5px;
-        color: black;
-        background-color: #fff;
-        text-decoration: none;
-        &:hover
-
-    {
-        color: #fff;
-        background-color: #000;
-    }
-
-    &:active {
-        background-color: #ddd;
-    }
-    }
-</style>
 
 <div>
     <h4>Product</h4>
@@ -86,7 +63,16 @@
         </dt>
 
         <dd>
-            <img width="100px" height="100px" src="~/assets/images/product/@Model.Images" />
+           <img src="~/assets/images/product/@Model.Images" width="100px" height="100px" />
+
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SaleOff)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SaleOff)
         </dd>
 
     </dl>

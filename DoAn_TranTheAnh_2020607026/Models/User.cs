@@ -1,4 +1,4 @@
-namespace DoAn_TranTheAnh_2020607026
+namespace DoAn_TranTheAnh_2020607026.Models
 {
     using System;
     using System.Collections.Generic;
@@ -13,6 +13,7 @@ namespace DoAn_TranTheAnh_2020607026
         {
             Carts = new HashSet<Cart>();
             Orders = new HashSet<Order>();
+            Rates = new HashSet<Rate>();
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -46,6 +47,9 @@ namespace DoAn_TranTheAnh_2020607026
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rate> Rates { get; set; }
 
         public virtual Role Role { get; set; }
     }

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DoAn_TranTheAnh_2020607026;
+using DoAn_TranTheAnh_2020607026.Models;
 
 namespace DoAn_TranTheAnh_2020607026.Controllers
 {
@@ -37,7 +38,6 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         }
 
         // GET: Products/Create
-        
         public ActionResult Create()
         {
             ViewBag.BrandID = new SelectList(db.Brands, "BrandID", "BrandName");
@@ -50,7 +50,7 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductID,ProductName,Description,Price,QuantityInStock,CategoryID,BrandID,Images")] Product product)
+        public ActionResult Create([Bind(Include = "ProductID,ProductName,Description,Price,QuantityInStock,CategoryID,BrandID,Images,SaleOff")] Product product)
         {
             try
             {
@@ -99,9 +99,9 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductID,ProductName,Description,Price,QuantityInStock,CategoryID,BrandID,Images")] Product product)
+        public ActionResult Edit([Bind(Include = "ProductID,ProductName,Description,Price,QuantityInStock,CategoryID,BrandID,Images,SaleOff")] Product product)
         {
-            try 
+            try
             {
                 if (ModelState.IsValid)
                 {
@@ -115,11 +115,9 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
                     }
                     db.Entry(product).State = EntityState.Modified;
                     db.SaveChanges();
-
                 }
                 return RedirectToAction("Index");
             }
-
             catch
             {
                 ViewBag.BrandID = new SelectList(db.Brands, "BrandID", "BrandName", product.BrandID);

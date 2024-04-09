@@ -1,4 +1,4 @@
-namespace DoAn_TranTheAnh_2020607026
+namespace DoAn_TranTheAnh_2020607026.Models
 {
     using System;
     using System.Collections.Generic;
