@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DoAn_TranTheAnh_2020607026;
+using DoAn_TranTheAnh_2020607026.Models;
 
 namespace DoAn_TranTheAnh_2020607026.Controllers
 {

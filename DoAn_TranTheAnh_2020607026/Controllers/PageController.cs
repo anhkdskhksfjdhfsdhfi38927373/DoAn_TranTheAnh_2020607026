@@ -1,8 +1,10 @@
-﻿using System;
+﻿using DoAn_TranTheAnh_2020607026.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DoAn_TranTheAnh_2020607026.Models;
 
 namespace DoAn_TranTheAnh_2020607026.Controllers
 {

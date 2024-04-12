@@ -239,6 +239,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -256,6 +257,7 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Rate.cs" />
     <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\Size.cs" />
     <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -410,6 +412,7 @@
     <Content Include="assets\js\jvectormap.js" />
     <Content Include="assets\js\main.js" />
     <Content Include="assets\js\mainlayout.js" />
+    <Content Include="assets\js\main_cart.min.js" />
     <Content Include="assets\js\modernizr.js" />
     <Content Include="assets\js\morris.js" />
     <Content Include="assets\js\morris.min.js" />
@@ -505,6 +508,7 @@
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Page\DetailProduct.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

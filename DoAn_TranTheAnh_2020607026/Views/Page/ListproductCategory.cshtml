@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "ListproductCategory";
     Layout = "~/Views/Shared/LayoutPage.cshtml";
-    List<Product> ListProducts = ViewBag.list;
+    List <DoAn_TranTheAnh_2020607026.Models.Product> ListProducts = ViewBag.list;
 }
 <div class="main_title">
     <h2>Top Selling</h2>
@@ -18,8 +18,8 @@
                 <figure>
                     <span class="ribbon off">@product.SaleOff %</span>
                     <a href="@Url.Action("DetailProduct","Page",new {id=product.ProductID})">
-                        <img class="img-fluid lazy" src="~/assets/img/products/product_placeholder_square_medium.jpg" data-src="~/assets/img/products/shoes/1.jpg" alt="" width="400" height="400">
-                        <img class="img-fluid lazy" src="~/assets/img/products/product_placeholder_square_medium.jpg" data-src="~/assets/img/products/shoes/1_b.jpg" alt="" width="400" height="400">
+                        <img class="img-fluid lazy" src="~/assets/images/product/@product.Images"  alt="" width="400" height="400">
+                        <img class="img-fluid lazy" src="~/assets/images/product/@product.Images"  alt="" width="400" height="400">
                     </a>
                     <div data-countdown="2019/05/15" class="countdown"></div>
                 </figure>
@@ -36,7 +36,7 @@
                 <ul>
                     <li><a href="~/assets/#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
                     <li><a href="~/assets/#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-                    <li><a href="~/assets/#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
+                    <li><a href="@Url.Action("AddCart", "Cart", new {id=product.ProductID})" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
                 </ul>
             </div>
             <!-- /grid_item -->
