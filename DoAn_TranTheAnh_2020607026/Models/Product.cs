@@ -35,17 +35,10 @@ namespace DoAn_TranTheAnh_2020607026.Models
         [StringLength(255)]
         public string Images { get; set; }
 
-        public double SaleOff { get; set; }
+        public double? SaleOff { get; set; }
 
-        public double Price { get; set; }
+        public double? Price { get; set; }
 
-        public int? SizeID { get; set; }
-        public double newprice(double  price, double saleoff)
-        {
-            this.Price = price;
-            this.SaleOff = saleoff;
-            return price * (saleoff / 100);
-        }
         public virtual Brand Brand { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -55,8 +48,6 @@ namespace DoAn_TranTheAnh_2020607026.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-
-        public virtual Size Size { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rate> Rates { get; set; }

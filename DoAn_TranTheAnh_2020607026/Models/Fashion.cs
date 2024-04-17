@@ -20,7 +20,6 @@ namespace DoAn_TranTheAnh_2020607026.Models
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Rate> Rates { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<Size> Sizes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
@@ -77,10 +76,6 @@ namespace DoAn_TranTheAnh_2020607026.Models
                 .HasMany(e => e.Users)
                 .WithRequired(e => e.Role)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Size>()
-                .Property(e => e.NameSize)
-                .IsUnicode(false);
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Username)

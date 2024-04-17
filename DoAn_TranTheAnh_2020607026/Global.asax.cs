@@ -17,7 +17,5 @@ namespace DoAn_TranTheAnh_2020607026
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
-        
-       
     }
 }
