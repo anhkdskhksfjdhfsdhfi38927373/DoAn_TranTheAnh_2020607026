@@ -13,11 +13,7 @@ namespace DoAn_TranTheAnh_2020607026.Models
         {
             Carts = new HashSet<Cart>();
             Orders = new HashSet<Order>();
-            Rates = new HashSet<Rate>();
         }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int UserID { get; set; }
 
         [Required]
         [StringLength(255)]
@@ -42,14 +38,13 @@ namespace DoAn_TranTheAnh_2020607026.Models
 
         public int RoleID { get; set; }
 
+        public int UserID { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart> Carts { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rate> Rates { get; set; }
 
         public virtual Role Role { get; set; }
     }

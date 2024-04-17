@@ -1,4 +1,4 @@
-﻿@model DoAn_TranTheAnh_2020607026.Category
+﻿@model DoAn_TranTheAnh_2020607026.Models.Category
 
 @{
     ViewBag.Title = "Edit";
@@ -6,7 +6,6 @@
 }
 
 <h2>Edit</h2>
-
 
 @using (Html.BeginForm())
 {
@@ -37,7 +36,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

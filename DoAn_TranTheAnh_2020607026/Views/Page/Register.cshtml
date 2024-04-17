@@ -1,0 +1,96 @@
+﻿@model DoAn_TranTheAnh_2020607026.Models.User
+<!-- SPECIFIC CSS -->
+<link href="~/assets/css/account.css" rel="stylesheet">
+<link href="~/assets/css/stylepage.css" rel="stylesheet">
+<!-- YOUR CUSTOM CSS -->
+<link href="~/assets/css/custom.css" rel="stylesheet">
+<style>
+    .form-control {
+        width: 66%;
+    }
+    .form-group{
+        margin-left:25%;
+    }
+    .regiter{
+        width:50%;
+        margin-left:25%;
+    }
+    .btn_1.full-width{
+        width:50%;
+        margin-left:25%;
+    }
+</style>
+<div class="col-xl-6 col-lg-6 col-md-8">
+    <div class="box_account">
+        <h3 style="margin-left:25%;" class="new_client">Thông tin tài khoản</h3> <small class="float-right pt-2"style="margin-left:25%;">* Thông tin chi tiết</small>
+        @using(Html.BeginForm("Register", "Page", FormMethod.Post))
+        {
+            <div class="form_container">
+                <div class="form-group">
+                    <label>Email</label><br />
+                    <input type="email" class="form-control" name="email" id="email_2" placeholder="Email*">
+                </div>
+                <div class="form-group">
+                    <label>Password</label><br />
+                    <input type="password" class="form-control" name="password" id="password_in_2" placeholder="Password*">
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label class="container_radio" style="display: inline-block; margin-right: 15px;">
+                        Nam
+                        <input type="radio" name="gender" checked value="Nam">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="container_radio" style="display: inline-block;">
+                        Nữ
+                        <input type="radio" name="gender" value="Nu">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div class="private box">
+                    <div class="row no-gutters">
+                        <div class="col-6 pr-1">
+                            <div class="form-group">
+                                <input type="text" name="name" class="form-control" placeholder="Họ và tên*">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="address" placeholder="Địa chỉ">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /row -->
+                    
+                    <!-- /row -->
+
+                    <div class="row no-gutters">
+                        <div class="col-6 pl-1">
+                            <div class="form-group">
+                                <input type="text" name="phone" class="form-control" placeholder="Số Điện thoại">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /row -->
+
+                </div>
+                <!-- /private -->
+                
+                <!-- /company -->
+                <hr>
+                <div class="form-group">
+                    <label class="container_check">
+                        Accept <a href="#0">Terms and conditions</a>
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div class="text-center"><input type="submit" value="Đăng ký" class="btn_1 full-width"></div>
+            </div>
+        }
+
+        <!-- /form_container -->
+    </div>
+    <!-- /box_account -->
+</div>
+

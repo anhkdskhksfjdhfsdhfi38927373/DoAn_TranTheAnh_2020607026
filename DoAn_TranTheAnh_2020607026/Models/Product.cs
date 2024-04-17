@@ -11,13 +11,10 @@ namespace DoAn_TranTheAnh_2020607026.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            Carts = new HashSet<Cart>();
+            CartItems = new HashSet<CartItem>();
             OrderDetails = new HashSet<OrderDetail>();
             Rates = new HashSet<Rate>();
         }
-
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ProductID { get; set; }
 
         [Required]
         [StringLength(255)]
@@ -35,21 +32,33 @@ namespace DoAn_TranTheAnh_2020607026.Models
         [StringLength(255)]
         public string Images { get; set; }
 
-        public double? SaleOff { get; set; }
+        public double SaleOff { get; set; }
 
-        public double? Price { get; set; }
+        public double Price { get; set; }
+
+        public int? SizeID { get; set; }
+
+        public int ProductID { get; set; }
 
         public virtual Brand Brand { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cart> Carts { get; set; }
+        public virtual ICollection<CartItem> CartItems { get; set; }
 
         public virtual Category Category { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 
+        public virtual Size Size { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rate> Rates { get; set; }
+        public double newprice(double price,double saleoff)
+        {
+            this.Price = price;
+            this.SaleOff = saleoff;
+            return price * (saleoff / 100);
+        }
     }
 }

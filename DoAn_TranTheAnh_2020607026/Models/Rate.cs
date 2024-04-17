@@ -11,8 +11,6 @@ namespace DoAn_TranTheAnh_2020607026.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int RateID { get; set; }
 
-        public int? ProductID { get; set; }
-
         public int? UserID { get; set; }
 
         public int? Rating { get; set; }
@@ -21,8 +19,8 @@ namespace DoAn_TranTheAnh_2020607026.Models
 
         public DateTime? DateRate { get; set; }
 
-        public virtual Product Product { get; set; }
+        public int ProductID { get; set; }
 
-        public virtual User User { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

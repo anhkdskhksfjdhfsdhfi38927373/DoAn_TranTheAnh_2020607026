@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "ListproductCategory";
     Layout = "~/Views/Shared/LayoutPage.cshtml";
-    List<Product> ListProducts = ViewBag.list;
+    List<DoAn_TranTheAnh_2020607026.Models.Product> ListProducts = ViewBag.list;
 }
 <div class="main_title">
     <h2>Top Selling</h2>
@@ -34,9 +34,7 @@
                     <span class="old_price">@product.Price</span>
                 </div>
                 <ul>
-                    <li><a href="~/assets/#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-                    <li><a href="~/assets/#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-                    <li><a href="~/assets/#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
+                    <li><a href="@Url.Action("AddtoCart","Cart", new {id=product.ProductID})" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
                 </ul>
             </div>
             <!-- /grid_item -->

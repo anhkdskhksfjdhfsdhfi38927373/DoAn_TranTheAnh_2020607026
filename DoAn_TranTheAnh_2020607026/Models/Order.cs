@@ -23,12 +23,16 @@ namespace DoAn_TranTheAnh_2020607026.Models
         [StringLength(255)]
         public string OrderNumber { get; set; }
 
-        public int UserID { get; set; }
-
         public decimal OrderTotal { get; set; }
 
         [StringLength(255)]
         public string OrderStatus { get; set; }
+
+        public int UserID { get; set; }
+
+        public int CartID { get; set; }
+
+        public virtual Cart Cart { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }

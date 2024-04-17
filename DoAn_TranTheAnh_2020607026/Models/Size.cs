@@ -6,26 +6,21 @@ namespace DoAn_TranTheAnh_2020607026.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Cart
+    public partial class Size
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Cart()
+        public Size()
         {
-            Orders = new HashSet<Order>();
+            Products = new HashSet<Product>();
         }
 
-        public int CartID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int SizeID { get; set; }
 
-        public int CartItemID { get; set; }
-
-        public int UserID { get; set; }
-
-        public virtual CartItem CartItem { get; set; }
-
-        public virtual User User { get; set; }
+        [StringLength(50)]
+        public string NameSize { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Orders { get; set; }
-
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

@@ -13,11 +13,11 @@ namespace DoAn_TranTheAnh_2020607026.Models
 
         public int OrderID { get; set; }
 
-        public int ProductID { get; set; }
-
         public int OrderQuantity { get; set; }
 
         public decimal OrderPrice { get; set; }
+
+        public int ProductID { get; set; }
 
         public virtual Order Order { get; set; }
 
