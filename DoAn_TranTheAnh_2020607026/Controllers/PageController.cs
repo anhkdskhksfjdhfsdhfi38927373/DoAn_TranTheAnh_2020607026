@@ -58,8 +58,8 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         {
             Product product = null;
             product = db.Products.SingleOrDefault(m => m.ProductID == id);
-            ViewBag.product = product;
-            return View("DetailProduct");
+            //ViewBag.product = product;
+            return View("DetailProduct",product);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Brand).Include(p => p.Category).Include(p => p.Size);
+            var products = db.Products.Include(p => p.Brand).Include(p => p.Category);
             return View(products.ToList());
         }
 
@@ -41,7 +41,6 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         {
             ViewBag.BrandID = new SelectList(db.Brands, "BrandID", "BrandName");
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName");
-            ViewBag.SizeID = new SelectList(db.Sizes, "SizeID", "NameSize");
             return View();
         }
 
@@ -50,7 +49,7 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductID,ProductName,Description,QuantityInStock,CategoryID,BrandID,Images,SaleOff,Price,SizeID")] Product product)
+        public ActionResult Create([Bind(Include = "ProductID,ProductName,Description,QuantityInStock,CategoryID,BrandID,Images,SaleOff,Price")] Product product)
         {
             try
             {
@@ -92,7 +91,6 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
             }
             ViewBag.BrandID = new SelectList(db.Brands, "BrandID", "BrandName", product.BrandID);
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", product.CategoryID);
-            ViewBag.SizeID = new SelectList(db.Sizes, "SizeID", "NameSize", product.SizeID);
             return View(product);
         }
 
@@ -101,7 +99,7 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductID,ProductName,Description,QuantityInStock,CategoryID,BrandID,Images,SaleOff,Price,SizeID")] Product product)
+        public ActionResult Edit([Bind(Include = "ProductID,ProductName,Description,QuantityInStock,CategoryID,BrandID,Images,SaleOff,Price")] Product product)
         {
             try
             {
@@ -143,7 +141,7 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
             return View(product);
         }
 
-            // POST: Products/Delete/5
+        // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

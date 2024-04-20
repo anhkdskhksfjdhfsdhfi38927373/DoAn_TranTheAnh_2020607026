@@ -14,7 +14,6 @@ namespace DoAn_TranTheAnh_2020607026.Models
 
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<CartItem> CartItems { get; set; }
-        public virtual DbSet<Cart> Carts { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
@@ -30,16 +29,6 @@ namespace DoAn_TranTheAnh_2020607026.Models
             modelBuilder.Entity<Brand>()
                 .Property(e => e.BrandName)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<CartItem>()
-                .HasMany(e => e.Carts)
-                .WithRequired(e => e.CartItem)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Cart>()
-                .HasMany(e => e.Orders)
-                .WithRequired(e => e.Cart)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Category>()
                 .Property(e => e.CategoryName)
@@ -126,11 +115,6 @@ namespace DoAn_TranTheAnh_2020607026.Models
             modelBuilder.Entity<User>()
                 .Property(e => e.Phone)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.Carts)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Orders)

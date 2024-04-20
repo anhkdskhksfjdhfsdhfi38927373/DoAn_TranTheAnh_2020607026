@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DoAn_TranTheAnh_2020607026.Models.CartItem>
+﻿@model DoAn_TranTheAnh_2020607026.Models.ListCart
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/LayoutPage.cshtml";
@@ -9,6 +9,9 @@
         <tr>
             <th>
                 Product
+            </th>
+            <th>
+                Size
             </th>
             <th>
                 Price
@@ -25,39 +28,40 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Listcart)
         {
-                <tr>
-                    <td>
-                        <div class="thumb_cart">
-                            <img src="~/assets/images/product/@item.Product.Images"  class="lazy" alt="Image">
-                        </div>
+            
+            <tr>
+                <td style="display: flex;">
+                    <div class="thumb_cart">
+                        <img src="~/assets/images/product/@item.Product.Images" class="lazy" alt="Image" style="width: 70ppx; height:70px;">
+                    </div>
+                    <span class="item_cart">@item.Product.ProductName</span>
+                </td>
+                <td>@item.Size.NameSize</td>
+                <td>
+                    <strong>@item.Product.newprice(item.Product.Price, item.Product.SaleOff)</strong>
+                </td>
+                <td>
+                    <div class="numbers-row">
+                        <input type="text" value="@item.QuantityProductSale" id="quantity_1" class="qty2" name="quantity_1">
+                        <a href="@Url.Action("UpdateCartup", "Carts", new {id=item.Product.ProductID} )"><div class="inc button_inc">+</div></a>
+                        <a href="@Url.Action("UpdateCartdown","Carts", new {id=item.Product.ProductID})"> <div class="dec button_inc">-</div></a>
 
-                        <span class="item_cart">@item.Product.ProductName</span>
-                    </td>
-                    <td>
-                        <strong>@item.Product.newprice(item.Product.Price,item.Product.SaleOff)</strong>
-                    </td>
-                    <td>
-                        <div class="numbers-row">
-                            <input type="text" value="@item.QuantityProductSale" id="quantity_1" class="qty2" name="quantity_1">
-                            <a href="@Url.Action("UpdateCartup","Carts")"><div class="inc button_inc">+</div></a>
-                            <a href="@Url.Action("UpdateCartdown","Carts")"> <div class="dec button_inc">-</div></a>
-                           
-                        </div>
-                    </td>
-                    
-                    <td class="options">
-                        <a href="@Url.Action("Delete_Products", "Carts", new {id = item.Product.ProductID})"><i class="ti-trash"></i></a>
-                    </td>
-                </tr>
-                
-               <tr>
-                   <td colspan="4">Tổng tiền:</td>
-               </tr>
-            }
+                    </div>
+                </td>
 
-       
+                <td class="options">
+                    <a href="@Url.Action("Delete_Products", "Carts", new {id = item.Product.ProductID})"><i class="ti-trash"></i></a>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="4">Tổng tiền:@Model.Total_Money()</td>
+            </tr>
+        }
+
+
 
     </tbody>
 </table>

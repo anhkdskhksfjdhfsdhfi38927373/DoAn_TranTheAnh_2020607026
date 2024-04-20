@@ -32,8 +32,6 @@ namespace DoAn_TranTheAnh_2020607026.Models
 
         public int CartID { get; set; }
 
-        public virtual Cart Cart { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 

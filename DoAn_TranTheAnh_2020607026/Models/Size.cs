@@ -11,7 +11,7 @@ namespace DoAn_TranTheAnh_2020607026.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Size()
         {
-            Products = new HashSet<Product>();
+            CartItems = new HashSet<CartItem>();
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -21,6 +21,6 @@ namespace DoAn_TranTheAnh_2020607026.Models
         public string NameSize { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<CartItem> CartItems { get; set; }
     }
 }

@@ -19,9 +19,6 @@
             @Html.DisplayNameFor(model => model.Category.CategoryName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Size.NameSize)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.ProductName)
         </th>
         <th>
@@ -51,9 +48,6 @@
             @Html.DisplayFor(modelItem => item.Category.CategoryName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Size.NameSize)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.ProductName)
         </td>
         <td>
@@ -63,7 +57,7 @@
             @Html.DisplayFor(modelItem => item.QuantityInStock)
         </td>
         <td>
-            <img src="~/assets/images/product/@item.Images" style="width:100px; height:100px;" />
+            @Html.DisplayFor(modelItem => item.Images)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.SaleOff)

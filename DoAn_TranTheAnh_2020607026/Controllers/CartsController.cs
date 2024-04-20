@@ -1,7 +1,7 @@
 ﻿using DoAn_TranTheAnh_2020607026.Models;
 using System.Linq;
 using System.Web.Mvc;
-using static DoAn_TranTheAnh_2020607026.Models.CartItem;
+
 
 
 
@@ -37,16 +37,22 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
                     return RedirectToAction("Index", "Cart");
                 }
                 ListCart carts = Session["Cart"] as ListCart;
-                return View("Index",carts);
+                return View(carts);
             }
-           
+            
         }
-        public ActionResult AddtoCart(int id)
+        [HttpPost]
+        public ActionResult AddtoCart(FormCollection form)
         {
+            
+            int id = int.Parse(form["ProductID"]);
+            int sizeId = int.Parse(form["Size"]);
+            var size = db.Sizes.SingleOrDefault(s => s.SizeID == sizeId);
             var pro = db.Products.SingleOrDefault(s => s.ProductID == id);
             if (pro != null)
             {
-                getcart().AddCart(pro);
+                getcart().AddCart(pro,size);
+                
             }
             return RedirectToAction("Index", "Carts");
         }
