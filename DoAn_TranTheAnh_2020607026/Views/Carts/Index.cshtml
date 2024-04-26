@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/LayoutPage.cshtml";
-   
+
 }
 <table class="table table-striped cart-list">
     <thead>
@@ -30,7 +30,7 @@
     <tbody>
         @foreach (var item in Model.Listcart)
         {
-            
+
             <tr>
                 <td style="display: flex;">
                     <div class="thumb_cart">
@@ -56,13 +56,24 @@
                 </td>
             </tr>
 
-            <tr>
-                <td colspan="4">Tổng tiền:@Model.Total_Money()</td>
-            </tr>
-        }
 
+        }
 
 
     </tbody>
 </table>
-
+<div class="box_cart">
+    <div class="container">
+        <div class="row justify-content-end">
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <ul>
+                    <li>
+                        <span>Tổng Tiền</span> @Model.Total_Money() &nbsp; VND
+                    </li>
+                    
+                </ul>
+                <a href="@Url.Action("CheckOut","Carts")" class="btn_1 full-width cart">Thanh Toán</a>
+            </div>
+        </div>
+    </div>
+</div>

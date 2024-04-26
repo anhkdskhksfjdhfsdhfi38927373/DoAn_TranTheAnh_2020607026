@@ -18,9 +18,9 @@ namespace DoAn_TranTheAnh_2020607026.Models
 
         public int SizeID { get; set; }
 
-        public  Size Size { get; set; }
+        public Size Size { get; set; }
 
-        public  Product Product { get; set; }
+        public Product Product { get; set; }
     }
     public class ListCart
     {
@@ -32,22 +32,30 @@ namespace DoAn_TranTheAnh_2020607026.Models
         public void AddCart(Product product, Size size, int quantity = 1)
         {
             var item = listcart.FirstOrDefault(s => s.Product.ProductID == product.ProductID);
+            var itemsize = listcart.FirstOrDefault(s => s.SizeID == size.SizeID);
             
-            if (item == null)
+            if (item == null && itemsize == null)
             {
                 listcart.Add(new CartItem
                 {
-              
                     Product = product,
                     QuantityProductSale = quantity,
                     Size = size
                 });
-                
-            }
-            else
-            {
 
-                item.QuantityProductSale += quantity;
+            }
+            else if (item != null&&itemsize == null)
+            {
+                listcart.Add(new CartItem
+                {
+                    Product = product,
+                    QuantityProductSale = quantity,
+                    Size = size
+                }); 
+            }
+            else if(item!=null&&itemsize!=null)
+            {
+                
             }
         }
         public void UpdatetoCartup(int id)
@@ -84,6 +92,10 @@ namespace DoAn_TranTheAnh_2020607026.Models
             var item = listcart.Find(s => s.Product.ProductID == id);
             listcart.Remove(item);
 
+        }
+        public void Clear_Carts()
+        {
+            listcart.Clear();
         }
     }
 }

@@ -1,0 +1,112 @@
+﻿@model DoAn_TranTheAnh_2020607026.Models.ListCart
+@{
+    ViewBag.Title = "CheckOut";
+    Layout = "~/Views/Shared/LayoutPage.cshtml";
+
+}
+<link href="css/checkout.css" rel="stylesheet">
+
+<!-- YOUR CUSTOM CSS -->
+<link href="css/custom.css" rel="stylesheet">
+@using (Html.BeginForm("CheckOut", "Carts", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-lg-4 col-md-6">
+            <div class="step first">
+                <h3>1. User Info and Billing address</h3>
+
+                <div class="tab-content checkout">
+                    <div class="tab-pane fade show active" id="tab_1" role="tabpanel" aria-labelledby="tab_1">
+                        <hr>
+                        <div class="row no-gutters">
+                            <div class="col-6 form-group pr-1">
+                                <input type="text" class="form-control" name="Name" placeholder="Họ và tên">
+                            </div>
+
+                        </div>
+                        <!-- /row -->
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="Address_Delivery" placeholder="Địa chỉ giao hàng">
+                        </div>
+                        
+                        <!-- /row -->
+                       
+                        <!-- /row -->
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="Phone" placeholder="Telephone">
+                        </div>
+                        
+                    </div>
+                    <!-- /tab_1 -->
+                    <!-- /tab_2 -->
+                </div>
+            </div>
+            <!-- /step -->
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="step middle payments">
+                <h3>2. Payment </h3>
+                <ul>
+                    <li>
+                        <label style="display: flex; height: 50px; " class="container_radio">
+                            COD<a href="#0"><img src="img/about_placeholder.jpg" style="width: 50px; height: 100%; margin-left:  1050px;" /></a>
+                            <input type="radio" value="0" name="TypePayment" checked>
+                            <span class="checkmark"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="container_radio">
+                            VNPAYQR <a href="#0"><img src="img/about_placeholder.jpg" style="width: 50px; height: 100%; margin-left:  1050px;" /></a>
+                            <input type="radio" value="1" name="TypePayment">
+                            <span class="checkmark"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="container_radio">
+                            VNBANK<a href="#0"><img src="img/about_placeholder.jpg" style="width: 50px; height: 100%; margin-left:  1050px;" /></a>
+                            <input type="radio" value="2" name="TypePayment">
+                            <span class="checkmark"></span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="container_radio">
+                            INTCARD<a href="#0"><img src="img/about_placeholder.jpg" style="width: 50px; height: 100%; margin-left:  1050px;" /></a>
+                            <input type="radio" value="3" name="TypePayment">
+                            <span class="checkmark"></span>
+                        </label>
+                    </li>
+                </ul>
+                <div class="payment_info d-none d-sm-block"><figure><img src="img/cards_all.svg" alt=""></figure>	<p>Sensibus reformidans interpretaris sit ne, nec errem nostrum et, te nec meliore philosophia. At vix quidam periculis. Solet tritani ad pri, no iisque definitiones sea.</p></div>
+
+
+
+            </div>
+            <!-- /step -->
+
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="step last">
+                <h3>3. Order Summary</h3>
+                <div class="box_general summary">
+                    @foreach (var item in Model.Listcart)
+                    {
+                        <ul>
+                            <li class="clearfix"><em>@item.QuantityProductSale &nbsp; @item.Product.ProductName</em>  <span>$145.00</span></li>
+                            
+                        </ul>
+                    }
+
+                  
+                    <div class="total clearfix">TOTAL <span>@Model.Total_Money()</span></div>
+                    <input type="submit" value="Thanh toán" class="btn_1 full-width" />
+                    
+                </div>
+                <!-- /box_general -->
+            </div>
+            <!-- /step -->
+        </div>
+    </div>
+
+}
+
+@ViewBag.link

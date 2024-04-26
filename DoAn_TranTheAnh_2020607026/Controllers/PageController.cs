@@ -25,15 +25,16 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         [HttpPost]
         public ActionResult Login(string Email, string Password)
         {
-            var User = db.Users.Where(s => s.Email == Email && s.Password == Password).FirstOrDefault();
-            if (User != null)
+            
+            var item = db.Users.Where(s => s.Email == Email && s.Password == Password).FirstOrDefault();
+            if (item != null)
             {
-                Session["UserID"] = User.UserID;
-                if (User.RoleID == 0)
+                Session["UserID"] = item.UserID;
+                if (item.RoleID== 0)
                 {
                     return RedirectToAction("Index", "Page");
                 }
-                else if (User.RoleID == 1)
+                else if (item.RoleID == 1)
                 {
                     return RedirectToAction("Dashboard", "Admin");
                 }

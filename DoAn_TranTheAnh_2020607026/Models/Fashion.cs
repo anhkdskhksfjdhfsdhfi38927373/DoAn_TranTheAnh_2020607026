@@ -40,7 +40,7 @@ namespace DoAn_TranTheAnh_2020607026.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Order>()
-                .Property(e => e.OrderNumber)
+                .Property(e => e.OrderCode)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Order>()
@@ -116,10 +116,7 @@ namespace DoAn_TranTheAnh_2020607026.Models
                 .Property(e => e.Phone)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<User>()
-                .HasMany(e => e.Orders)
-                .WithRequired(e => e.User)
-                .WillCascadeOnDelete(false);
+            
         }
     }
 }

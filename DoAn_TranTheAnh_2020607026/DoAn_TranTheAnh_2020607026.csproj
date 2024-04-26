@@ -258,6 +258,7 @@
     <Compile Include="Models\Size.cs" />
     <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\VN_Pay\VnPayLibrary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -499,6 +500,9 @@
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Carts\CheckOut.cshtml" />
+    <Content Include="Views\Carts\SuccessOrder.cshtml" />
+    <Content Include="Views\Carts\VnPay_Return.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
