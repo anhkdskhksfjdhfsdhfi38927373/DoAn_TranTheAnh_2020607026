@@ -12,15 +12,15 @@ namespace DoAn_TranTheAnh_2020607026.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CartItemID { get; set; }
 
-        public int QuantityProductSale { get; set; }
+        public int? QuantityProductSale { get; set; }
 
         public int ProductID { get; set; }
 
-        public int SizeID { get; set; }
+        public int? SizeID { get; set; }
 
-        public Size Size { get; set; }
+        public virtual Size Size { get; set; }
 
-        public Product Product { get; set; }
+        public virtual Product Product { get; set; }
     }
     public class ListCart
     {
@@ -29,34 +29,29 @@ namespace DoAn_TranTheAnh_2020607026.Models
         {
             get { return listcart; }
         }
-        public void AddCart(Product product, Size size, int quantity = 1)
+        public void AddCart(Product product,Size size, int quantity = 1)
         {
             var item = listcart.FirstOrDefault(s => s.Product.ProductID == product.ProductID);
-            var itemsize = listcart.FirstOrDefault(s => s.SizeID == size.SizeID);
-            
-            if (item == null && itemsize == null)
+            var sizeitem = listcart.FirstOrDefault(s => s.Size.SizeID == size.SizeID);
+            if (item == null && sizeitem ==null)
             {
                 listcart.Add(new CartItem
                 {
                     Product = product,
-                    QuantityProductSale = quantity,
-                    Size = size
+                    Size = size,
+                    QuantityProductSale = quantity
                 });
-
             }
-            else if (item != null&&itemsize == null)
+            if(item!=null && sizeitem == null)
             {
                 listcart.Add(new CartItem
                 {
                     Product = product,
-                    QuantityProductSale = quantity,
-                    Size = size
-                }); 
+                    Size = size,
+                    QuantityProductSale = quantity
+                });
             }
-            else if(item!=null&&itemsize!=null)
-            {
-                
-            }
+            
         }
         public void UpdatetoCartup(int id)
         {
@@ -83,19 +78,17 @@ namespace DoAn_TranTheAnh_2020607026.Models
             var total = Listcart.Sum(s => s.Product.newprice(s.Product.SaleOff, s.Product.Price) * s.QuantityProductSale);
             return (double)total;
         }
+        public void Clear_Carts()
+        {
+            listcart.Clear();
+        }
         public int total_Quantity()
         {
             return (int)listcart.Sum(s => s.QuantityProductSale);
         }
-        public void Delete_Product(int id)
+        public void Delete_Product(int productid)
         {
-            var item = listcart.Find(s => s.Product.ProductID == id);
-            listcart.Remove(item);
-
-        }
-        public void Clear_Carts()
-        {
-            listcart.Clear();
+            listcart.RemoveAll(s => s.Product.ProductID == productid);
         }
     }
 }

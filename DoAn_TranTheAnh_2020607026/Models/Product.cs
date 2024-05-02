@@ -52,10 +52,9 @@ namespace DoAn_TranTheAnh_2020607026.Models
         public virtual ICollection<Rate> Rates { get; set; }
         public double newprice(double price, double saleoff)
         {
-            this.Price = price;
-            this.SaleOff = saleoff;
+            price = Price;
+            saleoff = SaleOff ;
             return price * (saleoff / 100);
         }
-
     }
 }

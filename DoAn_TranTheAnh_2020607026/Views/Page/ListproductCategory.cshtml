@@ -1,9 +1,11 @@
-﻿
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<DoAn_TranTheAnh_2020607026.Models.Product>
 @{
     ViewBag.Title = "ListproductCategory";
     Layout = "~/Views/Shared/LayoutPage.cshtml";
-    List<DoAn_TranTheAnh_2020607026.Models.Product> ListProducts = ViewBag.list;
 }
+<link href="~/Content/PagedList.css" rel="stylesheet" />
 <div class="main_title">
     <h2>Top Selling</h2>
     <span>Products</span>
@@ -11,7 +13,7 @@
 </div>
 <div class="row small-gutters">
 
-    @foreach (var product in ListProducts)
+    @foreach (var product in Model)
     {
         <div class="col-6 col-md-4 col-xl-3">
             <div class="grid_item">
@@ -21,7 +23,6 @@
                         <img class="img-fluid lazy" src="~/assets/images/product/@product.Images" alt="" width="400" height="400">
                         <img class="img-fluid lazy" src="~/assets/images/product/@product.Images" alt="" width="400" height="400">
                     </a>
-                    
                 </figure>
                 <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
                 <a href="~/assets/product-detail-1.html">
@@ -43,3 +44,7 @@
 
 </div>
 
+<div style="text-align:center;">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, PageSize = 8 }))
+
+</div>

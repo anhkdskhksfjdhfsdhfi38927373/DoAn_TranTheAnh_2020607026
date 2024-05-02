@@ -6,7 +6,7 @@
 }
 <table class="table table-striped cart-list">
     <thead>
-        <tr>
+        <tr style="text-align:center;">
             <th>
                 Product
             </th>
@@ -22,38 +22,40 @@
             <th>
                 Subtotal
             </th>
-            <th>
-
-            </th>
+            
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.Listcart)
         {
 
-            <tr>
+            <tr style="text-align:center;">
                 <td style="display: flex;">
                     <div class="thumb_cart">
                         <img src="~/assets/images/product/@item.Product.Images" class="lazy" alt="Image" style="width: 70ppx; height:70px;">
                     </div>
-                    <span class="item_cart">@item.Product.ProductName</span>
+                    <span class="item_cart" style="margin-top:25px; margin-left:25px;">@item.Product.ProductName</span>
                 </td>
-                <td>@item.Size.NameSize</td>
-                <td>
-                    <strong>@item.Product.newprice(item.Product.Price, item.Product.SaleOff)</strong>
-                </td>
-                <td>
-                    <div class="numbers-row">
-                        <input type="text" value="@item.QuantityProductSale" id="quantity_1" class="qty2" name="quantity_1">
-                        <a href="@Url.Action("UpdateCartup", "Carts", new {id=item.Product.ProductID} )"><div class="inc button_inc">+</div></a>
-                        <a href="@Url.Action("UpdateCartdown","Carts", new {id=item.Product.ProductID})"> <div class="dec button_inc">-</div></a>
+                <td >@item.Size.NameSize</td>
+                <td >
+                    <strong>
+                        @String.Format("{0:0,0 VND}", item.Product.newprice(item.Product.Price, item.Product.SaleOff))
+                         </strong >
+                    </td >
+                    <td >
+                        <div class="numbers-row">
+                            <input type = "text" value="@item.QuantityProductSale" id="quantity_1" class="qty2" name="quantity_1">
+                            <a href = "@Url.Action("UpdateCartup", "Carts", new {id=item.Product.ProductID} )"><div class="inc button_inc">+</div></a>
+                            <a href = "@Url.Action("UpdateCartdown","Carts", new {id=item.Product.ProductID})"> <div class="dec button_inc">-</div></a>
 
-                    </div>
-                </td>
+                        </div>
+                    </td >
 
-                <td class="options">
-                    <a href="@Url.Action("Delete_Products", "Carts", new {id = item.Product.ProductID})"><i class="ti-trash"></i></a>
-                </td>
+                    <td class="options" style="text-align: center;">
+                        <a href = "@Url.Action("Delete_Products", "Carts", new {id = item.Product.ProductID})">
+                        <img src="~/assets/icon/delete_10337516.png" style="width:30px;height:30px;"
+                    @*<i class="ti-trash"></i>*@</a>
+                    </td>
             </tr>
 
 
@@ -68,7 +70,8 @@
             <div class="col-xl-4 col-lg-4 col-md-6">
                 <ul>
                     <li>
-                        <span>Tổng Tiền</span> @Model.Total_Money() &nbsp; VND
+                        <span>Tổng Tiền: &nbsp;</span>@String.Format("{0:0,0 VND}",Model.Total_Money())
+                        
                     </li>
                     
                 </ul>

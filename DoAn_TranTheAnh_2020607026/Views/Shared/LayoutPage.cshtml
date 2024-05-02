@@ -34,7 +34,7 @@
     <!-- SPECIFIC CSS -->
     <link rel="preload" href="~/assets/css/home_1.css" as="style">
     <link rel="stylesheet" href="~/assets/css/home_1.css">
-
+    
 </head>
 
 <body>
@@ -48,10 +48,10 @@
                     <div class="row small-gutters">
                         <div class="col-xl-3 col-lg-3 d-lg-flex align-items-center">
                             <div id="logo" style="box-sizing:border-box;">
-                                <a href="@Url.Action("Index","Page")" ><img src="~/assets/images/logo/logo.jpg" alt="" style="width:100px; height:100px;"></a>
+                                <a href="@Url.Action("Index","Page")" ><img src="~/assets/images/logo/logo.jpg" alt="" style="width:95px; height:70px;"></a>
                             </div>
                         </div>
-                        <nav class="col-xl-6 col-lg-7">
+                        <nav class="col-xl-6 col-lg-7" >
                             <a class="open_close" href="~/assets/#0">
                                 <div class="hamburger hamburger--spin">
                                     <div class="hamburger-box">
@@ -65,7 +65,39 @@
                                     <a href="~/assets/index.html"><img src="~/assets/img/logo_black.svg" alt="" width="100" height="35"></a>
                                     <a href="~/assets/#" class="open_close" id="close_in"><i class="ti-close"></i></a>
                                 </div>
-                                
+                                <ul style="text-align:center;">
+                                    <li class="submenu">
+                                        <a href="#0" style="color:#000" class="show-submenu">Danh mục</a>
+                                        <ul style="text-align:left;">
+                                            <li><a href="@Url.Action("ListproductCategory","Page", new {id = 1})">T-Shirt</a></li>
+                                            <li><a href="@Url.Action("ListproductCategory","Page", new {id = 2})">Polo</a></li>
+                                            <li><a href="@Url.Action("ListproductCategory","Page", new {id = 3})">Quần Jean</a></li>
+                                            <li><a href="@Url.Action("ListproductCategory","Page", new {id = 4})">Sơ mi</a></li>
+                                            <li><a href="@Url.Action("ListproductCategory","Page", new {id = 5})">Hoodie</a></li>
+                                            <li><a href="@Url.Action("ListproductCategory","Page", new {id = 6})">Bomber</a></li>
+                                            <li><a href="@Url.Action("ListproductCategory","Page", new {id = 7})">Áo bóng đá</a></li>
+                                        </ul>
+                                    </li>
+                                    
+                                    <li class="submenu">
+                                        <a href="#0" style="color:#000" class="show-submenu">Danh sách cửa hàng</a>
+                                        <ul style="text-align:left;">
+                                            <li><a href="#0">Hà Nội</a></li>
+                                            <li><a href="#0">Đà Nẵng</a></li>
+                                            <li><a href="#0">TP. Hồ Chí Minh</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        @{
+                                            if (Session["Admin"] != null)
+                                            {
+                                                <a style="color:#000" href="@Url.Action("Dashboard","Admin")">Quản lý</a>
+                                            }
+                                        }
+
+                                    </li>
+                                   
+                                </ul>   
                             </div>
                             <!--/main-menu -->
                         </nav>
@@ -87,35 +119,39 @@
             </div>
             <!-- /main_header -->
 
-            <div class="main_nav Sticky">
+            <div class="main_nav Sticky" >
                 <div class="container">
                     <div class="row small-gutters">
                         <div class="col-xl-3 col-lg-3 col-md-3">
-                            
+
                         </div>
-                        <div class="col-xl-6 col-lg-7 col-md-6 d-none d-md-block">
-                            <div class="custom-search-input">
-                                <input type="text" placeholder="Search over 10.000 products">
-                                <button type="submit"><i class="header-icon_search_custom"></i></button>
+                      
+                            <div class="col-xl-6 col-lg-7 col-md-6 d-none d-md-block">
+                                <div class="custom-search-input">
+                                    @using (Html.BeginForm("Search", "Page", FormMethod.Post))
+                                    {
+                                        <input type="text" name="SearchString" placeholder="Search over 10.000 products">
+                                        <button type="submit"><i class="header-icon_search_custom"></i></button>
+                                    }
+                                    </div>
                             </div>
-                        </div>
+                        
                         <div class="col-xl-3 col-lg-2 col-md-3">
                             <ul class="top_tools">
                                 <li>
                                     <div class="dropdown dropdown-cart">
-                                        <a href="@Url.Action("Index","Carts")" class="cart_bt"><strong>@Html.Action("TotalQuantity","Carts")</strong></a>
+                                        <a href="@Url.Action("Index","Carts")" class="cart_bt"><strong>@Html.Action("TotalQuantity", "Carts")</strong></a>
                                     </div>
                                     <!-- /dropdown-cart-->
                                 </li>
-                                
+
                                 <li>
                                     <div class="dropdown dropdown-access">
-                                        <a href="account.html" class="access_link"><span>Account</span></a>
-                                       
+                                        <a href="#" class="access_link"><span>Account</span></a>
                                     </div>
                                     <!-- /dropdown-access-->
                                 </li>
-                                
+
                             </ul>
                         </div>
                     </div>
@@ -130,397 +166,9 @@
             <!-- /main_nav -->
         </header>
         <!-- /header -->
-
+        @RenderBody()
         <main>
-            <div id="carousel-home">
-                <div class="owl-carousel owl-theme">
-                    <div class="owl-slide cover">
-                        <img src="~/assets/images/banner/banner1.jpg" />
-                        <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-                            <div class="container">
-                                <div class="row justify-content-center justify-content-md-end">
-                                    <div class="col-lg-6 static">
-                                        <div class="slide-text text-end white">
-                                            <h2 class="owl-slide-animated owl-slide-title">Attack Air<br>Max 720 Sage Low</h2>
-                                            <p class="owl-slide-animated owl-slide-subtitle">
-                                                Limited items available at this price
-                                            </p>
-                                            <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="~/assets/listing-grid-1-full.html" role="button">Shop Now</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/owl-slide-->
-                    <div class="owl-slide cover">
-                        <img src="~/assets/images/banner/banner2.jpg" />
-                        <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-                            <div class="container">
-                                <div class="row justify-content-center justify-content-md-start">
-                                    <div class="col-lg-6 static">
-                                        <div class="slide-text white">
-                                            <h2 class="owl-slide-animated owl-slide-title">Attack Air<br>VaporMax Flyknit 3</h2>
-                                            <p class="owl-slide-animated owl-slide-subtitle">
-                                                Limited items available at this price
-                                            </p>
-                                            <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="~/assets/listing-grid-1-full.html" role="button">Shop Now</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/owl-slide-->
-                    <div class="owl-slide cover">
-                        <img src="~/assets/images/banner/banner3.jpg" />
-                        <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(255, 255, 255, 0.5)">
-                            <div class="container">
-                                <div class="row justify-content-center justify-content-md-start">
-                                    <div class="col-lg-12 static">
-                                        <div class="slide-text text-center black">
-                                            <h2 class="owl-slide-animated owl-slide-title">Attack Air<br>Monarch IV SE</h2>
-                                            <p class="owl-slide-animated owl-slide-subtitle">
-                                                Lightweight cushioning and durable support with a Phylon midsole
-                                            </p>
-                                            <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="~/assets/listing-grid-1-full.html" role="button">Shop Now</a></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/owl-slide-->
-                    </div>
-                </div>
-                <div id="icon_drag_mobile"></div>
-            </div>
-            <!--/carousel-->
-
-            <ul style="display:flex;" id="banners_grid" class="clearfix">
-                <li style="box-sizing:border-box;">
-                    <a href="@Url.Action("ListproductCategory","Page", new {id = 4})" class="img_container">
-                        <img src="~/assets/images/category/somi.jpg" data-src="~/assets/im/banner_1.jpg" alt="" class="lazy">
-                        <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-                            <h3>Sơ mi</h3>
-                            <div><span class="btn_1">Shop Now</span></div>
-                        </div>
-                    </a>
-                </li>
-                <li style="box-sizing:border-box;">
-                    <a href="@Url.Action("ListproductCategory","Page", new {id = 1})" class="img_container">
-                        <img src="~/assets/images/category/t-shirt.jpg" data-src="~/assets/im/banner_1.jpg" alt="" class="lazy">
-                        <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-                            <h3>T-Shirt</h3>
-                            <div><span class="btn_1">Shop Now</span></div>
-                        </div>
-                    </a>
-                </li>
-                <li style="box-sizing:border-box;">
-                    <a href="#" class="img_container">
-                        <img src="~/assets/images/category/Polo.jpg" data-src="~/assets/im/banner_1.jpg" alt="" class="lazy">
-                        <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-                            <h3>Polo</h3>
-                            <div><span class="btn_1">Shop Now</span></div>
-                        </div>
-                    </a>
-                </li>
-                <li style="box-sizing:border-box;">
-                    <a href="#0" class="img_container">
-                        <img src="~/assets/images/category/bomber.jpg" data-src="~/assets/img/banner_2.jpg" alt="" class="lazy">
-                        <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-                            <h3>Bomber</h3>
-                            <div><span class="btn_1">Shop Now</span></div>
-                        </div>
-                    </a>
-                </li>
-                <li style="box-sizing:border-box;">
-                    <a href="#0" class="img_container">
-                        <img src="~/assets/images/category/jean.jpg" data-src="~/assets/img/banner_2.jpg" alt="" class="lazy">
-                        <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-                            <h3>Quần Jean</h3>
-                            <div><span class="btn_1">Shop Now</span></div>
-                        </div>
-                    </a>
-                </li>
-                <li style="box-sizing:border-box;">
-                    <a href="#0" class="img_container">
-                        <img src="~/assets/images/category/hoodie.jpg" data-src="~/assets/img/banner_3.jpg" alt="" class="lazy">
-                        <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-                            <h3>Hoodie</h3>
-                            <div><span class="btn_1">Shop Now</span></div>
-                        </div>
-                    </a>
-                </li>
-                
-                <li style="box-sizing:border-box;">
-                    <a href="#0" class="img_container">
-                        <img src="~/assets/images/category/aobongda.jpg" data-src="~/assets/img/banner_3.jpg" alt="" class="lazy">
-                        <div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-                            <h3>Áo bóng đá</h3>
-                            <div><span class="btn_1">Shop Now</span></div>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-            <!--/banners_grid -->
-
-            <div class="container margin_60_35">
-                @RenderBody()
-                <!-- /row -->
-            </div>
-            <!-- /container -->
-
-            <div class="featured lazy" data-bg="url(img/featured_home.jpg)">
-                <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-                    <div class="container margin_60">
-                        <div class="row justify-content-center justify-content-md-start">
-                            <div class="col-lg-6 wow" data-wow-offset="150">
-                                <h3>Armor<br>Air Color 720</h3>
-                                <p>Lightweight cushioning and durable support with a Phylon midsole</p>
-                                <div class="feat_text_block">
-                                    <div class="price_box">
-                                        <span class="new_price">$90.00</span>
-                                        <span class="old_price">$170.00</span>
-                                    </div>
-                                    <a class="btn_1" href="~/assets/listing-grid-1-full.html" role="button">Shop Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /featured -->
-
-            <!--<div class="container margin_60_35">
-                <div class="main_title">
-                    <h2>Featured</h2>
-                    <span>Products</span>
-                    <p>Cum doctus civibus efficiantur in imperdiet deterruisset</p>
-                </div>
-                <div class="owl-carousel owl-theme products_carousel">
-                    <div class="item">
-                        <div class="grid_item">
-                            <span class="ribbon new">New</span>
-                            <figure>
-                                <a href="~/assets/product-detail-1.html">
-                                    <img class="owl-lazy img-fluid" src="~/assets/img/products/product_placeholder_square_medium.jpg" data-src="~/assets/img/products/shoes/4.jpg" alt="" width="400" height="400">
-                                </a>
-                            </figure>
-                            <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-                            <a href="~/assets/product-detail-1.html">
-                                <h3>ACG React Terra</h3>
-                            </a>
-                            <div class="price_box">
-                                <span class="new_price">$110.00</span>
-                            </div>
-                            <ul>
-                                <li><a href="~/assets/#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-                                <li><a href="~/assets/#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-                                <li><a href="~/assets/#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-                            </ul>
-                        </div>-->
-                        <!-- /grid_item -->
-                    <!--</div>-->
-                    <!-- /item -->
-                    <!--<div class="item">
-                        <div class="grid_item">
-                            <span class="ribbon new">New</span>
-                            <figure>
-                                <a href="~/assets/product-detail-1.html">
-                                    <img class="owl-lazy img-fluid" src="~/assets/img/products/product_placeholder_square_medium.jpg" data-src="~/assets/img/products/shoes/5.jpg" alt="" width="400" height="400">
-                                </a>
-                            </figure>
-                            <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-                            <a href="~/assets/product-detail-1.html">
-                                <h3>Air Zoom Alpha</h3>
-                            </a>
-                            <div class="price_box">
-                                <span class="new_price">$140.00</span>
-                            </div>
-                            <ul>
-                                <li><a href="~/assets/#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-                                <li><a href="~/assets/#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-                                <li><a href="~/assets/#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-                            </ul>
-                        </div>-->
-                        <!-- /grid_item -->
-                    <!--</div>-->
-                    <!-- /item -->
-                    <!--<div class="item">
-                        <div class="grid_item">
-                            <span class="ribbon hot">Hot</span>
-                            <figure>
-                                <a href="~/assets/product-detail-1.html">
-                                    <img class="owl-lazy img-fluid" src="~/assets/img/products/product_placeholder_square_medium.jpg" data-src="~/assets/img/products/shoes/8.jpg" alt="" width="400" height="400">
-                                </a>
-                            </figure>
-                            <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-                            <a href="~/assets/product-detail-1.html">
-                                <h3>Air Color 720</h3>
-                            </a>
-                            <div class="price_box">
-                                <span class="new_price">$120.00</span>
-                            </div>
-                            <ul>
-                                <li><a href="~/assets/#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-                                <li><a href="~/assets/#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-                                <li><a href="~/assets/#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-                            </ul>
-                        </div>-->
-                        <!-- /grid_item -->
-                    <!--</div>-->
-                    <!-- /item -->
-                    <!--<div class="item">
-                        <div class="grid_item">
-                            <span class="ribbon off">-30%</span>
-                            <figure>
-                                <a href="~/assets/product-detail-1.html">
-                                    <img class="owl-lazy img-fluid" src="~/assets/img/products/product_placeholder_square_medium.jpg" data-src="~/assets/img/products/shoes/2.jpg" alt="" width="400" height="400">
-                                </a>
-                            </figure>
-                            <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-                            <a href="~/assets/product-detail-1.html">
-                                <h3>Okwahn II</h3>
-                            </a>
-                            <div class="price_box">
-                                <span class="new_price">$90.00</span>
-                                <span class="old_price">$170.00</span>
-                            </div>
-                            <ul>
-                                <li><a href="~/assets/#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-                                <li><a href="~/assets/#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-                                <li><a href="~/assets/#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-                            </ul>
-                        </div>-->
-                        <!-- /grid_item -->
-                    <!--</div>-->
-                    <!-- /item -->
-                    <!--<div class="item">
-                        <div class="grid_item">
-                            <span class="ribbon off">-50%</span>
-                            <figure>
-                                <a href="~/assets/product-detail-1.html">
-                                    <img class="owl-lazy img-fluid" src="~/assets/img/products/product_placeholder_square_medium.jpg" data-src="~/assets/img/products/shoes/3.jpg" alt="" width="400" height="400">
-                                </a>
-                            </figure>
-                            <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-                            <a href="~/assets/product-detail-1.html">
-                                <h3>Air Wildwood ACG</h3>
-                            </a>
-                            <div class="price_box">
-                                <span class="new_price">$75.00</span>
-                                <span class="old_price">$155.00</span>
-                            </div>
-                            <ul>
-                                <li><a href="~/assets/#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-                                <li><a href="~/assets/#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-                                <li><a href="~/assets/#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-                            </ul>
-                        </div>-->
-                        <!-- /grid_item -->
-                    <!--</div>-->
-                    <!-- /item -->
-                <!--</div>-->
-                <!-- /products_carousel -->
-            <!--</div>-->
-            <!-- /container -->
-
-            <div class="bg_gray">
-                <div class="container margin_30">
-                    <div id="brands" class="owl-carousel owl-theme">
-                        <div class="item">
-                            <a href="~/assets/#0"><img src="~/assets/img/brands/placeholder_brands.png" data-src="~/assets/img/brands/logo_1.png" alt="" class="owl-lazy"></a>
-                        </div><!-- /item -->
-                        <div class="item">
-                            <a href="~/assets/#0"><img src="~/assets/img/brands/placeholder_brands.png" data-src="~/assets/img/brands/logo_2.png" alt="" class="owl-lazy"></a>
-                        </div><!-- /item -->
-                        <div class="item">
-                            <a href="~/assets/#0"><img src="~/assets/img/brands/placeholder_brands.png" data-src="~/assets/img/brands/logo_3.png" alt="" class="owl-lazy"></a>
-                        </div><!-- /item -->
-                        <div class="item">
-                            <a href="~/assets/#0"><img src="~/assets/img/brands/placeholder_brands.png" data-src="~/assets/img/brands/logo_4.png" alt="" class="owl-lazy"></a>
-                        </div><!-- /item -->
-                        <div class="item">
-                            <a href="~/assets/#0"><img src="~/assets/img/brands/placeholder_brands.png" data-src="~/assets/img/brands/logo_5.png" alt="" class="owl-lazy"></a>
-                        </div><!-- /item -->
-                        <div class="item">
-                            <a href="~/assets/#0"><img src="~/assets/img/brands/placeholder_brands.png" data-src="~/assets/img/brands/logo_6.png" alt="" class="owl-lazy"></a>
-                        </div><!-- /item -->
-                    </div><!-- /carousel -->
-                </div><!-- /container -->
-            </div>
-            <!-- /bg_gray -->
-
-            <div class="container margin_60_35">
-                <div class="main_title">
-                    <h2>Latest News</h2>
-                    <span>Blog</span>
-                    <p>Cum doctus civibus efficiantur in imperdiet deterruisset</p>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <a class="box_news" href="~/assets/blog.html">
-                            <figure>
-                                <img src="~/assets/img/blog-thumb-placeholder.jpg" data-src="~/assets/img/blog-thumb-1.jpg" alt="" width="400" height="266" class="lazy">
-                                <figcaption><strong>28</strong>Dec</figcaption>
-                            </figure>
-                            <ul>
-                                <li>by Mark Twain</li>
-                                <li>20.11.2017</li>
-                            </ul>
-                            <h4>Pri oportere scribentur eu</h4>
-                            <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
-                        </a>
-                    </div>
-                    <!-- /box_news -->
-                    <div class="col-lg-6">
-                        <a class="box_news" href="~/assets/blog.html">
-                            <figure>
-                                <img src="~/assets/img/blog-thumb-placeholder.jpg" data-src="~/assets/img/blog-thumb-2.jpg" alt="" width="400" height="266" class="lazy">
-                                <figcaption><strong>28</strong>Dec</figcaption>
-                            </figure>
-                            <ul>
-                                <li>By Jhon Doe</li>
-                                <li>20.11.2017</li>
-                            </ul>
-                            <h4>Duo eius postea suscipit ad</h4>
-                            <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
-                        </a>
-                    </div>
-                    <!-- /box_news -->
-                    <div class="col-lg-6">
-                        <a class="box_news" href="~/assets/blog.html">
-                            <figure>
-                                <img src="~/assets/img/blog-thumb-placeholder.jpg" data-src="~/assets/img/blog-thumb-3.jpg" alt="" width="400" height="266" class="lazy">
-                                <figcaption><strong>28</strong>Dec</figcaption>
-                            </figure>
-                            <ul>
-                                <li>By Luca Robinson</li>
-                                <li>20.11.2017</li>
-                            </ul>
-                            <h4>Elitr mandamus cu has</h4>
-                            <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
-                        </a>
-                    </div>
-                    <!-- /box_news -->
-                    <div class="col-lg-6">
-                        <a class="box_news" href="~/assets/blog.html">
-                            <figure>
-                                <img src="~/assets/img/blog-thumb-placeholder.jpg" data-src="~/assets/img/blog-thumb-4.jpg" alt="" width="400" height="266" class="lazy">
-                                <figcaption><strong>28</strong>Dec</figcaption>
-                            </figure>
-                            <ul>
-                                <li>By Paula Rodrigez</li>
-                                <li>20.11.2017</li>
-                            </ul>
-                            <h4>Id est adhuc ignota delenit</h4>
-                            <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
-                        </a>
-                    </div>
-                    <!-- /box_news -->
-                </div>
-                <!-- /row -->
-            </div>
+           
             <!-- /container -->
         </main>
         <!-- /main -->
@@ -532,12 +180,12 @@
                         <h3 data-bs-target="#collapse_1">Quick Links</h3>
                         <div class="collapse dont-collapse-sm links" id="collapse_1">
                             <ul>
-                                <li><a href="~/assets/about.html">About us</a></li>
-                                <li><a href="~/assets/help.html">Faq</a></li>
-                                <li><a href="~/assets/help.html">Help</a></li>
-                                <li><a href="~/assets/account.html">My account</a></li>
-                                <li><a href="~/assets/blog.html">Blog</a></li>
-                                <li><a href="~/assets/contacts.html">Contacts</a></li>
+                                <li><a href="#">About us</a></li>
+                                <li><a href="#">Faq</a></li>
+                                <li><a href="#">Help</a></li>
+                                <li><a href="#">My account</a></li>
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="#">Contacts</a></li>
                             </ul>
                         </div>
                     </div>
@@ -545,13 +193,13 @@
                         <h3 data-bs-target="#collapse_2">Categories</h3>
                         <div class="collapse dont-collapse-sm links" id="collapse_2">
                             <ul>
-                                <li><a href="#">Sơ mi</a></li>
-                                <li><a href="~/assets/listing-grid-2-full.html">Bomber</a></li>
-                                <li><a href="~/assets/listing-grid-1-full.html">Hoodie</a></li>
-                                <li><a href="~/assets/listing-grid-3.html">Jean</a></li>
-                                <li><a href="~/assets/listing-grid-1-full.html">Polo</a></li>
-                                <li><a href="~/assets/listing-grid-1-full.html">T-Shirt</a></li>
-                                <li><a href="~/assets/listing-grid-1-full.html">Áo bóng đá</a></li>
+                                <li><a href="@Url.Action("ListproductCategory","Page", new {id = 1})">T-Shirt</a></li>
+                                <li><a href="@Url.Action("ListproductCategory","Page", new {id = 2})">Polo</a></li>
+                                <li><a href="@Url.Action("ListproductCategory","Page", new {id = 3})">Quần Jean</a></li>
+                                <li><a href="@Url.Action("ListproductCategory","Page", new {id = 4})">Sơ mi</a></li>
+                                <li><a href="@Url.Action("ListproductCategory","Page", new {id = 5})">Hoodie</a></li>
+                                <li><a href="@Url.Action("ListproductCategory","Page", new {id = 6})">Bomber</a></li>
+                                <li><a href="@Url.Action("ListproductCategory","Page", new {id = 7})">Áo bóng đá</a></li>
                             </ul>
                         </div>
                     </div>
@@ -559,9 +207,9 @@
                         <h3 data-bs-target="#collapse_3">Contacts</h3>
                         <div class="collapse dont-collapse-sm contacts" id="collapse_3">
                             <ul>
-                                <li><i class="ti-home"></i>97845 Baker st. 567<br>Los Angeles - US</li>
-                                <li><i class="ti-headphone-alt"></i>+94 423-23-221</li>
-                                <li><i class="ti-email"></i><a href="~/assets/#0">info@allaia.com</a></li>
+                                <li><i class="ti-home"></i>Số 2-Ngõ 27 đường bắc lai xá<br>Kim Chung-Hoài Đức-Hà Nội</li>
+                                <li><i class="ti-headphone-alt"></i>1900 2300</li>
+                                <li><i class="ti-email"></i><a href="#0">Info@fashion.com</a></li>
                             </ul>
                         </div>
                     </div>
@@ -577,11 +225,11 @@
                             <div class="follow_us">
                                 <h5>Follow Us</h5>
                                 <ul>
-                                    <li><a href="~/assets/#0"><i class="bi bi-facebook"></i></a></li>
-                                    <li><a href="~/assets/#0"><i class="bi bi-twitter-x"></i></a></li>
-                                    <li><a href="~/assets/#0"><i class="bi bi-instagram"></i></a></li>
-                                    <li><a href="~/assets/#0"><i class="bi bi-tiktok"></i></a></li>
-                                    <li><a href="~/assets/#0"><i class="bi bi-whatsapp"></i></a></li>
+                                    <li><a href="#0"><i class="bi bi-facebook"></i></a></li>
+                                    <li><a href="#0"><i class="bi bi-twitter-x"></i></a></li>
+                                    <li><a href="#0"><i class="bi bi-instagram"></i></a></li>
+                                    <li><a href="#0"><i class="bi bi-tiktok"></i></a></li>
+                                    <li><a href="#0"><i class="bi bi-whatsapp"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -595,31 +243,24 @@
                             <li>
                                 <div class="styled-select lang-selector">
                                     <select>
-                                        <option value="English" selected>English</option>
-                                        <option value="French">French</option>
-                                        <option value="Spanish">Spanish</option>
-                                        <option value="Russian">Russian</option>
+                                        <option value="VietNam" selected>VietNam</option>
+                                        <option value="EngLish">EngLish</option>
+                                        
                                     </select>
                                 </div>
                             </li>
                             <li>
                                 <div class="styled-select currency-selector">
                                     <select>
-                                        <option value="US Dollars" selected>US Dollars</option>
-                                        <option value="Euro">Euro</option>
+                                        <option value="US Dollars" selected>VietNam</option>
+                                        <option value="Euro">EngLish</option>
                                     </select>
                                 </div>
                             </li>
-                            <li><img src="~/assets/data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="~/assets/img/cards_all.svg" alt="" width="198" height="30" class="lazy"></li>
+                            
                         </ul>
                     </div>
-                    <div class="col-lg-6">
-                        <ul class="additional_links">
-                            <li><a href="~/assets/#0">Terms and conditions</a></li>
-                            <li><a href="~/assets/#0">Privacy</a></li>
-                            <li><span>© 2024 Allaia</span></li>
-                        </ul>
-                    </div>
+                    
                 </div>
             </div>
         </footer>

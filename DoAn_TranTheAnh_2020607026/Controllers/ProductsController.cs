@@ -74,7 +74,6 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
                 ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", product.CategoryID);
                 return View(product);
             }
-
         }
 
         // GET: Products/Edit/5
@@ -115,9 +114,11 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
                     }
                     db.Entry(product).State = EntityState.Modified;
                     db.SaveChanges();
+
                 }
                 return RedirectToAction("Index");
             }
+
             catch
             {
                 ViewBag.BrandID = new SelectList(db.Brands, "BrandID", "BrandName", product.BrandID);
@@ -126,8 +127,8 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
             }
         }
 
-        // GET: Products/Delete/5
-        public ActionResult Delete(int? id)
+            // GET: Products/Delete/5
+            public ActionResult Delete(int? id)
         {
             if (id == null)
             {

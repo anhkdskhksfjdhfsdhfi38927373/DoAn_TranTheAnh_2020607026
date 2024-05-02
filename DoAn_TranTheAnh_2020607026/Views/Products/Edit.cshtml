@@ -7,7 +7,7 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -60,7 +60,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Images, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <img id="output" style="width: 100px; height:120px" src="~/assets/images/product/" />
+                <img id="output" style="width: 100px; height:120px" src="~/assets/images/product/@Model.Images" />
                 <input name="ImageFile" type="file" onchange="LoadFile(event)" />
             </div>
         </div>

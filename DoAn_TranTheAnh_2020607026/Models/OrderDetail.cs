@@ -8,16 +8,15 @@ namespace DoAn_TranTheAnh_2020607026.Models
 
     public partial class OrderDetail
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderDetailId { get; set; }
 
-        public int OrderID { get; set; }
+        public int? OrderQuantity { get; set; }
 
-        public int OrderQuantity { get; set; }
+        public double? TotalPrice { get; set; }
 
-        public double TotalPrice { get; set; }
+        public int? OrderID { get; set; }
 
-        public int ProductID { get; set; }
+        public int? ProductID { get; set; }
 
         public virtual Order Order { get; set; }
 

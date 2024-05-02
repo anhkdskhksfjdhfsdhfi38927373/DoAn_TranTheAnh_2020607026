@@ -9,7 +9,10 @@ namespace DoAn_TranTheAnh_2020607026.Models
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        
+        public User()
+        {
+            Rates = new HashSet<Rate>();
+        }
 
         [Required]
         [StringLength(255)]
@@ -36,7 +39,8 @@ namespace DoAn_TranTheAnh_2020607026.Models
 
         public int UserID { get; set; }
 
-
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rate> Rates { get; set; }
 
         public virtual Role Role { get; set; }
     }

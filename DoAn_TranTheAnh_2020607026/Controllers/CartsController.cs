@@ -57,8 +57,6 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
             if (pro != null)
             {
                 getcart().AddCart(pro, size);
-
-
             }
             return RedirectToAction("Index", "Carts");
         }

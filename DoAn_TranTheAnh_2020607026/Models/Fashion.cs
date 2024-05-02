@@ -40,17 +40,24 @@ namespace DoAn_TranTheAnh_2020607026.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Order>()
-                .Property(e => e.OrderCode)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Order>()
                 .Property(e => e.OrderStatus)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Order>()
-                .HasMany(e => e.OrderDetails)
-                .WithRequired(e => e.Order)
-                .WillCascadeOnDelete(false);
+                .Property(e => e.Address_Delivery)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Order>()
+                .Property(e => e.CustomerName)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Order>()
+                .Property(e => e.PhoneCustomer)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Order>()
+                .Property(e => e.OrderCode)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Product>()
                 .Property(e => e.ProductName)
@@ -69,15 +76,9 @@ namespace DoAn_TranTheAnh_2020607026.Models
                 .WithRequired(e => e.Product)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Product>()
-                .HasMany(e => e.OrderDetails)
-                .WithRequired(e => e.Product)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Product>()
-                .HasMany(e => e.Rates)
-                .WithRequired(e => e.Product)
-                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Rate>()
+                .Property(e => e.Comment)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Role>()
                 .Property(e => e.RoleName)
@@ -115,8 +116,6 @@ namespace DoAn_TranTheAnh_2020607026.Models
             modelBuilder.Entity<User>()
                 .Property(e => e.Phone)
                 .IsUnicode(false);
-
-            
         }
     }
 }
