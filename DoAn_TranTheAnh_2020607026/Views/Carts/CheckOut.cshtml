@@ -12,15 +12,15 @@
 {
     <div class="row">
         <div class="col-lg-4 col-md-6">
-            <div class="step first">
-                <h3>1. User Info and Billing address</h3>
+            <div class="step first"style="margin-left:10px">
+                <h3>1. Thông tin nhận hàng</h3>
 
                 <div class="tab-content checkout">
                     <div class="tab-pane fade show active" id="tab_1" role="tabpanel" aria-labelledby="tab_1">
                         <hr>
                         <div class="row no-gutters">
                             <div class="col-6 form-group pr-1">
-                                <input type="text" class="form-control" name="Name" placeholder="Họ và tên">
+                                <input type="text" class="form-control" name="Name" placeholder="Họ và tên" style="width:210%;">
                             </div>
 
                         </div>
@@ -33,7 +33,7 @@
                        
                         <!-- /row -->
                         <div class="form-group">
-                            <input type="text" class="form-control" name="Phone" placeholder="Telephone">
+                            <input type="text" class="form-control" name="Phone" placeholder="Số điện thoại">
                         </div>
                         
                     </div>
@@ -45,33 +45,33 @@
         </div>
         <div class="col-lg-4 col-md-6">
             <div class="step middle payments">
-                <h3>2. Payment </h3>
-                <ul>
-                    <li>
-                        <label style="display: flex; height: 50px; " class="container_radio">
-                            COD<a href="#0"><img src="img/about_placeholder.jpg" style="width: 50px; height: 100%; margin-left:  1050px;" /></a>
+                <h3>2. Phương thức thanh toán </h3>
+                <ul style="list-style-type: none;">
+                    <li style="display: flex; border-style: double; border-radius: 10px; height: 70px;">
+                        <label style="display: flex; height: 50px; margin-top: 20px; " class="container_radio">
+                            COD<a href="#0"><img src="~/assets/icon/iconpay/cod.png" style="width: 50px; height: 100%; margin-left: 330px; margin-top: -12px; border-style: double; border-color: black; border-radius: 10px; " /></a>
                             <input type="radio" value="0" name="TypePayment" checked>
                             <span class="checkmark"></span>
                         </label>
                     </li>
-                    <li>
-                        <label class="container_radio">
-                            VNPAYQR <a href="#0"><img src="img/about_placeholder.jpg" style="width: 50px; height: 100%; margin-left:  1050px;" /></a>
-                            <input type="radio" value="1" name="TypePayment">
+                    <li style="display: flex; border-style: double; border-radius: 10px; height: 70px;">
+                        <label style="display: flex; height: 50px; margin-top: 20px; " class="container_radio">
+                            VNPAY<a href="#0"><img src="~/assets/icon/iconpay/vnpay.png" style="width: 50px; height: 100%; margin-left: 316px; margin-top: -12px; border-style: double; border-color: black; border-radius: 10px; " /></a>
+                            <input type="radio" value="0" name="TypePayment" >
                             <span class="checkmark"></span>
                         </label>
                     </li>
-                    <li>
-                        <label class="container_radio">
-                            VNBANK<a href="#0"><img src="img/about_placeholder.jpg" style="width: 50px; height: 100%; margin-left:  1050px;" /></a>
-                            <input type="radio" value="2" name="TypePayment">
+                    <li style="display: flex; border-style: double; border-radius: 10px; height: 70px;">
+                        <label style="display: flex; height: 50px; margin-top: 20px; " class="container_radio">
+                            MoMo<a href="#0"><img src="~/assets/icon/iconpay/momo.png" style="width: 50px; height: 100%; margin-left: 323px; margin-top: -12px; border-style: double; border-color: black; border-radius: 10px; " /></a>
+                            <input type="radio" value="0" name="TypePayment" >
                             <span class="checkmark"></span>
                         </label>
                     </li>
-                    <li>
-                        <label class="container_radio">
-                            INTCARD<a href="#0"><img src="img/about_placeholder.jpg" style="width: 50px; height: 100%; margin-left:  1050px;" /></a>
-                            <input type="radio" value="3" name="TypePayment">
+                    <li style="display: flex; border-style: double; border-radius: 10px; height: 70px;">
+                        <label style="display: flex; height: 50px; margin-top: 20px; " class="container_radio">
+                            PayPal<a href="#0"><img src="~/assets/icon/iconpay/paypal-logo.png" style="width: 50px; height: 100%; margin-left: 317px; margin-top: -12px; border-style: double; border-color: black; border-radius: 10px; " /></a>
+                            <input type="radio" value="0" name="TypePayment" >
                             <span class="checkmark"></span>
                         </label>
                     </li>
@@ -86,18 +86,18 @@
         </div>
         <div class="col-lg-4 col-md-6">
             <div class="step last">
-                <h3>3. Order Summary</h3>
+                <h3>3. Nội dung đơn hàng</h3>
                 <div class="box_general summary">
                     @foreach (var item in Model.Listcart)
                     {
                         <ul>
-                            <li class="clearfix"><em>@item.QuantityProductSale &nbsp; @item.Product.ProductName</em>  <span>$145.00</span></li>
+                            <li class="clearfix"><em>@item.QuantityProductSale &nbsp; @item.Product.ProductName</em>  <span>@String.Format("{0:0,0 VND}",item.Product.newprice(item.Product.Price,item.Product.SaleOff))</span></li>
                             
                         </ul>
                     }
 
                   
-                    <div class="total clearfix">TOTAL <span>@Model.Total_Money()</span></div>
+                    <div class="total clearfix">Tổng tiền:&nbsp; <span>@String.Format("{0:0,0 VND}", Model.Total_Money())</span></div>
                     <input type="submit" value="Thanh toán" class="btn_1 full-width" />
                     
                 </div>

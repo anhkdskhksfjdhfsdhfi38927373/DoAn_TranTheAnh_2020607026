@@ -296,9 +296,13 @@
     <Content Include="assets\font\fonts.css" />
     <Content Include="assets\icon\delete_10337516.png" />
     <Content Include="assets\icon\fonts\icomoon93d9.svg" />
+    <Content Include="assets\icon\iconpay\cod.png" />
+    <Content Include="assets\icon\iconpay\momo.png" />
+    <Content Include="assets\icon\iconpay\paypal-logo.png" />
     <Content Include="assets\icon\login.png" />
     <Content Include="assets\icon\logout.png" />
     <Content Include="assets\icon\style.css" />
+    <Content Include="assets\icon\iconpay\vnpay.png" />
     <Content Include="assets\images\apps\item-1.png" />
     <Content Include="assets\images\apps\item-2.png" />
     <Content Include="assets\images\apps\item-3.png" />
