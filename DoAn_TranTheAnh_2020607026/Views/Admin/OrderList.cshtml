@@ -1,44 +1,37 @@
 ﻿@using PagedList.Mvc;
 @using PagedList;
-@model IPagedList<DoAn_TranTheAnh_2020607026.Models.Product>
-
+@model IPagedList<DoAn_TranTheAnh_2020607026.Models.Order>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "OrderList";
     Layout = "~/Views/Shared/LayoutAdmin.cshtml";
 }
-
 <div class="main-content-inner">
     <!-- main-content-wrap -->
     <div class="main-content-wrap">
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-            <h3>Danh sách sản phẩm</h3>
+            <h3>Danh sách đơn hàng</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
-                    <a href="index.html"><div class="text-tiny">Dashboard</div></a>
+                    <a href="#"><div class="text-tiny">Dashboard</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <a href="#"><div class="text-tiny">Ecommerce</div></a>
+                    <a href="#"><div class="text-tiny">Order</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <div class="text-tiny">Product List</div>
+                    <div class="text-tiny">Order List</div>
                 </li>
             </ul>
         </div>
-        <!-- product-list -->
+        <!-- order-list -->
         <div class="wg-box">
-            <div class="title-box">
-                <i class="icon-coffee"></i>
-                <div class="body-text">Tip search by Product ID: Each product is provided with a unique ID, which you can rely on to find the exact product you need.</div>
-            </div>
             <div class="flex items-center justify-between gap10 flex-wrap">
                 <div class="wg-filter flex-grow">
-                    
                     <form class="form-search">
                         <fieldset class="name">
                             <input type="text" placeholder="Search here..." class="" name="name" tabindex="2" value="" aria-required="true" required="">
@@ -48,54 +41,69 @@
                         </div>
                     </form>
                 </div>
-                <a class="tf-button style-1 w208" href="add-product.html"><i class="icon-plus"></i>Add new</a>
+                <a class="tf-button style-1 w208" href="oder-detail.html"><i class="icon-file-text"></i>Export all order</a>
             </div>
-            <div class="wg-table table-product-list">
+            <div class="wg-table table-all-category">
                 <ul class="table-title flex gap20 mb-14">
                     <li>
-                        <div class="body-title">Sản phẩm</div>
+                        <div class="body-title">Customer Name</div>
                     </li>
                     <li>
-                        <div class="body-title">Mã sản phẩm</div>
+                        <div class="body-title">Order ID</div>
                     </li>
                     <li>
-                        <div class="body-title">Giá</div>
+                        <div class="body-title">Price</div>
                     </li>
                     <li>
-                        <div class="body-title">Số lượng</div>
+                        <div class="body-title">Payment</div>
                     </li>
                     <li>
-                        <div class="body-title">Sale</div>
+                        <div class="body-title">Status</div>
+                    </li>
+                    <li>
+                        <div class="body-title">Time order</div>
                     </li>
                     <li>
                         <div class="body-title">Action</div>
                     </li>
-
                 </ul>
                 <ul class="flex flex-column">
                     @foreach (var item in Model)
                     {
                         <li class="product-item gap14">
                             <div class="image no-bg">
-                                <img src="~/assets/images/product/@item.Images" alt="">
+                                <img src="~/assets/icon/customer.png" alt="">
                             </div>
                             <div class="flex items-center justify-between gap20 flex-grow">
+
                                 <div class="name">
-                                    <a href="@Url.Action("Details", "Products", new {id=item.ProductID})" class="body-title-2">@item.ProductName</a>
+                                    <a href="product-list.html" class="body-title-2">@item.CustomerName</a>
                                 </div>
-                                <div class="body-text">@item.ProductID</div>
-                                <div class="body-text">@String.Format("{0:0,0}", item.Price)</div>
-                                <div class="body-text">@item.QuantityInStock</div>
-                                <div class="body-text">@item.SaleOff</div>
+                                <div class="body-text">@item.OrderCode</div>
+                                <div class="body-text">@String.Format("{0:0,0}", item.OrderTotalPrice)</div>
+                                @if (item.TypePayment == 0)
+                                {
+                                    <div class="body-text">COD</div>
+                                }
+
+
+                                @if (item.TypePayment > 0)
+                                {
+                                    <div class="body-text">Chuyển khoản</div>
+                                }
+
+                                <div>
+                                    <div class="block-available">@item.OrderStatus</div>
+                                </div>
+                                <div>
+                                    <div class="block-tracking">@item.OrderDate</div>
+                                </div>
                                 <div class="list-icon-function">
                                     <div class="item eye">
-                                        <a href="@Url.Action("Details","Products", new {id=item.ProductID})"><i class="icon-eye"></i></a>
-                                    </div>
-                                    <div class="item edit">
-                                        <a href="@Url.Action("Edit","Products", new {id=item.ProductID})"><i class="icon-edit-3"></i></a>
-                                    </div>
-                                    <div class="item trash">
-                                        <a href="@Url.Action("Delete","Products", new {id=item.ProductID})"><i class="icon-trash-2"></i></a>
+                                        <a href="@Url.Action("DetailOrder","Admin",new {id=item.OrderID})">
+                                            <i class="icon-eye"></i>
+                                        </a>
+
                                     </div>
                                 </div>
                             </div>
@@ -107,13 +115,13 @@
             </div>
             <div class="divider"></div>
             <div class="flex items-center justify-between flex-wrap gap10">
-                <div class="text-tiny">Showing 8 entries</div>
+                <div class="text-tiny">Showing 10 entries</div>
                 <ul class="wg-pagination">
-                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, PageSize = 8 }))
+                    @Html.PagedListPager(Model, page => Url.Action("OrderList","Admin", new { page, PageSize = 8 }))
                 </ul>
             </div>
         </div>
-        <!-- /product-list -->
+        <!-- /order-list -->
     </div>
     <!-- /main-content-wrap -->
 </div>

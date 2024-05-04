@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DoAn_TranTheAnh_2020607026.Models;
+using PagedList;
 
 namespace DoAn_TranTheAnh_2020607026.Controllers
 {
@@ -15,12 +16,20 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         private Fashion db = new Fashion();
 
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(int? page, int? PageSize)
         {
-            var products = db.Products.Include(p => p.Brand).Include(p => p.Category);
-            return View(products.ToList());
-        }
+            if (page == null)
+            {
+                page = 1;
+            }
+            if (PageSize == null)
+            {
 
+                PageSize = 8;
+            }
+            var products = db.Products.ToList();
+            return View(products.ToPagedList((int)page,(int)PageSize));
+        }
         // GET: Products/Details/5
         public ActionResult Details(int? id)
         {
@@ -149,6 +158,8 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         {
             Product product = db.Products.Find(id);
             db.Products.Remove(product);
+            List<Rate> rate = db.Rates.Where(s => s.ProductID == id).ToList();
+            db.Rates.RemoveRange(rate);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

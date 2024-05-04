@@ -294,6 +294,7 @@
     <Content Include="assets\css\StyleAdmin.css" />
     <Content Include="assets\css\stylepage.css" />
     <Content Include="assets\font\fonts.css" />
+    <Content Include="assets\icon\customer.png" />
     <Content Include="assets\icon\delete_10337516.png" />
     <Content Include="assets\icon\fonts\icomoon93d9.svg" />
     <Content Include="assets\icon\iconpay\cod.png" />
@@ -517,6 +518,8 @@
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Admin\OrderList.cshtml" />
+    <Content Include="Views\Admin\DetailOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -5,85 +5,96 @@
     Layout = "~/Views/Shared/LayoutAdmin.cshtml";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Brand.BrandName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Brand.BrandName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Category.CategoryName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Category.CategoryName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProductName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.QuantityInStock)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.QuantityInStock)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Images)
-        </dt>
-
-        <dd>
-          <img width="100px" height="100px" src="~/assets/images/product/@Model.Images" />
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SaleOff)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SaleOff)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+<div class="main-content-inner">
+    <!-- main-content-wrap -->
+    <div class="main-content-wrap">
+        <div class="flex items-center flex-wrap justify-between gap20 mb-27">
+            <h3>Thông tin sản phẩm</h3>
+            <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
+                <li>
+                    <a href="index.html"><div class="text-tiny">Dashboard</div></a>
+                </li>
+                <li>
+                    <i class="icon-chevron-right"></i>
+                </li>
+                <li>
+                    <a href="#"><div class="text-tiny">Ecommerce</div></a>
+                </li>
+                <li>
+                    <i class="icon-chevron-right"></i>
+                </li>
+                <li>
+                    <div class="text-tiny">Deatail product</div>
+                </li>
+            </ul>
         </div>
-    }
+        <!-- form-add-product -->
+        <form action="/Products/Delete/@Model.ProductID" method="post" class="tf-section-2 form-add-product">
+            @Html.AntiForgeryToken()
+            <div class="wg-box">
+                <fieldset class="name">
+                    <div class="body-title mb-10">Tên sản phẩm <span class="tf-color-1">*</span></div>
+                    <input class="mb-10" type="text" placeholder="Nhập tên sản phẩm" name="ProductName" tabindex="0" value="@Model.ProductName" aria-required="true" required="" readonly>
+
+                </fieldset>
+
+                <div class="gap22 cols">
+                    <fieldset class="category">
+                        <div class="body-title mb-10">Danh mục <span class="tf-color-1">*</span></div>
+                        <div class="">
+                            <input type="text" value="@Model.Category.CategoryName" readonly />
+                        </div>
+                    </fieldset>
+                    <fieldset class="male">
+                        <div class="body-title mb-10">Brand <span class="tf-color-1">*</span></div>
+                        <div class="">
+                            <input type="text" value="@Model.Brand.BrandName" readonly />
+                        </div>
+                    </fieldset>
+                </div>
+
+                <fieldset class="description">
+                    <div class="body-title mb-10">Mô tả sản phẩm <span class="tf-color-1">*</span></div>
+                    <textarea class="mb-10" readonly name="Description" placeholder="Mô tả" tabindex="0" aria-required="true" required="">@Model.Description</textarea>
+
+                </fieldset>
+            </div>
+            <div class="wg-box">
+                <fieldset>
+                    <div class="body-title mb-10">Upload images</div>
+                    <div class="upload-image mb-16">
+                        <div class="item">
+                            <img id="output" src="~/assets/images/product/@Model.Images" alt="" style="border-radius: 12px; border: 1px solid #ECF0F4" />
+                        </div>
+                      
+                    </div>
+
+                </fieldset>
+                <div class="cols gap22">
+                    <fieldset class="name">
+                        <div class="body-title mb-10">Sale Off</div>
+                        <div class=" mb-10">
+                            <input type="text" value="@Model.SaleOff" name="SaleOff" placeholder="Giảm giá" readonly />
+                        </div>
+
+                    </fieldset>
+                    <fieldset class="name">
+                        <div class="body-title mb-10">Giá sản phẩm</div>
+                        <div class="">
+                            <input type="text" name="Price" value="@Model.Price" placeholder="Giá sản phẩm" readonly>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="cols gap10">
+                    <button class="tf-button w-full" type="submit">Delete Product</button>
+
+                    <!-- /form-add-product -->
+                </div>
+            </div>
+        </form>
+        <div class="cols gap10" style="margin-top:20px;">
+            <a href="@Url.Action("Index","Products")" class="tf-button style-1 w-full" type="submit">Product List</a>
+        </div>
+    </div>
+    <!-- /main-content-wrap -->
 </div>

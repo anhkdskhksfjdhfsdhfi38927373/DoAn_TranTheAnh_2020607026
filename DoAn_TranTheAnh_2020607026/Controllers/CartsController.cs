@@ -97,7 +97,7 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         }
         public ActionResult SuccessOrder()
         {
-            return View(ViewBag.link);
+            return View();
         }
         public ActionResult VnPay_Return()
         {
@@ -162,37 +162,40 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
             int TypePayMent = int.Parse(form["TypePayment"]);
             ListCart carts = Session["Cart"] as ListCart;
 
-            if (carts != null)
+
+            Order order = new Order();
+            order.Address_Delivery = form["Address_Delivery"];
+            order.PhoneCustomer = form["phone"];
+            order.CustomerName = form["Name"];
+            order.OrderDate = DateTime.Now;
+            order.OrderTotalPrice = carts.Total_Money();
+            order.TypePayment = TypePayMent;
+            Random rd = new Random();
+            order.OrderCode = "DH" + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9);
+            order.OrderStatus = "Chưa thanh toán";
+            db.Orders.Add(order);
+            foreach (var item in carts.Listcart)
             {
-                Order order = new Order();
-                order.Address_Delivery = form["Address_Delivery"];
-                order.PhoneCustomer = form["phone"];
-                order.CustomerName = form["Name"];
-                order.OrderDate = DateTime.Now;
-                order.OrderTotalPrice = carts.Total_Money();
-                Random rd = new Random();
-                order.OrderCode = "DH" + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9);
-                foreach (var item in carts.Listcart)
-                {
-                    OrderDetail orderdetail = new OrderDetail();
-                    orderdetail.ProductID = item.ProductID;
-                    orderdetail.OrderQuantity = item.QuantityProductSale;
-                    orderdetail.TotalPrice = carts.Total_Money();
-                    
-                }
-                order.OrderStatus = "Chưa thanh toán";
-                db.Orders.Add(order);
-                db.SaveChanges();
-                carts.Clear_Carts();
-                string url = UrlPayment(order.OrderCode);
-                if (TypePayMent > 0)
-                {
-                    return Redirect(url);
-                }
-
-
+                OrderDetail orderdetail = new OrderDetail();
+                orderdetail.ProductID = item.Product.ProductID;
+                orderdetail.OrderQuantity = item.QuantityProductSale;
+                orderdetail.TotalPrice = carts.Total_Money();
+                orderdetail.OrderID = order.OrderID;
+                db.OrderDetails.Add(orderdetail);
             }
-            return View();
+            db.SaveChanges();
+            carts.Clear_Carts();
+            string url = UrlPayment(order.OrderCode);
+            if (TypePayMent > 0)
+            {
+                return Redirect(url);
+            }
+            else
+            {
+                return RedirectToAction("SuccessOrder", "Carts");
+            }
+
+
         }
 
 
@@ -253,5 +256,5 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
 
 
     }
-    
+
 }
