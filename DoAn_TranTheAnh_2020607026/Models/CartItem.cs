@@ -21,6 +21,7 @@ namespace DoAn_TranTheAnh_2020607026.Models
         public virtual Size Size { get; set; }
 
         public virtual Product Product { get; set; }
+        
     }
     public class ListCart
     {
@@ -29,11 +30,11 @@ namespace DoAn_TranTheAnh_2020607026.Models
         {
             get { return listcart; }
         }
-        public void AddCart(Product product,Size size, int quantity = 1)
+        public void AddCart(Product product, Size size, int quantity = 1)
         {
             var item = listcart.FirstOrDefault(s => s.Product.ProductID == product.ProductID);
             var sizeitem = listcart.FirstOrDefault(s => s.Size.SizeID == size.SizeID);
-            if (item == null && sizeitem ==null)
+            if (item == null && sizeitem == null)
             {
                 listcart.Add(new CartItem
                 {
@@ -42,7 +43,7 @@ namespace DoAn_TranTheAnh_2020607026.Models
                     QuantityProductSale = quantity
                 });
             }
-            if(item!=null && sizeitem == null)
+            if (item != null && sizeitem == null)
             {
                 listcart.Add(new CartItem
                 {
@@ -51,7 +52,7 @@ namespace DoAn_TranTheAnh_2020607026.Models
                     QuantityProductSale = quantity
                 });
             }
-            
+
         }
         public void UpdatetoCartup(int id)
         {

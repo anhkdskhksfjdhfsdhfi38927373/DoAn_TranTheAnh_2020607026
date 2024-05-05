@@ -14,12 +14,13 @@ namespace DoAn_TranTheAnh_2020607026.Models
             Products = new HashSet<Product>();
         }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CategoryID { get; set; }
 
-        [Required]
         [StringLength(255)]
         public string CategoryName { get; set; }
+
+        [StringLength(255)]
+        public string Images { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }

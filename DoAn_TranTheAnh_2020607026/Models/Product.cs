@@ -25,8 +25,6 @@ namespace DoAn_TranTheAnh_2020607026.Models
 
         public int QuantityInStock { get; set; }
 
-        public int CategoryID { get; set; }
-
         public int? BrandID { get; set; }
 
         [StringLength(255)]
@@ -37,6 +35,8 @@ namespace DoAn_TranTheAnh_2020607026.Models
         public double Price { get; set; }
 
         public int ProductID { get; set; }
+
+        public int? CategoryID { get; set; }
 
         public virtual Brand Brand { get; set; }
 
@@ -50,10 +50,10 @@ namespace DoAn_TranTheAnh_2020607026.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rate> Rates { get; set; }
-        public double newprice(double price, double saleoff)
+        public double newprice(double price,double saleoff)
         {
             price = Price;
-            saleoff = SaleOff ;
+            saleoff = SaleOff;
             return price * (saleoff / 100);
         }
     }

@@ -11,13 +11,13 @@
             <h3>Thông tin sản phẩm mới</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
-                    <a href="index.html"><div class="text-tiny">Dashboard</div></a>
+                    <a href="/Admin/Dashboard"><div class="text-tiny">Dashboard</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <a href="#"><div class="text-tiny">Ecommerce</div></a>
+                    <a href="/Products/Index"><div class="text-tiny">Ecommerce</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
@@ -41,32 +41,15 @@
                     <fieldset class="category">
                         <div class="body-title mb-10">Danh mục <span class="tf-color-1">*</span></div>
                         <div class="select">
-                            <select name="CategoryID" class="">
-                                <option value="1">T-Shirt</option>
-                                <option value="2">Polo</option>
-                                <option value="3">Jean</option>
-                                <option value="4">Sơ mi</option>
-                                <option value="5">Hoodie</option>
-                                <option value="6">Áo bóng đá</option>
-                                <option value="7">Bomber</option>
-                            </select>
+                            @Html.DropDownList("CategoryID", null, htmlAttributes: new { @class = "" })
+                            @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
                         </div>
                     </fieldset>
                     <fieldset class="male">
                         <div class="body-title mb-10">Brand <span class="tf-color-1">*</span></div>
                         <div class="select">
-                            <select name="BrandID" class="">
-                                <option value="1">Colomate</option>
-                                <option value="2">Vendor</option>
-                                <option value="3">Clownz</option>
-                                <option value="4">KOBUI</option>
-                                <option value="5">KIDO</option>
-                                <option value="6">5s Fashion</option>
-                                <option value="7">Ontop</option>
-                                <option value="8">Dirty Coins</option>
-                                <option value="9">Uncover</option>
-                                <option value="10">NOWSAIGON</option>
-                            </select>
+                            @Html.DropDownList("BrandID", null, htmlAttributes: new { @class = "" })
+                            @Html.ValidationMessageFor(model => model.BrandID, "", new { @class = "text-danger" })
                         </div>
                     </fieldset>
                 </div>
@@ -128,7 +111,10 @@
     </div>
     <!-- /main-content-wrap -->
 </div>
-
+<div class="bottom-page">
+    <div class="body-text">Copyright © 2024 Fashion</div>
+    <i class="icon-heart"></i>
+</div>
 <script>
     var LoadFile = function (event) {
         var image = document.getElementById("output");

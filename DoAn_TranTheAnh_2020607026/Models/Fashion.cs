@@ -35,9 +35,8 @@ namespace DoAn_TranTheAnh_2020607026.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Category>()
-                .HasMany(e => e.Products)
-                .WithRequired(e => e.Category)
-                .WillCascadeOnDelete(false);
+                .Property(e => e.Images)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Order>()
                 .Property(e => e.OrderStatus)

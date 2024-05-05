@@ -1,93 +1,78 @@
 ﻿@using PagedList.Mvc;
 @using PagedList;
-@model IPagedList<DoAn_TranTheAnh_2020607026.Models.Product>
+@model IPagedList<DoAn_TranTheAnh_2020607026.Models.Category>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/LayoutAdmin.cshtml";
 }
-
 <div class="main-content-inner">
     <!-- main-content-wrap -->
     <div class="main-content-wrap">
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-            <h3>Danh sách sản phẩm</h3>
+            <h3>Danh sách danh mục</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
-                    <a href="/Admin/Dashboard"><div class="text-tiny">Dashboard</div></a>
+                    <a href="@Url.Action("Dashboard","Admin")"><div class="text-tiny">Dashboard</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <a href="/Products/Index"><div class="text-tiny">Ecommerce</div></a>
+                    <a href="@Url.Action("Index","Categories")"><div class="text-tiny">Category</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <div class="text-tiny">Product List</div>
+                    <div class="text-tiny">All category</div>
                 </li>
             </ul>
         </div>
-        <!-- product-list -->
+        <!-- all-category -->
         <div class="wg-box">
-            <div class="title-box">
-               
-            </div>
             <div class="flex items-center justify-between gap10 flex-wrap">
                 <div class="wg-filter flex-grow">
-                    <a class="tf-button style-1 w208" href="/Products/Create"><i class="icon-plus"></i>Add new</a>
+                    <a class="tf-button style-1 w208" href="@Url.Action("Create","Categories")"><i class="icon-plus"></i>Add new</a>
                     
                 </div>
                 
             </div>
-            <div class="wg-table table-product-list">
-                <ul class="table-title flex gap20 mb-14">
+            <div class="wg-table table-all-category">
+                <ul class="table-title flex gap20 mb-14" style="min-width:151px;">
                     <li>
-                        <div class="body-title">Sản phẩm</div>
-                    </li>
-                    <li>
-                        <div class="body-title">Mã sản phẩm</div>
-                    </li>
-                    <li>
-                        <div class="body-title">Giá</div>
-                    </li>
-                    <li>
-                        <div class="body-title">Số lượng</div>
-                    </li>
-                    <li>
-                        <div class="body-title">Sale</div>
+                        <div class="body-title">Category</div>
                     </li>
                     <li>
                         <div class="body-title">Action</div>
                     </li>
-
                 </ul>
-                <ul class="flex flex-column">
+                <ul class="flex flex-column" style="min-width:151px;">
                     @foreach (var item in Model)
                     {
                         <li class="product-item gap14">
                             <div class="image no-bg">
-                                <img src="~/assets/images/product/@item.Images" alt="">
+                                <img src="~/assets/images/category/@item.Images" alt="">
                             </div>
                             <div class="flex items-center justify-between gap20 flex-grow">
                                 <div class="name">
-                                    <a href="@Url.Action("Details", "Products", new {id=item.ProductID})" class="body-title-2">@item.ProductName</a>
+                                    <a href="product-list.html" class="body-title-2">@item.CategoryName</a>
                                 </div>
-                                <div class="body-text">@item.ProductID</div>
-                                <div class="body-text">@String.Format("{0:0,0}", item.Price)</div>
-                                <div class="body-text">@item.QuantityInStock</div>
-                                <div class="body-text">@item.SaleOff</div>
                                 <div class="list-icon-function">
                                     <div class="item eye">
-                                        <a href="@Url.Action("Details","Products", new {id=item.ProductID})"><i class="icon-eye"></i></a>
+                                        <a href="@Url.Action("Details", "Categories", new {id=item.CategoryID})">
+                                            <i class="icon-eye"></i>
+                                        </a>
                                     </div>
                                     <div class="item edit">
-                                        <a href="@Url.Action("Edit","Products", new {id=item.ProductID})"><i class="icon-edit-3"></i></a>
+                                        <a href="@Url.Action("Edit", "Categories", new {id=item.CategoryID})">
+                                            <i class="icon-edit-3"></i>
+                                        </a>
                                     </div>
                                     <div class="item trash">
-                                        <a href="@Url.Action("Delete","Products", new {id=item.ProductID})"><i class="icon-trash-2"></i></a>
+                                        <a href="@Url.Action("Delete", "Categories", new {id=item.CategoryID})">
+                                            <i class="icon-trash-2"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +90,7 @@
                 </ul>
             </div>
         </div>
-        <!-- /product-list -->
+        <!-- /all-category -->
     </div>
     <!-- /main-content-wrap -->
 </div>
