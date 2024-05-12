@@ -1,96 +1,129 @@
-﻿@model DoAn_TranTheAnh_2020607026.Models.User
-<!-- SPECIFIC CSS -->
-<link href="~/assets/css/account.css" rel="stylesheet">
-<link href="~/assets/css/stylepage.css" rel="stylesheet">
-<!-- YOUR CUSTOM CSS -->
-<link href="~/assets/css/custom.css" rel="stylesheet">
-<style>
-    .form-control {
-        width: 66%;
-    }
-    .form-group{
-        margin-left:25%;
-    }
-    .regiter{
-        width:50%;
-        margin-left:25%;
-    }
-    .btn_1.full-width{
-        width:50%;
-        margin-left:25%;
-    }
-</style>
-<div class="col-xl-6 col-lg-6 col-md-8">
-    <div class="box_account">
-        <h3 style="margin-left:25%;" class="new_client">Thông tin tài khoản</h3> <small class="float-right pt-2"style="margin-left:25%;">* Thông tin chi tiết</small>
-        @using(Html.BeginForm("Register", "Page", FormMethod.Post))
-        {
-            <div class="form_container">
-                <div class="form-group">
-                    <label>Email</label><br />
-                    <input type="email" class="form-control" name="email" id="email_2" placeholder="Email*">
-                </div>
-                <div class="form-group">
-                    <label>Password</label><br />
-                    <input type="password" class="form-control" name="password" id="password_in_2" placeholder="Password*">
-                </div>
-                <hr>
-                <div class="form-group">
-                    <label class="container_radio" style="display: inline-block; margin-right: 15px;">
-                        Nam
-                        <input type="radio" name="gender" checked value="Nam">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="container_radio" style="display: inline-block;">
-                        Nữ
-                        <input type="radio" name="gender" value="Nu">
-                        <span class="checkmark"></span>
-                    </label>
-                </div>
-                <div class="private box">
-                    <div class="row no-gutters">
-                        <div class="col-6 pr-1">
-                            <div class="form-group">
-                                <input type="text" name="name" class="form-control" placeholder="Họ và tên*">
-                            </div>
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+<!-- Mirrored from themesflat.co/html/remos/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Mar 2024 15:01:23 GMT -->
+<head>
+    <!-- Basic Page Needs -->
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+    <title>Fashion|Xu hướng thời trang</title>
+
+    <meta name="author" content="themesflat.com">
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Theme Style -->
+    <link rel="stylesheet" type="text/css" href="~/assets/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/animation.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
+
+
+
+    <!-- Font -->
+    <link rel="stylesheet" href="~/assets/font/fonts.css">
+
+    <!-- Icon -->
+    <link rel="stylesheet" href="~/assets/icon/style.css">
+
+    <!-- Favicon and Touch Icons  -->
+    <link rel="shortcut icon" href="~/assets/images/logo/logo.jpg">
+    <link rel="apple-touch-icon-precomposed" href="~/assets/images/logo/logo.jpg">
+
+</head>
+<body class="body">
+
+    <!-- #wrapper -->
+    <div id="wrapper">
+        <!-- #page -->
+        <div id="page" class="">
+            <div class="wrap-login-page sign-up">
+                <div class="flex-grow flex flex-column justify-center gap30">
+                    <a href="index.html" id="site-logo-inner">
+
+                    </a>
+                    <div class="login-box">
+                        <div>
+                            <h3>Create your account</h3>
+                            <div class="body-text">Enter your personal details to create account</div>
+                            @if (ViewBag.errorpassword != null)
+                            {
+                                <div class="body-text" style="color:red;">Xác nhận password chưa đúng</div>
+                            }
+
                         </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="address" placeholder="Địa chỉ">
-                            </div>
+                        <form action="/Page/Register" method="post" class="form-login flex flex-column gap24">
+                            <fieldset class="name">
+                                <div class="body-title mb-10">Your username <span class="tf-color-1">*</span></div>
+                                <div class="flex gap10">
+                                    <input class="flex-grow" type="text" placeholder="First name" name="firstname" tabindex="0" value="" aria-required="true" required="">
+                                    <input class="flex-grow" type="text" placeholder="Last name" name="lastname" tabindex="0" value="" aria-required="true" required="">
+                                </div>
+                            </fieldset>
+                            <fieldset class="email">
+                                <div class="body-title mb-10">Email address <span class="tf-color-1">*</span></div>
+                                <input class="flex-grow" type="email" placeholder="Enter your email address" name="email" tabindex="0" value="" aria-required="true" required="">
+                            </fieldset>
+                            <fieldset class="password">
+                                <div class="body-title mb-10">Password <span class="tf-color-1">*</span></div>
+                                <input class="password-input" type="password" placeholder="Enter your password" name="password" tabindex="0" value="" aria-required="true" required="">
+                                <span class="show-pass">
+                                    <i class="icon-eye view"></i>
+                                    <i class="icon-eye-off hide"></i>
+                                </span>
+                            </fieldset>
+                            <fieldset class="password">
+                                <div class="body-title mb-10">Confirm password <span class="tf-color-1">*</span></div>
+                                <input class="password-input" type="password" placeholder="Enter your password" name="confirmpassword" tabindex="0" value="" aria-required="true" required="">
+                                <span class="show-pass">
+                                    <i class="icon-eye view"></i>
+                                    <i class="icon-eye-off hide"></i>
+                                </span>
+                            </fieldset>
+                            <fieldset class="mb-24">
+                                <div class="body-title mb-10">Gender</div>
+                                <div class="radio-buttons">
+                                    <div class="item">
+                                        <input class="" type="radio" name="Gender" value="Nam" id="add-product1" checked>
+                                        <label class="" for="add-product1"><span class="body-title-2">Nam</span></label>
+                                    </div>
+                                    <div class="item">
+                                        <input class="" type="radio" name="Gender" value="Nữ" id="add-product2">
+                                        <label class="" for="add-product2"><span class="body-title-2">Nữ</span></label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <button  class="tf-button w-full">Đăng ký</button>
+                        </form>
+                        
+                        <div class="body-text text-center">
+                            You have an account?
+                            <a href="/Page/Login" class="body-text tf-color">Login Now</a>
                         </div>
                     </div>
-                    <!-- /row -->
-                    
-                    <!-- /row -->
-
-                    <div class="row no-gutters">
-                        <div class="col-6 pl-1">
-                            <div class="form-group">
-                                <input type="text" name="phone" class="form-control" placeholder="Số Điện thoại">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /row -->
-
                 </div>
-                <!-- /private -->
-                
-                <!-- /company -->
-                <hr>
-                <div class="form-group">
-                    <label class="container_check">
-                        Accept <a href="#0">Terms and conditions</a>
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </div>
-                <div class="text-center"><input type="submit" value="Đăng ký" class="btn_1 full-width"></div>
+                <div class="text-tiny">Copyright © 2024 Fashion, All rights reserved.</div>
             </div>
-        }
-
-        <!-- /form_container -->
+        </div>
+        <!-- /#page -->
     </div>
-    <!-- /box_account -->
-</div>
+    <!-- /#wrapper -->
+    <!-- Javascript -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-select.min.js"></script>
+    <script src="js/main.js"></script>
 
+</body>
+
+
+<!-- Mirrored from themesflat.co/html/remos/sign-up.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Mar 2024 15:01:23 GMT -->
+</html>

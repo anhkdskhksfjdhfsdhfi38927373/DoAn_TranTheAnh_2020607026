@@ -1,6 +1,6 @@
 ﻿﻿@using PagedList.Mvc;
 @using PagedList;
-@model IPagedList<DoAn_TranTheAnh_2020607026.Models.Category>
+@model IPagedList<DoAn_TranTheAnh_2020607026.Models.Product_Size>
 
 @{
     ViewBag.Title = "Index";
@@ -10,69 +10,65 @@
     <!-- main-content-wrap -->
     <div class="main-content-wrap">
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-            <h3>Danh sách danh mục</h3>
+            <h3>All Attributes</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
-                    <a href="@Url.Action("Dashboard","Admin")"><div class="text-tiny">Dashboard</div></a>
+                    <a href="index.html"><div class="text-tiny">Dashboard</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <a href="@Url.Action("Index","Categories")"><div class="text-tiny">Category</div></a>
+                    <a href="#"><div class="text-tiny">Ecommerce</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <div class="text-tiny">All category</div>
+                    <div class="text-tiny"> Warehouse Management</div>
                 </li>
             </ul>
         </div>
-        <!-- all-category -->
+        <!-- all-attribute -->
         <div class="wg-box">
             <div class="flex items-center justify-between gap10 flex-wrap">
-                <div class="wg-filter flex-grow">
-                    <a class="tf-button style-1 w208" href="@Url.Action("Create","Categories")"><i class="icon-plus"></i>Add new</a>
 
-                </div>
-
+                <a class="tf-button style-1 w208" href="/Product_Size/Create"><i class="icon-plus"></i>Add new</a>
             </div>
-            <div class="wg-table table-all-category">
-                <ul class="table-title flex gap20 mb-14" style="min-width:151px;">
+            <div class="wg-table table-all-attribute">
+                <ul class="table-title flex gap20 mb-14">
                     <li>
-                        <div class="body-title">Category</div>
+                        <div class="body-title">Product</div>
                     </li>
                     <li>
-                        <div class="body-title">Action</div>
+                        <div class="body-title" style="margin-left:50px">Quantity</div>
+                    </li>
+                    <li>
+                        <div class="body-title" style="margin-left:50px">Action</div>
                     </li>
                 </ul>
-                <ul class="flex flex-column" style="min-width:151px;">
+                <ul class="flex flex-column">
+
                     @foreach (var item in Model)
                     {
                         <li class="product-item gap14">
                             <div class="image no-bg">
-                                <img src="~/assets/images/category/@item.Images" alt=""width="50px" height="50px">
+                                <img src="~/assets/images/product/@item.Product.Images" alt="">
                             </div>
                             <div class="flex items-center justify-between gap20 flex-grow">
                                 <div class="name">
-                                    <a href="product-list.html" class="body-title-2">@item.CategoryName</a>
+                                    <a href="@Url.Action("Details", "Product_Size", new {id=item.Product_SizeID})" class="body-title-2">@item.Product.ProductName</a>
                                 </div>
+                                <div class="body-text">@item.Quantity</div>
                                 <div class="list-icon-function">
                                     <div class="item eye">
-                                        <a href="@Url.Action("Details", "Categories", new {id=item.CategoryID})">
-                                            <i class="icon-eye"></i>
-                                        </a>
+                                        <a href="@Url.Action("Details","Product_Size", new {id=item.Product_SizeID})"><i class="icon-eye"></i></a>
                                     </div>
                                     <div class="item edit">
-                                        <a href="@Url.Action("Edit", "Categories", new {id=item.CategoryID})">
-                                            <i class="icon-edit-3"></i>
-                                        </a>
+                                        <a href="@Url.Action("Edit","Product_Size", new {id=item.Product_SizeID})"><i class="icon-edit-3"></i></a>
                                     </div>
                                     <div class="item trash">
-                                        <a href="@Url.Action("Delete", "Categories", new {id=item.CategoryID})">
-                                            <i class="icon-trash-2"></i>
-                                        </a>
+                                        <a href="@Url.Action("Delete","Product_Size", new {id=item.Product_SizeID})"><i class="icon-trash-2"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -90,11 +86,7 @@
                 </ul>
             </div>
         </div>
-        <!-- /all-category -->
+        <!-- /all-attribute -->
     </div>
     <!-- /main-content-wrap -->
-</div>
-<div class="bottom-page">
-    <div class="body-text">Copyright © 2024 Fashion</div>
-    <i class="icon-heart"></i>
 </div>

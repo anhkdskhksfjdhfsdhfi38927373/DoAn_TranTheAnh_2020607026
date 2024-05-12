@@ -16,10 +16,10 @@ namespace DoAn_TranTheAnh_2020607026.Models
 
         public int? OrderID { get; set; }
 
-        public int? ProductID { get; set; }
+        public int? Product_SizeID { get; set; }
 
         public virtual Order Order { get; set; }
 
-        public virtual Product Product { get; set; }
+        public virtual Product_Size Product_Size { get; set; }
     }
 }

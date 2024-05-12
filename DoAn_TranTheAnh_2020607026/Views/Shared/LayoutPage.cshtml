@@ -69,6 +69,7 @@
                                     <li class="submenu">
                                         <a href="#0" style="color:#000" class="show-submenu">Danh mục</a>
                                         <ul style="text-align:left;">
+                                           
                                             <li><a href="@Url.Action("ListproductCategory","Page", new {id = 1})">T-Shirt</a></li>
                                             <li><a href="@Url.Action("ListproductCategory","Page", new {id = 2})">Polo</a></li>
                                             <li><a href="@Url.Action("ListproductCategory","Page", new {id = 3})">Quần Jean</a></li>
@@ -140,7 +141,7 @@
                             <ul class="top_tools">
                                 <li>
                                     <div class="dropdown dropdown-cart">
-                                        <a href="@Url.Action("Index","Carts")" class="cart_bt"><strong>@Html.Action("TotalQuantity", "Carts")</strong></a>
+                                        <a href="/Cartbuy/ShowCart" class="cart_bt"><strong>@Html.Action("TotalQuantity", "Cartbuy")</strong></a>
                                     </div>
                                     <!-- /dropdown-cart-->
                                 </li>

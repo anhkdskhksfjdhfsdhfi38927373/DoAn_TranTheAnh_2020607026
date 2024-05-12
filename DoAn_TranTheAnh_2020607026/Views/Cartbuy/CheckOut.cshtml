@@ -1,18 +1,18 @@
-﻿@model DoAn_TranTheAnh_2020607026.Models.ListCart
+﻿@model IEnumerable<DoAn_TranTheAnh_2020607026.Models.CartItem>
 @{
     ViewBag.Title = "CheckOut";
     Layout = "~/Views/Shared/LayoutPage.cshtml";
-
 }
+@ViewBag.prosizeid
 <link href="css/checkout.css" rel="stylesheet">
 
 <!-- YOUR CUSTOM CSS -->
 <link href="css/custom.css" rel="stylesheet">
-@using (Html.BeginForm("CheckOut", "Carts", FormMethod.Post))
+@using (Html.BeginForm("CheckOut", "Cartbuy", FormMethod.Post))
 {
     <div class="row">
         <div class="col-lg-4 col-md-6">
-            <div class="step first"style="margin-left:10px">
+            <div class="step first" style="margin-left:10px">
                 <h3>1. Thông tin nhận hàng</h3>
 
                 <div class="tab-content checkout">
@@ -28,14 +28,13 @@
                         <div class="form-group">
                             <input type="text" class="form-control" name="Address_Delivery" placeholder="Địa chỉ giao hàng">
                         </div>
-                        
+
                         <!-- /row -->
-                       
                         <!-- /row -->
                         <div class="form-group">
                             <input type="text" class="form-control" name="Phone" placeholder="Số điện thoại">
                         </div>
-                        
+
                     </div>
                     <!-- /tab_1 -->
                     <!-- /tab_2 -->
@@ -57,21 +56,21 @@
                     <li style="display: flex; border-style: double; border-radius: 10px; height: 70px;">
                         <label style="display: flex; height: 50px; margin-top: 20px; " class="container_radio">
                             VNPAY<a href="#0"><img src="~/assets/icon/iconpay/vnpay.png" style="width: 50px; height: 100%; margin-left: 316px; margin-top: -12px; border-style: double; border-color: black; border-radius: 10px; " /></a>
-                            <input type="radio" value="1" name="TypePayment" >
+                            <input type="radio" value="1" name="TypePayment">
                             <span class="checkmark"></span>
                         </label>
                     </li>
                     <li style="display: flex; border-style: double; border-radius: 10px; height: 70px;">
                         <label style="display: flex; height: 50px; margin-top: 20px; " class="container_radio">
                             MoMo<a href="#0"><img src="~/assets/icon/iconpay/momo.png" style="width: 50px; height: 100%; margin-left: 323px; margin-top: -12px; border-style: double; border-color: black; border-radius: 10px; " /></a>
-                            <input type="radio" value="2" name="TypePayment" >
+                            <input type="radio" value="2" name="TypePayment">
                             <span class="checkmark"></span>
                         </label>
                     </li>
                     <li style="display: flex; border-style: double; border-radius: 10px; height: 70px;">
                         <label style="display: flex; height: 50px; margin-top: 20px; " class="container_radio">
                             PayPal<a href="#0"><img src="~/assets/icon/iconpay/paypal-logo.png" style="width: 50px; height: 100%; margin-left: 317px; margin-top: -12px; border-style: double; border-color: black; border-radius: 10px; " /></a>
-                            <input type="radio" value="3" name="TypePayment" >
+                            <input type="radio" value="3" name="TypePayment">
                             <span class="checkmark"></span>
                         </label>
                     </li>
@@ -88,18 +87,22 @@
             <div class="step last">
                 <h3>3. Nội dung đơn hàng</h3>
                 <div class="box_general summary">
-                    @foreach (var item in Model.Listcart)
+                    @foreach (var item in Model)
                     {
                         <ul>
-                            <li class="clearfix"><em>@item.QuantityProductSale &nbsp; @item.Product.ProductName</em>  <span>@String.Format("{0:0,0 VND}",item.Product.newprice(item.Product.Price,item.Product.SaleOff))</span></li>
-                            
+                            <li class="clearfix">
+                                <img src="~/assets/images/product/@item.Product_Size.Product.Images" width="30px" height="30px" />
+                                <em>@item.QuantityProductSale &nbsp; @item.Product_Size.Product.ProductName</em>  
+                                &nbsp; Size: @item.Product_Size.Size.NameSize &nbsp;
+                                <span>@String.Format("{0:0,0 VND}", item.Product_Size.Product.newprice(item.Product_Size.Product.Price, item.Product_Size.Product.SaleOff))</span>
+                            </li>
                         </ul>
                     }
 
-                  
-                    <div class="total clearfix">Tổng tiền:&nbsp; <span>@String.Format("{0:0,0 VND}", Model.Total_Money())</span></div>
+
+                    <div class="total clearfix">Tổng tiền:&nbsp; <span>@String.Format("{0:0,0 VND}", ViewBag.totalmoney)</span></div>
                     <input type="submit" value="Thanh toán" class="btn_1 full-width" />
-                    
+
                 </div>
                 <!-- /box_general -->
             </div>
@@ -109,4 +112,3 @@
 
 }
 
-@ViewBag.link

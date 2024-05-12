@@ -1,12 +1,10 @@
-﻿@using PagedList.Mvc;
+﻿﻿@using PagedList.Mvc;
 @using PagedList;
 @model IPagedList<DoAn_TranTheAnh_2020607026.Models.Product>
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/LayoutAdmin.cshtml";
 }
-
 <div class="main-content-inner">
     <!-- main-content-wrap -->
     <div class="main-content-wrap">
@@ -33,14 +31,14 @@
         <!-- product-list -->
         <div class="wg-box">
             <div class="title-box">
-               
+
             </div>
             <div class="flex items-center justify-between gap10 flex-wrap">
                 <div class="wg-filter flex-grow">
                     <a class="tf-button style-1 w208" href="/Products/Create"><i class="icon-plus"></i>Add new</a>
-                    
+
                 </div>
-                
+
             </div>
             <div class="wg-table table-product-list">
                 <ul class="table-title flex gap20 mb-14">
@@ -53,9 +51,7 @@
                     <li>
                         <div class="body-title">Giá</div>
                     </li>
-                    <li>
-                        <div class="body-title">Số lượng</div>
-                    </li>
+                    
                     <li>
                         <div class="body-title">Sale</div>
                     </li>
@@ -77,7 +73,7 @@
                                 </div>
                                 <div class="body-text">@item.ProductID</div>
                                 <div class="body-text">@String.Format("{0:0,0}", item.Price)</div>
-                                <div class="body-text">@item.QuantityInStock</div>
+                                
                                 <div class="body-text">@item.SaleOff</div>
                                 <div class="list-icon-function">
                                     <div class="item eye">

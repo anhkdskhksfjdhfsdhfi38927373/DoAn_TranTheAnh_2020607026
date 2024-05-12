@@ -28,8 +28,9 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
                 PageSize = 8;
             }
             var products = db.Products.ToList();
-            return View(products.ToPagedList((int)page,(int)PageSize));
+            return View(products.ToPagedList((int)page, (int)PageSize));
         }
+
         // GET: Products/Details/5
         public ActionResult Details(int? id)
         {
@@ -46,6 +47,7 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         }
 
         // GET: Products/Create
+
         public ActionResult Create()
         {
             ViewBag.BrandID = new SelectList(db.Brands, "BrandID", "BrandName");
@@ -58,7 +60,7 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductID,ProductName,Description,QuantityInStock,CategoryID,BrandID,Images,SaleOff,Price")] Product product)
+        public ActionResult Create([Bind(Include = "ProductID,ProductName,Description,Price,QuantityInStock,CategoryID,BrandID,Images,SaleOff")] Product product)
         {
             try
             {
@@ -107,7 +109,7 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductID,ProductName,Description,QuantityInStock,CategoryID,BrandID,Images,SaleOff,Price")] Product product)
+        public ActionResult Edit([Bind(Include = "ProductID,ProductName,Description,Price,QuantityInStock,CategoryID,BrandID,Images,SaleOff")] Product product)
         {
             try
             {
@@ -134,10 +136,11 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
                 ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", product.CategoryID);
                 return View(product);
             }
+
         }
 
-            // GET: Products/Delete/5
-            public ActionResult Delete(int? id)
+        // GET: Products/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -158,8 +161,6 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         {
             Product product = db.Products.Find(id);
             db.Products.Remove(product);
-            List<Rate> rate = db.Rates.Where(s => s.ProductID == id).ToList();
-            db.Rates.RemoveRange(rate);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

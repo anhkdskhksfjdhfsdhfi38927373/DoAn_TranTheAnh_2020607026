@@ -1,10 +1,9 @@
-﻿@using PagedList.Mvc;
+﻿﻿@using PagedList.Mvc;
 @using PagedList;
 @model IPagedList<DoAn_TranTheAnh_2020607026.Models.Product>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/LayoutPage.cshtml";
-
 }
 
 <div id="carousel-home">
@@ -66,5 +65,3 @@
     @Html.PagedListPager(Model, page => Url.Action("Index", new { page, PageSize = 8 }))
 
 </div>
-
-<!-- /bg_gray -->

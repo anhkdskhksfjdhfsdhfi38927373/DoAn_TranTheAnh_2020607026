@@ -46,7 +46,7 @@
                         <div class="select">
                             @Html.DropDownList("CategoryID", null, htmlAttributes: new { @class = "" })
                             @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
-                            
+
                         </div>
                     </fieldset>
                     <fieldset class="male">
@@ -61,7 +61,7 @@
                 <fieldset class="description">
                     <div class="body-title mb-10">Mô tả sản phẩm <span class="tf-color-1">*</span></div>
                     <textarea class="mb-10" name="Description" placeholder="Mô tả" tabindex="0" aria-required="true" required="">@Model.Description</textarea>
-                    
+
                 </fieldset>
             </div>
             <div class="wg-box">
@@ -87,7 +87,7 @@
                     <fieldset class="name">
                         <div class="body-title mb-10">Sale Off</div>
                         <div class=" mb-10">
-                            <input type="text" value="@Model.SaleOff" name="SaleOff" placeholder="Giảm giá" />
+                            <input type="text" name="SaleOff" value="@Model.SaleOff"  placeholder="Giảm giá" />
                         </div>
 
                     </fieldset>
@@ -105,7 +105,7 @@
                 </div>
             </div>
         </form>
-        <div class="cols gap10"  style="margin-top:20px;">
+        <div class="cols gap10" style="margin-top:20px;">
             <a href="@Url.Action("Index","Products")" class="tf-button style-1 w-full" type="submit">Product List</a>
         </div>
 

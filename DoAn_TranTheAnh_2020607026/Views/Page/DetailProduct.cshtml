@@ -6,9 +6,7 @@
     List<DoAn_TranTheAnh_2020607026.Models.Rate> rates = ViewBag.listrate;
 }
 <link href="~/assets/css/product_page.css" rel="stylesheet">
-@using (Html.BeginForm("AddtoCart", "Carts", FormMethod.Post))
-{
-
+<form action="/Cartbuy/AddtoCart" method="post">
     <div class="container margin_30">
         <div class="row">
             <div class="col-md-6">
@@ -46,14 +44,14 @@
                 </div>
                 <!-- /prod_info -->
                 <div class="col-lg-4 col-md-6" style="margin-top: 25px;">
-                    <div class="btn_add_to_cart"><input type="submit" class="btn_1" value="Add to Cart " /></div>
+                    <div class="btn_add_to_cart"><input type="submit" class="btn_1" value="Add to Cart" /></div>
                 </div>
                 <!-- /product_actions -->
             </div>
         </div>
         <!-- /row -->
     </div>
-}
+</form>
 <div class="row justify-content-between" style="margin-left:150px;">
     <div class="col-lg-6">
         <h3>Details</h3>

@@ -11,11 +11,11 @@ using PagedList;
 
 namespace DoAn_TranTheAnh_2020607026.Controllers
 {
-    public class CategoriesController : Controller
+    public class BrandsController : Controller
     {
         private Fashion db = new Fashion();
 
-        // GET: Categories
+        // GET: Brands
         public ActionResult Index(int? page, int? PageSize)
         {
             if (page == null)
@@ -27,131 +27,102 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
 
                 PageSize = 8;
             }
-            var categories = db.Categories.ToList();
-            return View(categories.ToPagedList((int)page, (int)PageSize));
+            var brands = db.Brands.ToList();
+            return View(brands.ToPagedList((int)page, (int)PageSize));
         }
 
-        // GET: Categories/Details/5
+
+        // GET: Brands/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
-            if (category == null)
+            Brand brand = db.Brands.Find(id);
+            if (brand == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(brand);
         }
 
-        // GET: Categories/Create
+        // GET: Brands/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Categories/Create
+        // POST: Brands/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CategoryID,CategoryName,Images")] Category category)
+        public ActionResult Create([Bind(Include = "BrandID,BrandName")] Brand brand)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    var f = Request.Files["ImageFile"];
-                    if (f != null && f.ContentLength > 0)
-                    {
-                        string filename = System.IO.Path.GetFileName(f.FileName);
-                        string Upload = Server.MapPath("~/assets/images/category/" + f.FileName);
-                        f.SaveAs(Upload);
-                        category.Images = filename;
-                    }
-                    db.Categories.Add(category);
-                    db.SaveChanges();
-                }
+                db.Brands.Add(brand);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
 
-                return View(category);
-            }
+            return View(brand);
         }
 
-        // GET: Categories/Edit/5
+        // GET: Brands/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
-            if (category == null)
+            Brand brand = db.Brands.Find(id);
+            if (brand == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(brand);
         }
 
-        // POST: Categories/Edit/5
+        // POST: Brands/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CategoryID,CategoryName,Images")] Category category)
+        public ActionResult Edit([Bind(Include = "BrandID,BrandName")] Brand brand)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    var f = Request.Files["ImageFile"];
-                    if (f != null && f.ContentLength > 0)
-                    {
-                        string filename = System.IO.Path.GetFileName(f.FileName);
-                        string Upload = Server.MapPath("~/assets/images/category/" + f.FileName);
-                        f.SaveAs(Upload);
-                        category.Images = filename;
-                    }
-                    db.Entry(category).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
+                db.Entry(brand).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            catch
-            {
-
-                return View(category);
-            }
+            return View(brand);
         }
 
-        // GET: Categories/Delete/5
+        // GET: Brands/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
-            if (category == null)
+            Brand brand = db.Brands.Find(id);
+            if (brand == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(brand);
         }
 
-        // POST: Categories/Delete/5
+        // POST: Brands/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Category category = db.Categories.Find(id);
-            db.Categories.Remove(category);
+            Brand brand = db.Brands.Find(id);
+            db.Brands.Remove(brand);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

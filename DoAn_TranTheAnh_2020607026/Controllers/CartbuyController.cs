@@ -1,102 +1,165 @@
-﻿using DoAn_TranTheAnh_2020607026.Models;
-using DoAn_TranTheAnh_2020607026.Models.VN_Pay;
-using System.Configuration;
+﻿using DoAn_TranTheAnh_2020607026.Models.VN_Pay;
+using DoAn_TranTheAnh_2020607026.Models;
 using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
-using System.Web.Mvc;
-using WebGrease;
 using System.Web;
-
-
-
+using System.Web.Mvc;
 
 namespace DoAn_TranTheAnh_2020607026.Controllers
 {
-    public class CartsController : Controller
+    public class CartbuyController : Controller
     {
-        // GET: Carts
+        // GET: Cartbuy
         Fashion db = new Fashion();
         // GET: Cart
 
-        public ListCart getcart()
+        public List<CartItem> getcart()
         {
-            ListCart carts = Session["Cart"] as ListCart;
+            List<CartItem> carts = Session["Cart"] as List<CartItem>;
             if (carts == null || Session["Cart"] == null)
             {
-                carts = new ListCart();
+                carts = new List<CartItem>();
                 Session["Cart"] = carts;
             }
             return carts;
         }
-        public ActionResult Index()
+        
+        public ActionResult ShowCart()
         {
             if (Session["UserID"] == null)
             {
                 return RedirectToAction("Login", "Page");
-
             }
             else
             {
+
                 if (Session["Cart"] == null)
                 {
-                    return RedirectToAction("Index", "Cart");
+                    ViewBag.totalmoney = 0;
+                    return View();
+
                 }
-                ListCart carts = Session["Cart"] as ListCart;
-                return View(carts);
+                else
+                {
+                    List<CartItem> listcart = Session["Cart"] as List<CartItem>;
+                    ViewBag.totalmoney = TotalMoney();
+                    return View(listcart);
+                }
+
             }
 
         }
+        public double TotalMoney()
+        {
+            List<CartItem> carts = Session["Cart"] as List<CartItem>;
+
+            double totalmoney = carts.Sum(s => s.Product_Size.Product.newprice(s.Product_Size.Product.SaleOff, s.Product_Size.Product.Price) * s.QuantityProductSale);
+
+            return totalmoney;
+        }
+
         [HttpPost]
         public ActionResult AddtoCart(FormCollection form)
         {
 
             int id = int.Parse(form["ProductID"]);
             int sizeId = int.Parse(form["Size"]);
-            var size = db.Sizes.SingleOrDefault(s => s.SizeID == sizeId);
-            var pro = db.Products.SingleOrDefault(s => s.ProductID == id);
+            var pro = db.Product_Size.SingleOrDefault(s => s.ProductID == id && s.SizeID == sizeId);
             if (pro != null)
             {
-                getcart().AddCart(pro, size);
+
+                var pro_size = getcart().FirstOrDefault(s => s.Product_Size.ProductID == id && s.Product_Size.SizeID == sizeId);
+                if (pro_size == null)
+                {
+                    CartItem cartitem = new CartItem();
+                    cartitem.Product_Size = pro;
+                    cartitem.QuantityProductSale = 1;
+                    getcart().Add(cartitem);
+                }
+                if (pro_size != null)
+                {
+                    pro_size.QuantityProductSale += 1;
+                }
+                
             }
-            return RedirectToAction("Index", "Carts");
+
+
+            return RedirectToAction("ShowCart", "Cartbuy");
         }
         public ActionResult UpdateCartup(int id)
         {
-            ListCart carts = Session["Cart"] as ListCart;
-            carts.UpdatetoCartup(id);
-            return RedirectToAction("Index", "Carts");
+            List<CartItem> carts = Session["Cart"] as List<CartItem>;
+            var item = carts.Find(s => s.Product_SizeID == id);
+            if (item != null && item.Product_Size.Quantity > 0)
+            {
+                item.QuantityProductSale += 1;
+            }
+            return RedirectToAction("ShowCart", "Cartbuy");
         }
         public ActionResult UpdateCartdown(int id)
         {
-            ListCart carts = Session["Cart"] as ListCart;
-            carts.UpdatetoCartdown(id);
-            return RedirectToAction("Index", "Carts");
+            List<CartItem> carts = Session["Cart"] as List<CartItem>;
+            var item = carts.Find(s => s.Product_SizeID == id);
+            if (item != null && item.Product_Size.Quantity > 0)
+            {
+                if (item.QuantityProductSale >= 1)
+                {
+                    item.QuantityProductSale -= 1;
+                }
+
+            }
+            return RedirectToAction("ShowCart", "Cartbuy");
         }
         public PartialViewResult TotalQuantity()
         {
-            int item = 0;
-            ListCart carts = Session["Cart"] as ListCart;
-            if (carts != null)
+            List<CartItem> carts = Session["Cart"] as List<CartItem>;
+            int total_quantity;
+            if (carts == null)
             {
-                item = carts.total_Quantity();
+                total_quantity = 0;
             }
-            ViewBag.total_quantity = item;
+            else
+            {
+                total_quantity = carts.Sum(s => s.QuantityProductSale);
+
+            }
+            ViewBag.total_quantity = total_quantity;
             return PartialView("TotalQuantity");
         }
         public ActionResult Delete_Products(int id)
         {
-            ListCart carts = Session["Cart"] as ListCart;
-            carts.Delete_Product(id);
-            return RedirectToAction("Index", "Carts");
+            List<CartItem> carts = Session["Cart"] as List<CartItem>;
+            var item = carts.Find(s => s.Product_SizeID == id);
+            if (item != null)
+            {
+                carts.Remove(item);
+            }
+            return RedirectToAction("ShowCart", "Cartbuy");
         }
         public ActionResult CheckOut()
         {
-            ListCart carts = Session["Cart"] as ListCart;
-
+            List<CartItem> carts = Session["Cart"] as List<CartItem>;
+            ViewBag.totalmoney = TotalMoney();
             return View(carts);
         }
         public ActionResult SuccessOrder()
         {
+            List<CartItem> carts = Session["Cart"] as List<CartItem>;
+            
+            foreach (var item in carts)
+            {
+                int proid = item.Product_Size.Product.ProductID;
+                int sizeid = item.Product_Size.Size.SizeID;
+                Product_Size pro_size = db.Product_Size.FirstOrDefault(s => s.Product.ProductID == proid && s.SizeID == sizeid);
+                pro_size.Quantity -= item.QuantityProductSale;
+                db.Product_Size.Attach(pro_size);
+                db.Entry(pro_size).State = System.Data.Entity.EntityState.Modified;
+                
+            }
+            carts.Clear();
+            db.SaveChanges();
             return View();
         }
         public ActionResult VnPay_Return()
@@ -132,6 +195,18 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
                         var itemOrder = db.Orders.FirstOrDefault(x => x.OrderCode == orderCode);
                         if (itemOrder != null)
                         {
+                            List<CartItem> carts = Session["Cart"] as List<CartItem>;
+                            foreach (var item in carts)
+                            {
+                                int proid = item.Product_Size.Product.ProductID;
+                                int sizeid = item.Product_Size.Size.SizeID;
+                                Product_Size pro_size = db.Product_Size.FirstOrDefault(s => s.Product.ProductID == proid && s.SizeID == sizeid);
+                                pro_size.Quantity -= item.QuantityProductSale;
+                                db.Product_Size.Attach(pro_size);
+                                db.Entry(pro_size).State = System.Data.Entity.EntityState.Modified;
+
+                            }
+                            carts.Clear();
                             itemOrder.OrderStatus = "Đã thanh toán";
                             db.Orders.Attach(itemOrder);
                             db.Entry(itemOrder).State = System.Data.Entity.EntityState.Modified;
@@ -160,7 +235,7 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         public ActionResult CheckOut(FormCollection form)
         {
             int TypePayMent = int.Parse(form["TypePayment"]);
-            ListCart carts = Session["Cart"] as ListCart;
+            List<CartItem> carts = Session["Cart"] as List<CartItem>;
 
 
             Order order = new Order();
@@ -168,23 +243,26 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
             order.PhoneCustomer = form["phone"];
             order.CustomerName = form["Name"];
             order.OrderDate = DateTime.Now;
-            order.OrderTotalPrice = carts.Total_Money();
+            order.OrderTotalPrice = TotalMoney();
             order.TypePayment = TypePayMent;
             Random rd = new Random();
             order.OrderCode = "DH" + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9);
             order.OrderStatus = "Chưa thanh toán";
             db.Orders.Add(order);
-            foreach (var item in carts.Listcart)
+            foreach (var item in carts)
             {
                 OrderDetail orderdetail = new OrderDetail();
-                orderdetail.ProductID = item.Product.ProductID;
+                int proid = item.Product_Size.Product.ProductID;
+                int sizeid = item.Product_Size.Size.SizeID;
+                Product_Size pro_size = db.Product_Size.FirstOrDefault(s => s.Product.ProductID == proid && s.SizeID == sizeid);
+                orderdetail.Product_SizeID = pro_size.Product_SizeID ;
                 orderdetail.OrderQuantity = item.QuantityProductSale;
-                orderdetail.TotalPrice = carts.Total_Money();
+                orderdetail.TotalPrice = TotalMoney();
                 orderdetail.OrderID = order.OrderID;
                 db.OrderDetails.Add(orderdetail);
             }
             db.SaveChanges();
-            carts.Clear_Carts();
+            //carts.Clear();
             string url = UrlPayment(order.OrderCode);
             if (TypePayMent > 0)
             {
@@ -192,7 +270,7 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
             }
             else
             {
-                return RedirectToAction("SuccessOrder", "Carts");
+                return RedirectToAction("SuccessOrder","Cartbuy");
             }
 
 
@@ -253,8 +331,5 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
 
             return paymentUrl;
         }
-
-
     }
-
 }

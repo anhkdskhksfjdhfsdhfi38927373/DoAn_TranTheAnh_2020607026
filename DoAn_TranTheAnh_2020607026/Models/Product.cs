@@ -11,8 +11,7 @@ namespace DoAn_TranTheAnh_2020607026.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            CartItems = new HashSet<CartItem>();
-            OrderDetails = new HashSet<OrderDetail>();
+            Product_Size = new HashSet<Product_Size>();
             Rates = new HashSet<Rate>();
         }
 
@@ -22,9 +21,6 @@ namespace DoAn_TranTheAnh_2020607026.Models
 
         [StringLength(255)]
         public string Description { get; set; }
-
-        public int QuantityInStock { get; set; }
-
         public int? BrandID { get; set; }
 
         [StringLength(255)]
@@ -40,17 +36,14 @@ namespace DoAn_TranTheAnh_2020607026.Models
 
         public virtual Brand Brand { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CartItem> CartItems { get; set; }
-
         public virtual Category Category { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<Product_Size> Product_Size { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rate> Rates { get; set; }
-        public double newprice(double price,double saleoff)
+        public double newprice(double price, double saleoff)
         {
             price = Price;
             saleoff = SaleOff;

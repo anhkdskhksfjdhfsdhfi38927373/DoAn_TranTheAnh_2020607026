@@ -2,23 +2,21 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Drawing.Printing;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.UI;
 using DoAn_TranTheAnh_2020607026.Models;
 using PagedList;
 
 namespace DoAn_TranTheAnh_2020607026.Controllers
 {
-    public class UsersController : Controller
+    public class Product_SizeController : Controller
     {
         private Fashion db = new Fashion();
 
-        // GET: Users
-        public ActionResult Index(int? page,int? PageSize)
+        // GET: Product_Size
+        public ActionResult Index(int? page, int? PageSize)
         {
             if (page == null)
             {
@@ -29,105 +27,109 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
 
                 PageSize = 8;
             }
-            var products = db.Users.ToList();
-            return View(products.ToPagedList((int)page, (int)PageSize));
+            var product_sizes = db.Product_Size.ToList();
+            return View(product_sizes.ToPagedList((int)page, (int)PageSize));
         }
 
-        // GET: Users/Details/5
+        // GET: Product_Size/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
-            if (user == null)
+            Product_Size product_Size = db.Product_Size.Find(id);
+            if (product_Size == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(product_Size);
         }
 
-        // GET: Users/Create
+        // GET: Product_Size/Create
         public ActionResult Create()
         {
-            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "RoleName");
+            ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductName");
+            ViewBag.SizeID = new SelectList(db.Sizes, "SizeID", "NameSize");
             return View();
         }
 
-        // POST: Users/Create
+        // POST: Product_Size/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserID,Username,Email,Password,Gender,Address,Phone,RoleID")] User user)
+        public ActionResult Create([Bind(Include = "Product_SizeID,ProductID,SizeID,Quantity")] Product_Size product_Size)
         {
             if (ModelState.IsValid)
             {
-                db.Users.Add(user);
+                db.Product_Size.Add(product_Size);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "RoleName", user.RoleID);
-            return View(user);
+            ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductName", product_Size.ProductID);
+            ViewBag.SizeID = new SelectList(db.Sizes, "SizeID", "NameSize", product_Size.SizeID);
+            return View(product_Size);
         }
 
-        // GET: Users/Edit/5
+        // GET: Product_Size/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
-            if (user == null)
+            Product_Size product_Size = db.Product_Size.Find(id);
+            if (product_Size == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "RoleName", user.RoleID);
-            return View(user);
+            ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductName", product_Size.ProductID);
+            ViewBag.SizeID = new SelectList(db.Sizes, "SizeID", "NameSize", product_Size.SizeID);
+            return View(product_Size);
         }
 
-        // POST: Users/Edit/5
+        // POST: Product_Size/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserID,Username,Email,Password,Gender,Address,Phone,RoleID")] User user)
+        public ActionResult Edit([Bind(Include = "Product_SizeID,ProductID,SizeID,Quantity")] Product_Size product_Size)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
+                db.Entry(product_Size).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "RoleName", user.RoleID);
-            return View(user);
+            ViewBag.ProductID = new SelectList(db.Products, "ProductID", "ProductName", product_Size.ProductID);
+            ViewBag.SizeID = new SelectList(db.Sizes, "SizeID", "NameSize", product_Size.SizeID);
+            return View(product_Size);
         }
 
-        // GET: Users/Delete/5
+        // GET: Product_Size/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
-            if (user == null)
+            Product_Size product_Size = db.Product_Size.Find(id);
+            if (product_Size == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(product_Size);
         }
 
-        // POST: Users/Delete/5
+        // POST: Product_Size/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
+            Product_Size product_Size = db.Product_Size.Find(id);
+            db.Product_Size.Remove(product_Size);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

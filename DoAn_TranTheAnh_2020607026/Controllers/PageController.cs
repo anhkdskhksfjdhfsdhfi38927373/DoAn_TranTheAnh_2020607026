@@ -43,7 +43,7 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
             if (item != null)
             {
                 Session["UserID"] = item.UserID;
-                
+                Session["Cart"] = null;
                 if (item.RoleID== 0)
                 {
                     return RedirectToAction("Index", "Page");
@@ -61,6 +61,7 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         public ActionResult Logout()
         {
             Session.Remove("Username");
+            Session.Remove("Admin");
             return RedirectToAction("Login", "Page");
         }
         public ActionResult ListproductCategory(int id, int? page, int? PageSize)
@@ -127,6 +128,28 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
                 db.SaveChanges();
             }
             return RedirectToAction("DetailProduct",new {id=ProductId});
+        }
+        public ActionResult Register()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Register(FormCollection form)
+        {
+            User user = new User();
+            user.Username = form["firstname"] + " " + form["lastname"];
+            user.Email = form["email"];
+            user.Password = form["password"];
+            user.Gender = form["Gender"];
+            user.RoleID = 0;
+            if (form["password"] != form["confirmpassword"])
+            {
+                ViewBag.errorpassword = "Xác nhận password chưa đúng!";
+                return RedirectToAction("Register", "Page");
+            }
+            db.Users.Add(user);
+            db.SaveChanges();
+            return RedirectToAction("Login", "Page");
         }
     }
 }

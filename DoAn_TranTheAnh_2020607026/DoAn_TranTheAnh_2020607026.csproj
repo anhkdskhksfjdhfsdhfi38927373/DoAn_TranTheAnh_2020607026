@@ -246,11 +246,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\CartsController.cs" />
+    <Compile Include="Controllers\BrandsController.cs" />
+    <Compile Include="Controllers\CartbuyController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\Product_SizeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -261,10 +262,10 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Product_Size.cs" />
     <Compile Include="Models\Rate.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Size.cs" />
-    <Compile Include="Models\sysdiagram.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\VN_Pay\VnPayLibrary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -503,41 +504,46 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\LayoutPage.cshtml" />
-    <Content Include="Views\Page\Index.cshtml" />
     <Content Include="Views\Shared\LayoutAdmin.cshtml" />
     <Content Include="Views\Admin\Dashboard.cshtml" />
     <Content Include="Views\Page\Login.cshtml" />
     <Content Include="Views\Page\ListproductCategory.cshtml" />
     <Content Include="Views\Page\DetailProduct.cshtml" />
-    <Content Include="Views\Carts\TotalQuantity.cshtml" />
-    <Content Include="Views\Carts\Index.cshtml" />
-    <Content Include="Views\Carts\CheckOut.cshtml" />
-    <Content Include="Views\Carts\SuccessOrder.cshtml" />
-    <Content Include="Views\Carts\VnPay_Return.cshtml" />
     <Content Include="Views\Page\slider.cshtml" />
     <Content Include="Views\Page\ListCategory.cshtml" />
-    <Content Include="Views\Products\Create.cshtml" />
-    <Content Include="Views\Products\Delete.cshtml" />
-    <Content Include="Views\Products\Details.cshtml" />
-    <Content Include="Views\Products\Edit.cshtml" />
-    <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Admin\OrderList.cshtml" />
     <Content Include="Views\Admin\DetailOrder.cshtml" />
-    <Content Include="Views\Users\Create.cshtml" />
-    <Content Include="Views\Users\Delete.cshtml" />
-    <Content Include="Views\Users\Details.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Categories\Create.cshtml" />
     <Content Include="Views\Categories\Delete.cshtml" />
     <Content Include="Views\Categories\Details.cshtml" />
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\Page\Register.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Brands\Create.cshtml" />
+    <Content Include="Views\Brands\Delete.cshtml" />
+    <Content Include="Views\Brands\Details.cshtml" />
+    <Content Include="Views\Brands\Edit.cshtml" />
+    <Content Include="Views\Brands\Index.cshtml" />
+    <Content Include="Views\Page\Index.cshtml" />
+    <Content Include="Views\Cartbuy\TotalQuantity.cshtml" />
+    <Content Include="Views\Cartbuy\ShowCart.cshtml" />
+    <Content Include="Views\Product_Size\Create.cshtml" />
+    <Content Include="Views\Product_Size\Delete.cshtml" />
+    <Content Include="Views\Product_Size\Details.cshtml" />
+    <Content Include="Views\Product_Size\Edit.cshtml" />
+    <Content Include="Views\Product_Size\Index.cshtml" />
+    <Content Include="Views\Cartbuy\CheckOut.cshtml" />
+    <Content Include="Views\Cartbuy\SuccessOrder.cshtml" />
+    <Content Include="Views\Cartbuy\VnPay_Return.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="assets\images\product\" />
-    <Folder Include="Views\Rating\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
