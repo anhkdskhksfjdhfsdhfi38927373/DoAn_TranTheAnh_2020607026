@@ -49,6 +49,25 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
             var orderdetail = db.OrderDetails.Where(s=>s.OrderID==id).ToList();
             return View(orderdetail);
         }
-
+        public PartialViewResult total_quantity_order()
+        {
+            ViewBag.total_quantity_order = db.Orders.Count();
+            return PartialView("total_quantity_order");
+        }
+        public PartialViewResult total_price_order()
+        {
+            ViewBag.totalprice = db.Orders.Sum(s=>s.OrderTotalPrice);
+            return PartialView("total_price_order");
+        }
+        public PartialViewResult total_User()
+        {
+            ViewBag.total_user = db.Users.Count();
+            return PartialView("total_User");
+        }
+        public PartialViewResult Total_product()
+        {
+            ViewBag._total_product = db.Products.Count();
+            return PartialView("Total_product");
+        }
     }
 }

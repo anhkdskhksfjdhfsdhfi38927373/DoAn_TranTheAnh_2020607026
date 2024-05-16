@@ -49,12 +49,12 @@
                             {
                                 <li class="product-item gap14">
                                     <div class="image no-bg">
-                                        <img src="~/assets/images/product/@item.Product.Images" alt="">
+                                        <img src="~/assets/images/product/@item.Product_Size.Product.Images" alt="">
                                     </div>
                                     <div class="flex items-center justify-between gap40 flex-grow">
                                         <div class="name">
                                             <div class="text-tiny mb-1">Tên sản phẩm</div>
-                                            <a href="product-list.html" class="body-title-2">@item.Product.ProductName</a>
+                                            <a href="product-list.html" class="body-title-2">@item.Product_Size.Product.ProductName</a>
                                         </div>
                                         <div class="name">
                                             <div class="text-tiny mb-1">Số Lượng</div>
@@ -62,7 +62,7 @@
                                         </div>
                                         <div class="name">
                                             <div class="text-tiny mb-1">Giá</div>
-                                            <div class="body-title-2">@String.Format("{0:0,0 VND}", item.Product.Price)</div>
+                                            <div class="body-title-2">@String.Format("{0:0,0 VND}", item.Product_Size.Product.Price)</div>
                                         </div>
                                     </div>
                                 </li>

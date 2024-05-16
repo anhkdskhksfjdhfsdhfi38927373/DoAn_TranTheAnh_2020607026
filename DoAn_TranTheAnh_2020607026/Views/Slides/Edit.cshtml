@@ -1,7 +1,7 @@
-﻿@model DoAn_TranTheAnh_2020607026.Models.Category
+﻿@model DoAn_TranTheAnh_2020607026.Models.Slide
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/LayoutAdmin.cshtml";
 }
 <div class="main-content-inner">
@@ -17,30 +17,29 @@
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <a href="@Url.Action("Index","Categories")"><div class="text-tiny">Category</div></a>
+                    <a href="@Url.Action("Index","Slides")"><div class="text-tiny">Slide</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <div class="text-tiny">New category</div>
+                    <div class="text-tiny">New Slide</div>
                 </li>
             </ul>
         </div>
         <!-- new-category -->
         <div class="wg-box">
-            <form action="/Categories/Create" method="post" enctype="multipart/form-data" class="form-new-product form-style-1">
+            <form action="/Slides/Edit" method="post" enctype="multipart/form-data" class="form-new-product form-style-1">
                 @Html.AntiForgeryToken()
-                <fieldset class="name">
-                    <div class="body-title">Product name <span class="tf-color-1">*</span></div>
-                    <input class="flex-grow" type="text" placeholder="Category name" name="CategoryName" tabindex="0" value="" aria-required="true" required="">
-                </fieldset>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.SlideID)
+                
                 <fieldset>
                     <div class="body-title">Upload images <span class="tf-color-1">*</span></div>
                     <div class="upload-image flex-grow">
                         <div class="item up-load">
                             <div class="item">
-                                <img id="output" src="~/assets/images/category/" alt="" style="border-radius: 12px; border: 1px solid #ECF0F4" />
+                                <img id="output" src="~/assets/images/slide/@Model.Images" alt="" style="border-radius: 12px; border: 1px solid #ECF0F4" />
                             </div>
                             <label class="uploadfile" for="myFile">
                                 <span class="icon">
@@ -57,7 +56,7 @@
 
                 <div class="bot">
                     <div></div>
-                    <button class="tf-button w208" type="submit">Add Category</button>
+                    <button class="tf-button w208" type="submit">Save Slide</button>
                 </div>
             </form>
         </div>

@@ -1,4 +1,4 @@
-﻿﻿@using PagedList.Mvc;
+﻿@using PagedList.Mvc;
 @using PagedList;
 @model IPagedList<DoAn_TranTheAnh_2020607026.Models.Product_Size>
 
@@ -6,6 +6,12 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/LayoutAdmin.cshtml";
 }
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
 <div class="main-content-inner">
     <!-- main-content-wrap -->
     <div class="main-content-wrap">
@@ -89,4 +95,8 @@
         <!-- /all-attribute -->
     </div>
     <!-- /main-content-wrap -->
+</div>
+<div class="bottom-page">
+    <div class="body-text">Copyright © 2024 Fashion</div>
+    <i class="icon-heart"></i>
 </div>

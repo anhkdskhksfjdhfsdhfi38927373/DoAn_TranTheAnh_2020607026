@@ -4,6 +4,7 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/LayoutAdmin.cshtml";
 }
+
 <div class="main-content-inner">
     <!-- main-content-wrap -->
     <div class="main-content-wrap">
@@ -41,7 +42,7 @@
                 </fieldset>
                 <fieldset class="name">
                     <div class="body-title">Size</div>
-                    <input class="flex-grow" type="text" placeholder="Size" name="SizeID" tabindex="0" value="@Model.Size.NameSize" aria-required="true" required="" readonly >
+                    <input class="flex-grow" type="text" placeholder="Size" name="SizeID" tabindex="0" value="@Model.Size.NameSize" aria-required="true" required="" readonly>
                 </fieldset>
                 <fieldset class="name">
                     <div class="body-title">Số lượng trong kho</div>
@@ -57,4 +58,7 @@
     </div>
     <!-- /main-content-wrap -->
 </div>
-
+<div class="bottom-page">
+    <div class="body-text">Copyright © 2024 Fashion</div>
+    <i class="icon-heart"></i>
+</div>

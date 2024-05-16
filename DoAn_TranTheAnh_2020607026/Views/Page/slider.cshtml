@@ -1,48 +1,21 @@
-﻿<div class="owl-carousel owl-theme">
-    <div class="owl-slide cover">
-        <img src="~/assets/images/banner/banner1.jpg" />
-        <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-            <div class="container">
-                <div class="row justify-content-center justify-content-md-end">
-                    <div class="col-lg-6 static">
-                        <div class="slide-text text-end white">
-                            
+﻿@model IEnumerable<DoAn_TranTheAnh_2020607026.Models.Slide> 
+<div class="owl-carousel owl-theme">
+    @foreach (var item in Model)
+    {
+        <div class="owl-slide cover">
+            <img src="~/assets/images/slide/@item.Images" />
+            <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
+                <div class="container">
+                    <div class="row justify-content-center justify-content-md-end">
+                        <div class="col-lg-6 static">
+                            <div class="slide-text text-end white">
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--/owl-slide-->
-    <div class="owl-slide cover">
-        <img src="~/assets/images/banner/banner2.jpg" />
-        <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-            <div class="container">
-                <div class="row justify-content-center justify-content-md-start">
-                    <div class="col-lg-6 static">
-                        <div class="slide-text white">
-                           
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--/owl-slide-->
-    <div class="owl-slide cover">
-        <img src="~/assets/images/banner/banner3.jpg" />
-        <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(255, 255, 255, 0.5)">
-            <div class="container">
-                <div class="row justify-content-center justify-content-md-start">
-                    <div class="col-lg-12 static">
-                        <div class="slide-text text-center black">
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--/owl-slide-->
-    </div>
-</div>
-<div id="icon_drag_mobile"></div>
+    }
+
+    

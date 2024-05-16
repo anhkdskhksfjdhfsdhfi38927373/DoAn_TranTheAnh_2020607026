@@ -69,14 +69,8 @@
                                     <li class="submenu">
                                         <a href="#0" style="color:#000" class="show-submenu">Danh mục</a>
                                         <ul style="text-align:left;">
-                                           
-                                            <li><a href="@Url.Action("ListproductCategory","Page", new {id = 1})">T-Shirt</a></li>
-                                            <li><a href="@Url.Action("ListproductCategory","Page", new {id = 2})">Polo</a></li>
-                                            <li><a href="@Url.Action("ListproductCategory","Page", new {id = 3})">Quần Jean</a></li>
-                                            <li><a href="@Url.Action("ListproductCategory","Page", new {id = 4})">Sơ mi</a></li>
-                                            <li><a href="@Url.Action("ListproductCategory","Page", new {id = 5})">Hoodie</a></li>
-                                            <li><a href="@Url.Action("ListproductCategory","Page", new {id = 6})">Bomber</a></li>
-                                            <li><a href="@Url.Action("ListproductCategory","Page", new {id = 7})">Áo bóng đá</a></li>
+
+                                            @Html.Action("listcategory_menu", "Page")
                                         </ul>
                                     </li>
                                     
@@ -194,14 +188,9 @@
                         <h3 data-bs-target="#collapse_2">Categories</h3>
                         <div class="collapse dont-collapse-sm links" id="collapse_2">
                             <ul>
-                                <li><a href="@Url.Action("ListproductCategory","Page", new {id = 1})">T-Shirt</a></li>
-                                <li><a href="@Url.Action("ListproductCategory","Page", new {id = 2})">Polo</a></li>
-                                <li><a href="@Url.Action("ListproductCategory","Page", new {id = 3})">Quần Jean</a></li>
-                                <li><a href="@Url.Action("ListproductCategory","Page", new {id = 4})">Sơ mi</a></li>
-                                <li><a href="@Url.Action("ListproductCategory","Page", new {id = 5})">Hoodie</a></li>
-                                <li><a href="@Url.Action("ListproductCategory","Page", new {id = 6})">Bomber</a></li>
-                                <li><a href="@Url.Action("ListproductCategory","Page", new {id = 7})">Áo bóng đá</a></li>
+                                @Html.Action("listcategory_menu", "Page")
                             </ul>
+                            
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">

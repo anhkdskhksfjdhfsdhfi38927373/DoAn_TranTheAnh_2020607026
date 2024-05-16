@@ -170,7 +170,24 @@
 
                                     </ul>
                                 </li>
-
+                                <li class="menu-item has-children">
+                                    <a href="javascript:void(0);" class="menu-item-button">
+                                        <div class="icon"><img src="~/assets/icon/banner.png" /></div>
+                                        <div class="text">Slide</div>
+                                    </a>
+                                    <ul class="sub-menu">
+                                        <li class="sub-menu-item">
+                                            <a href="@Url.Action("Index","Slides")" class="">
+                                                <div class="text">All Slides</div>
+                                            </a>
+                                        </li>
+                                        <li class="sub-menu-item">
+                                            <a href="/Slides/Create" class="">
+                                                <div class="text">Create Slide</div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
 
                                 <li class="menu-item">
                                     <a href="report.html" class="">
@@ -231,7 +248,7 @@
                             </div>
                             <div class="header-grid">
                                 <div class="header-item country">
-                                    <img class="image-select " src="~/assets/images/flag/vietnam.png" />
+                                    <img class="image-select " src="~/assets/images/country/9.png" />
                                 </div>
                                 <div class="header-item button-dark-light">
                                     <i class="icon-moon"></i>
@@ -252,11 +269,11 @@
                                                     <img src="~/assets/images/avatar/man-avatar.png" alt="">
                                                 </span>
                                                 <span class="flex flex-column">
-                                                    <span class="body-title mb-2">Trần Thế Anh</span>
-                                                    <span class="text-tiny">Admin</span>
+                                                    <span class="body-title mb-2">Admin</span>
+                                                    <span class="text-tiny"></span>
                                                 </span>
                                                 <span class="flex flex-column">
-                                                    <span class="body-title mb-2"><b><a href="@Url.Action("Logout","Admin")">Logout</a></b> </span>
+                                                    <span class="body-title mb-2"><b><a href="@Url.Action("Logout","Page")">Logout</a></b> </span>
                                                 </span>
                                             </span>
                                         </button>

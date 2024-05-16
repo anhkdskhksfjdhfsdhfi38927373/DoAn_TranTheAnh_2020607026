@@ -91,22 +91,40 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         }
         public PartialViewResult slider()
         {
-            return PartialView();
+            List<Slide> listslide = db.Slides.ToList();
+            return PartialView(listslide);
         }
         public PartialViewResult ListCategory()
         {
-            return PartialView();
+            List<Category> listcategory = db.Categories.ToList();
+            return PartialView(listcategory);
+        }
+        public PartialViewResult listcategory_menu()
+        {
+            List<Category> listcategory = db.Categories.ToList();
+            return PartialView(listcategory);
         }
         [HttpPost]
-        public ActionResult Search(FormCollection form)
+        public ActionResult Search(FormCollection form, int? page, int? PageSize)
         {
+           
+                if (page == null)
+                {
+                    page = 1;
+                }
+                if (PageSize == null)
+                {
+
+                    PageSize = 8;
+                }
+
             string str = form["SearchString"];
-            var sanphams = db.Products.Where(s => s.ProductName.Contains(str));
-            return View();
+            var sanphams = db.Products.Where(s => s.ProductName.Contains(str)).ToList();
+            return View(sanphams.ToPagedList((int)page, (int)PageSize));
+         
+            
+           
         }
-
-
-
         
         [HttpPost]
         public ActionResult RateProduct(FormCollection form)

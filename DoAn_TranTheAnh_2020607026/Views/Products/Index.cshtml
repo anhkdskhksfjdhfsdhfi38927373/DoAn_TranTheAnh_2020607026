@@ -1,6 +1,7 @@
-﻿﻿@using PagedList.Mvc;
+﻿﻿﻿@using PagedList.Mvc;
 @using PagedList;
 @model IPagedList<DoAn_TranTheAnh_2020607026.Models.Product>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/LayoutAdmin.cshtml";
@@ -51,7 +52,7 @@
                     <li>
                         <div class="body-title">Giá</div>
                     </li>
-                    
+
                     <li>
                         <div class="body-title">Sale</div>
                     </li>
@@ -73,7 +74,7 @@
                                 </div>
                                 <div class="body-text">@item.ProductID</div>
                                 <div class="body-text">@String.Format("{0:0,0}", item.Price)</div>
-                                
+
                                 <div class="body-text">@item.SaleOff</div>
                                 <div class="list-icon-function">
                                     <div class="item eye">

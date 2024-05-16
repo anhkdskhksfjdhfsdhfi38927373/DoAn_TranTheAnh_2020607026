@@ -286,10 +286,7 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
             string vnp_TmnCode = ConfigurationManager.AppSettings["vnp_TmnCode"]; //Ma định danh merchant kết nối (Terminal Id)
             string vnp_HashSecret = ConfigurationManager.AppSettings["vnp_HashSecret"]; //Secret Key
 
-            //Get payment input
-            //ListCart carts = Session["Cart"] as ListCart;
-            //double amount = carts.Total_Money();
-            //var price = (long)amount * 100;
+           
 
             //Save order to db
             Order item = db.Orders.FirstOrDefault(s => s.OrderCode == ordercode);
