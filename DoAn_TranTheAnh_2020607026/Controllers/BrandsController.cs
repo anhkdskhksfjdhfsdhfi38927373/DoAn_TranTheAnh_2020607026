@@ -31,7 +31,6 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
             return View(brands.ToPagedList((int)page, (int)PageSize));
         }
 
-
         // GET: Brands/Details/5
         public ActionResult Details(int? id)
         {

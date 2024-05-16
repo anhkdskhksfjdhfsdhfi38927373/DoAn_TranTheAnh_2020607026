@@ -28,9 +28,8 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
                 PageSize = 8;
             }
             var slides = db.Slides.ToList();
-            return View(slides.ToPagedList((int)page, (int)PageSize)); 
+            return View(slides.ToPagedList((int)page, (int)PageSize));
         }
-
         // GET: Slides/Details/5
         public ActionResult Details(int? id)
         {

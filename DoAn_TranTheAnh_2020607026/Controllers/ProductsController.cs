@@ -47,7 +47,6 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         }
 
         // GET: Products/Create
-
         public ActionResult Create()
         {
             ViewBag.BrandID = new SelectList(db.Brands, "BrandID", "BrandName");
@@ -60,7 +59,7 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductID,ProductName,Description,Price,CategoryID,BrandID,Images,SaleOff")] Product product)
+        public ActionResult Create([Bind(Include = "ProductID,ProductName,Description,Images,SaleOff,Price,CategoryID,BrandID")] Product product)
         {
             try
             {
@@ -109,7 +108,7 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductID,ProductName,Description,Price,CategoryID,BrandID,Images,SaleOff")] Product product)
+        public ActionResult Edit([Bind(Include = "ProductID,ProductName,Description,Images,SaleOff,Price,CategoryID,BrandID")] Product product)
         {
             try
             {
@@ -136,7 +135,6 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
                 ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", product.CategoryID);
                 return View(product);
             }
-
         }
 
         // GET: Products/Delete/5

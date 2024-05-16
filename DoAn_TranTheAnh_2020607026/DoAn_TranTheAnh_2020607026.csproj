@@ -257,6 +257,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Brand.cs" />
+    <Compile Include="Models\CartItem.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Fashion.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderDetail.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Product_Size.cs" />
+    <Compile Include="Models\Rate.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\Size.cs" />
+    <Compile Include="Models\Slide.cs" />
+    <Compile Include="Models\sysdiagram.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Models\VN_Pay\VnPayLibrary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -494,11 +508,7 @@
     <Content Include="Views\Admin\total_User.cshtml" />
     <Content Include="Views\Admin\Total_product.cshtml" />
     <Content Include="Views\Page\listcategory_menu.cshtml" />
-    <Content Include="Views\Slides\Create.cshtml" />
-    <Content Include="Views\Slides\Delete.cshtml" />
-    <Content Include="Views\Slides\Details.cshtml" />
-    <Content Include="Views\Slides\Edit.cshtml" />
-    <Content Include="Views\Slides\Index.cshtml" />
+    <Content Include="Views\Page\Search.cshtml" />
     <Content Include="Views\Brands\Create.cshtml" />
     <Content Include="Views\Brands\Delete.cshtml" />
     <Content Include="Views\Brands\Details.cshtml" />
@@ -509,22 +519,26 @@
     <Content Include="Views\Categories\Details.cshtml" />
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
-    <Content Include="Views\Product_Size\Create.cshtml" />
-    <Content Include="Views\Product_Size\Delete.cshtml" />
-    <Content Include="Views\Product_Size\Details.cshtml" />
-    <Content Include="Views\Product_Size\Edit.cshtml" />
-    <Content Include="Views\Product_Size\Index.cshtml" />
-    <Content Include="Views\Products\Create.cshtml" />
-    <Content Include="Views\Products\Delete.cshtml" />
-    <Content Include="Views\Products\Details.cshtml" />
-    <Content Include="Views\Products\Edit.cshtml" />
-    <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
-    <Content Include="Views\Page\Search.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Product_Size\Create.cshtml" />
+    <Content Include="Views\Product_Size\Delete.cshtml" />
+    <Content Include="Views\Product_Size\Details.cshtml" />
+    <Content Include="Views\Product_Size\Edit.cshtml" />
+    <Content Include="Views\Product_Size\Index.cshtml" />
+    <Content Include="Views\Slides\Create.cshtml" />
+    <Content Include="Views\Slides\Delete.cshtml" />
+    <Content Include="Views\Slides\Details.cshtml" />
+    <Content Include="Views\Slides\Edit.cshtml" />
+    <Content Include="Views\Slides\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

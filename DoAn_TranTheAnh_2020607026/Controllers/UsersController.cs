@@ -30,6 +30,7 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
             var users = db.Users.ToList();
             return View(users.ToPagedList((int)page, (int)PageSize));
         }
+
         // GET: Users/Details/5
         public ActionResult Details(int? id)
         {
