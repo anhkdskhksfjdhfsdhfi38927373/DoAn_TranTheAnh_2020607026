@@ -158,6 +158,14 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Product product = db.Products.Find(id);
+            List<Rate> rates = db.Rates.Where(s => s.ProductID == id).ToList();
+            if (rates != null)
+            {
+                foreach (var item in rates)
+                {
+                    db.Rates.Remove(item);
+                }
+            }
             db.Products.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");

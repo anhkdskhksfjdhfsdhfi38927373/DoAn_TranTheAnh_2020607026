@@ -2,9 +2,8 @@
 @using PagedList;
 @model IPagedList<DoAn_TranTheAnh_2020607026.Models.Order>
 @{
-    ViewBag.Title = "OrderList";
+    ViewBag.Title = "Select_Order";
     Layout = "~/Views/Shared/LayoutAdmin.cshtml";
-    
 }
 <div class="main-content-inner">
     <!-- main-content-wrap -->
@@ -46,16 +45,17 @@
                                     <option value="5">Đã huỷ</option>
                                 </select>
                             </div>
-                            <button class="tf-button style-1 w208"  style="margin-left:20px;width:70px;">Lọc</button>
+                            <button class="tf-button style-1 w208" style="margin-left:20px;width:70px;">Lọc</button>
                         </form>
+
                     </div>
                 </div>
                 <a class="tf-button style-1 w208" href="oder-detail.html"><i class="icon-file-text"></i>Export all order</a>
             </div>
             <div class="wg-table table-all-category">
-                <ul class="table-title flex gap20 mb-14" >
-                    <li >
-                        <div class="body-title" >Tên khách hàng</div>
+                <ul class="table-title flex gap20 mb-14">
+                    <li>
+                        <div class="body-title">Tên khách hàng</div>
                     </li>
                     <li>
                         <div class="body-title">Mã đơn hàng</div>
@@ -85,7 +85,7 @@
                             </div>
                             <div class="flex items-center justify-between gap20 flex-grow">
 
-                                <div class="name" >
+                                <div class="name">
                                     <a href="@Url.Action("DetailOrder","Admin",new {id=item.OrderID})" class="body-title-2">@item.CustomerName</a>
                                 </div>
                                 <div class="body-text">@item.OrderCode</div>
@@ -103,16 +103,16 @@
 
 
                                 @{
-                                    string status="";
+                                    string status = "";
                                     if (item.OrderStatus == 0)
                                     {
                                         status = "Chưa thanh toán";
                                     }
-                                    else if(item.OrderStatus == 1)
+                                    else if (item.OrderStatus == 1)
                                     {
                                         status = "Đã thanh toán";
                                     }
-                                    else if(item.OrderStatus == 2)
+                                    else if (item.OrderStatus == 2)
                                     {
                                         status = "Đã xác nhận";
                                     }
@@ -120,15 +120,15 @@
                                     {
                                         status = "Đang giao hàng";
                                     }
-                                    else if(item.OrderStatus == 4)
+                                    else if (item.OrderStatus == 4)
                                     {
                                         status = "Đã giao hàng";
                                     }
-                                    else if(item.OrderStatus == 5)
+                                    else if (item.OrderStatus == 5)
                                     {
                                         status = "Đã huỷ";
                                     }
-                                   }
+                                }
                                 <div>
                                     <div class="block-available">@status</div>
                                 </div>
@@ -154,7 +154,7 @@
             <div class="flex items-center justify-between flex-wrap gap10">
                 <div class="text-tiny">Showing 10 entries</div>
                 <ul class="wg-pagination">
-                    @Html.PagedListPager(Model, page => Url.Action("OrderList","Admin", new { page, PageSize = 8 }))
+                    @Html.PagedListPager(Model, page => Url.Action("Select_Order", "Admin", new { page, PageSize = 8 }))
                 </ul>
             </div>
         </div>

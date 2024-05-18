@@ -305,11 +305,13 @@
     <Content Include="assets\icon\customer.png" />
     <Content Include="assets\icon\delete_10337516.png" />
     <Content Include="assets\icon\fonts\icomoon93d9.svg" />
+    <Content Include="assets\icon\food.png" />
     <Content Include="assets\icon\iconpay\cod.png" />
     <Content Include="assets\icon\iconpay\momo.png" />
     <Content Include="assets\icon\iconpay\paypal-logo.png" />
     <Content Include="assets\icon\login.png" />
     <Content Include="assets\icon\logout.png" />
+    <Content Include="assets\icon\order.png" />
     <Content Include="assets\icon\product-management-svgrepo-com.svg" />
     <Content Include="assets\icon\style.css" />
     <Content Include="assets\icon\iconpay\vnpay.png" />
@@ -525,8 +527,6 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Products\Create.cshtml" />
-    <Content Include="Views\Products\Delete.cshtml" />
-    <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Product_Size\Create.cshtml" />
@@ -539,6 +539,12 @@
     <Content Include="Views\Slides\Details.cshtml" />
     <Content Include="Views\Slides\Edit.cshtml" />
     <Content Include="Views\Slides\Index.cshtml" />
+    <Content Include="Views\Page\Account.cshtml" />
+    <Content Include="Views\Page\My_order.cshtml" />
+    <Content Include="Views\Page\Detail_Order.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Admin\Select_Order.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

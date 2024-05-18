@@ -43,7 +43,7 @@
                         <div class="body-title">Product</div>
                     </li>
                     <li>
-                        <div class="body-title" style="margin-left:50px">Quantity</div>
+                        <div class="body-title" style="margin-left:120px; text-align:center;">Quantity</div>
                     </li>
                     <li>
                         <div class="body-title" style="margin-left:50px">Action</div>
@@ -58,7 +58,7 @@
                                 <img src="~/assets/images/product/@item.Product.Images" alt="">
                             </div>
                             <div class="flex items-center justify-between gap20 flex-grow">
-                                <div class="name">
+                                <div class="name" style="min-width:500px;">
                                     <a href="@Url.Action("Details", "Product_Size", new {id=item.Product_SizeID})" class="body-title-2">@item.Product.ProductName</a>
                                 </div>
                                 <div class="body-text">@item.Quantity</div>

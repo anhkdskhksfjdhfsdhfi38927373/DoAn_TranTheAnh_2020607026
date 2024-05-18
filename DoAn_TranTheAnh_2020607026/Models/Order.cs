@@ -16,12 +16,12 @@ namespace DoAn_TranTheAnh_2020607026.Models
 
         public int OrderID { get; set; }
 
-        public DateTime? OrderDate { get; set; }
+        public DateTime OrderDate { get; set; }
 
-        [StringLength(255)]
-        public string OrderStatus { get; set; }
+      
+        public int OrderStatus { get; set; }
 
-        public double? OrderTotalPrice { get; set; }
+        public double OrderTotalPrice { get; set; }
 
         [StringLength(255)]
         public string Address_Delivery { get; set; }

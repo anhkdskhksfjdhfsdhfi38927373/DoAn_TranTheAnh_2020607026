@@ -55,7 +55,7 @@ namespace DoAn_TranTheAnh_2020607026.Models
             }
             else if(saleoff > 0)
             {
-                n_price= price * (saleoff / 100);
+                n_price=price-( price * (saleoff / 100));
             }
             return n_price ;
         }

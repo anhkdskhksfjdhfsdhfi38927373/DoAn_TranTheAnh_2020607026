@@ -47,6 +47,9 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
             Order code = db.Orders.FirstOrDefault(s => s.OrderID == id);
             ViewBag.code = code;
             var orderdetail = db.OrderDetails.Where(s=>s.OrderID==id).ToList();
+            DateTime datetime = code.OrderDate.AddDays(3);
+            string time = datetime.ToString("dd / MM / yy");
+            ViewBag.timegiao = time;
             return View(orderdetail);
         }
         public PartialViewResult total_quantity_order()
@@ -56,7 +59,22 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         }
         public PartialViewResult total_price_order()
         {
-            ViewBag.totalprice = db.Orders.Sum(s=>s.OrderTotalPrice);
+            double total;
+            //List<Order> orders = db.Orders.ToList();
+            //foreach(var item in orders)
+            //{  
+                var now = DateTime.Now.Day;
+                List<Order> list = db.Orders.Where(s=>s.OrderDate.Day == now).ToList();
+                if(list != null)
+                {
+                    total = list.Sum(s => s.OrderTotalPrice);
+                }
+                else
+                {
+                    total = 0;
+                }
+            //}
+            ViewBag.totalprice = total;
             return PartialView("total_price_order");
         }
         public PartialViewResult total_User()
@@ -68,6 +86,40 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         {
             ViewBag._total_product = db.Products.Count();
             return PartialView("Total_product");
+        }
+        public ActionResult Confirm_Order(int id)
+        {
+            Order order = db.Orders.FirstOrDefault(s => s.OrderID == id);
+            order.OrderStatus = 2;
+            db.Orders.Attach(order);
+            db.Entry(order).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("OrderList","Admin");
+        }
+        public ActionResult Ship(int id)
+        {
+            Order order = db.Orders.FirstOrDefault(s => s.OrderID == id);
+            order.OrderStatus = 3;
+            db.Orders.Attach(order);
+            db.Entry(order).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("OrderList", "Admin");
+        }
+        [HttpPost]
+        public ActionResult Select_Order(FormCollection form, int? page, int? pagesize)
+        {
+            int status = int.Parse(form["Select_order"]);
+            if (page == null)
+            {
+                page = 1;
+            }
+            if (pagesize == null)
+            {
+
+                pagesize = 8;
+            }
+            List<Order> orders = db.Orders.Where(s=>s.OrderStatus == status).ToList();
+            return View(orders.ToPagedList((int)page, (int)pagesize));
         }
     }
 }

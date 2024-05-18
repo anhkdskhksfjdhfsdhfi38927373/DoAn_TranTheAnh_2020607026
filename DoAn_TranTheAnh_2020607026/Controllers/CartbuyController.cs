@@ -204,10 +204,9 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
                                 pro_size.Quantity -= item.QuantityProductSale;
                                 db.Product_Size.Attach(pro_size);
                                 db.Entry(pro_size).State = System.Data.Entity.EntityState.Modified;
-
                             }
                             carts.Clear();
-                            itemOrder.OrderStatus = "Đã thanh toán";
+                            itemOrder.OrderStatus = 1;
                             db.Orders.Attach(itemOrder);
                             db.Entry(itemOrder).State = System.Data.Entity.EntityState.Modified;
                             db.SaveChanges();
@@ -247,7 +246,8 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
             order.TypePayment = TypePayMent;
             Random rd = new Random();
             order.OrderCode = "DH" + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9);
-            order.OrderStatus = "Chưa thanh toán";
+            order.OrderStatus = 0;
+            order.UserID = (int)Session["UserID"];
             db.Orders.Add(order);
             foreach (var item in carts)
             {

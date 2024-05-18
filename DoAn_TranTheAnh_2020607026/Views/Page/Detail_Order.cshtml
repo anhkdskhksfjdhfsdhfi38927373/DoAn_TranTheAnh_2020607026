@@ -1,0 +1,211 @@
+﻿@model IEnumerable<DoAn_TranTheAnh_2020607026.Models.OrderDetail>
+@{
+    ViewBag.Title = "Detail_Order";
+    Layout = "~/Views/Shared/LayoutPage.cshtml";
+    DoAn_TranTheAnh_2020607026.Models.Order orders = ViewBag.code;
+}
+
+<link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
+
+
+<style>
+    .tong {
+        width: 100%;
+        display: flex;
+        margin-left: 50px;
+        box-sizing: border-box;
+        margin-top: 100px;
+        margin-bottom: 100px;
+        height: 100%;
+    }
+
+    .infor_account {
+        width: 70%;
+        padding: 10px;
+        box-shadow: 5px 10px #8fc2e9db;
+        border-radius: 10px;
+        margin-left: 150px;
+        border: 1px solid;
+    }
+
+    .menu_account {
+        width: 200px;
+        box-sizing: border-box;
+    }
+
+        .menu_account ul {
+            list-style-type: none;
+            width: 100%;
+            border: 1px solid;
+            box-shadow: 5px 10px #8fc2e9db;
+            border-radius: 10px;
+            padding: 0;
+        }
+
+            .menu_account ul li {
+                width: 100%;
+                height: 50px;
+                text-align: center;
+                padding: 15px;
+            }
+
+                .menu_account ul li:hover {
+                    border: 1px solid;
+                    box-shadow: 1px 1px #8fc2e9db;
+                    border-radius: 10px;
+                }
+
+                .menu_account ul li a {
+                    margin-top: 50%;
+                    text-decoration: none;
+                    text-align: center;
+                }
+</style>
+<div class="tong">
+    <div class="menu_account">
+
+        <div class="menu-list">
+            <ul>
+                <li>
+                    <a href="/Page/Account"><i class="ti-user"></i>&nbsp; My Profile</a>
+                </li>
+
+                <li>
+                    <a href="/Page/My_order"><i class="ti-package"></i>&nbsp; Orders</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="infor_account">
+        <div class="main-content-inner">
+            <!-- main-content-wrap -->
+            <div class="main-content-wrap">
+                <div class="flex items-center flex-wrap justify-between gap20 mb-27">
+                    <h3>Đơn hàng @orders.OrderCode </h3>
+                    @*<ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
+                            <li>
+                                <a href="#"><div class="text-tiny">Dashboard</div></a>
+                            </li>
+                            <li>
+                                <i class="icon-chevron-right"></i>
+                            </li>
+                            <li>
+                                <a href="#"><div class="text-tiny">Order</div></a>
+                            </li>
+                            <li>
+                                <i class="icon-chevron-right"></i>
+                            </li>
+                            <li>
+                                <a href="#"><div class="text-tiny">Order detail</div></a>
+                            </li>
+                            <li>
+                                <i class="icon-chevron-right"></i>
+                            </li>
+                            <li>
+                                <div class="text-tiny">Order @orders.OrderCode</div>
+                            </li>
+                        </ul>*@
+                </div>
+                <!-- order-detail -->
+                <div class="wg-order-detail">
+                    <div class="left flex-grow">
+                        <div class="wg-box mb-20">
+                            <div class="wg-table table-order-detail">
+                                <ul class="table-title flex items-center justify-between gap20 mb-24">
+                                    <li>
+                                        <div class="body-title">Danh sách sản phẩm</div>
+                                    </li>
+
+                                </ul>
+                                <ul class="flex flex-column">
+                                    @foreach (var item in Model)
+                                    {
+                                        <li class="product-item gap14">
+                                            <div class="image no-bg">
+                                                <img src="~/assets/images/product/@item.Product_Size.Product.Images" alt="">
+                                            </div>
+                                            <div class="flex items-center justify-between gap40 flex-grow">
+                                                <div class="name">
+                                                    <div class="text-tiny mb-1">Tên sản phẩm</div>
+                                                    <a href="product-list.html" class="body-title-2">@item.Product_Size.Product.ProductName</a>
+                                                </div>
+                                                <div class="name">
+                                                    <div class="text-tiny mb-1">Số Lượng</div>
+                                                    <div class="body-title-2">@item.OrderQuantity</div>
+                                                </div>
+                                                <div class="name">
+                                                    <div class="text-tiny mb-1">Giá</div>
+                                                    <div class="body-title-2">@String.Format("{0:0,0 VND}", item.Product_Size.Product.Price)</div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }or
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="wg-box">
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="wg-box mb-20 gap10">
+                            <div class="body-title">Summary</div>
+                            <div class="summary-item">
+                                <div class="body-text">Mã đơn hàng</div>
+                                <div class="body-title-2">@orders.OrderCode</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="body-text">Thời gian</div>
+                                <div class="body-title-2">@orders.OrderDate</div>
+                            </div>
+                            <div class="summary-item">
+                                <div class="body-text">Total</div>
+                                <div class="body-title-2 tf-color-1">@String.Format("{0:0,0 đ}", orders.OrderTotalPrice)</div>
+                            </div>
+                        </div>
+                        <div class="wg-box mb-20 gap10">
+                            <div class="body-title">Thông tin nhận hàng</div>
+                            <div class="body-text">@orders.Address_Delivery , @orders.PhoneCustomer</div>
+                        </div>
+                        <div class="wg-box mb-20 gap10">
+                            <div class="body-title">Phương thức thanh toán</div>
+                            @if (orders.TypePayment == 0)
+                            {
+                                <div class="body-text">Thanh toán khi nhận hàng (COD)</div>
+                            }
+                            @if (orders.TypePayment != 0)
+                            {
+                                <div class="body-text">Thanh toán online</div>
+                            }
+                        </div>
+                        <div class="wg-box gap10">
+                            @{
+                                if (orders.OrderStatus >= 0 && orders.OrderStatus < 4)
+                                {
+                                    <div class="body-title">Ngày giao hàng dự kiến</div>
+                                    <div class="body-title-2 tf-color-2">@ViewBag.timegiao</div>
+                                }
+                            }
+
+                            @{
+                                if (orders.OrderStatus <= 2)
+                                {
+                                    <a class="tf-button style-1 w-full" href="@Url.Action("Cancel_Order", "Page", new {id = orders.OrderID})"><i class="icon-truck"></i>Huỷ đơn hàng</a>
+                                }
+                                if (orders.OrderStatus > 2 && orders.OrderStatus < 4)
+                                {
+                                    <a class="tf-button style-1 w-full" href="@Url.Action("Received_Goods", "Page", new {id = orders.OrderID})"><i class="icon-truck"></i>Đã nhận hàng</a>
+                                }
+                            }
+
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /order-detail -->
+            </div>
+            <!-- /main-content-wrap -->
+        </div>
+
+    </div>
+</div>
+

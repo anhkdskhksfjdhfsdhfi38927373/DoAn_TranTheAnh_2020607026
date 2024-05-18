@@ -40,9 +40,9 @@
                     <div class="wg-table table-order-detail">
                         <ul class="table-title flex items-center justify-between gap20 mb-24">
                             <li>
-                                <div class="body-title">All item</div>
+                                <div class="body-title">Sản phẩm đặt hàng</div>
                             </li>
-                            
+
                         </ul>
                         <ul class="flex flex-column">
                             @foreach (var item in Model)
@@ -68,7 +68,7 @@
                                 </li>
                             }
 
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                     <div class="wg-table table-cart-totals">
                         <ul class="table-title flex mb-24">
                             <li>
-                                <div class="body-title">Cart Totals</div>
+                                <div class="body-title">Các khoản cần thanh toán</div>
                             </li>
                             <li>
                                 <div class="body-title">Price</div>
@@ -84,19 +84,16 @@
                         </ul>
                         <ul class="flex flex-column gap14">
                             <li class="cart-totals-item">
-                                <span class="body-text">Subtotal:</span>
-                                <span class="body-title-2">$70.13</span>
+                                <span class="body-text">Tổng tiền sản phẩm mua:</span>
+                                <span class="body-title-2">@String.Format("{0:0,0 VND}", orders.OrderTotalPrice)</span>
                             </li>
                             <li class="divider"></li>
                             <li class="cart-totals-item">
-                                <span class="body-text">Shipping:</span>
+                                <span class="body-text">Tiền ship:</span>
                                 <span class="body-title-2">$10.00</span>
                             </li>
                             <li class="divider"></li>
-                            <li class="cart-totals-item">
-                                <span class="body-text">Tax (GST):</span>
-                                <span class="body-title-2">$5.00</span>
-                            </li>
+
                             <li class="divider"></li>
                             <li class="cart-totals-item">
                                 <span class="body-title">Total price:</span>
@@ -140,9 +137,20 @@
                 </div>
                 <div class="wg-box gap10">
                     <div class="body-title">Ngày giao hàng dự kiến</div>
-                    <div class="body-title-2 tf-color-2">@DateTime.Now</div>
-                    <a class="tf-button style-1 w-full" href="oder-tracking.html"><i class="icon-truck"></i>Track order</a>
+                    <div class="body-title-2 tf-color-2">@ViewBag.timegiao</div>
+                    @if (orders.OrderStatus <= 1)
+                    {
+                        <a class="tf-button style-1 w-full" href="@Url.Action("Confirm_Order","Admin",new {id=orders.OrderID})">Xác nhận đơn hàng</a>
+                    }
+
+
+                    @if ( orders.OrderStatus==2)
+                    {
+                        <a class="tf-button style-1 w-full" href="@Url.Action("Ship","Admin",new {id=orders.OrderID})"><i class="icon-truck"></i>Đã giao hàng cho đơn vị vận chuyển</a>
+                    }
+                    
                 </div>
+
             </div>
         </div>
         <!-- /order-detail -->
