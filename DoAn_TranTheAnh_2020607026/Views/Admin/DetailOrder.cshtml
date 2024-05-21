@@ -62,7 +62,7 @@
                                         </div>
                                         <div class="name">
                                             <div class="text-tiny mb-1">Giá</div>
-                                            <div class="body-title-2">@String.Format("{0:0,0 VND}", item.Product_Size.Product.Price)</div>
+                                            <div class="body-title-2">@String.Format("{0:0,0 VND}", item.Product_Size.Product.newprice(item.Product_Size.Product.Price,item.Product_Size.Product.SaleOff))</div>
                                         </div>
                                     </div>
                                 </li>

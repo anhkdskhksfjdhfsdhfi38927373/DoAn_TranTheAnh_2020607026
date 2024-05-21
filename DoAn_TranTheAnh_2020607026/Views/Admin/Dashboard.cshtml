@@ -43,7 +43,7 @@
                             <i class="icon-dollar-sign"></i>
                         </div>
                         <div>
-                            <div class="body-text mb-2">Doanh thu trong ngày</div>
+                            <div class="body-text mb-2">Doanh thu trong tháng</div>
                             <h4>@Html.Action("total_price_order","Admin")</h4>
                         </div>
                     </div>
@@ -95,10 +95,13 @@
     </div>
     <!-- /main-content-wrap -->
 </div>
-<!-- /main-content-wrap -->
-<!-- bottom-page -->
-<div class="bottom-page">
-    <div class="body-text">Copyright © 2024 Fashion</div>
-    <i class="icon-heart"></i>
+<div class="tf-section-5 mb-30" style="width: 260%; margin-left: 30px;">
+    @Html.Action("Chart","Admin")
 </div>
-<!-- /bottom-page -->
+    <!-- /main-content-wrap -->
+    <!-- bottom-page -->
+    <div class="bottom-page">
+        <div class="body-text">Copyright © 2024 Fashion</div>
+        <i class="icon-heart"></i>
+    </div>
+    <!-- /bottom-page -->

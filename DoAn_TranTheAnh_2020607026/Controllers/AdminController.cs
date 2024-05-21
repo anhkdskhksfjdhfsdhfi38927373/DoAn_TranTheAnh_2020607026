@@ -63,8 +63,8 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
             //List<Order> orders = db.Orders.ToList();
             //foreach(var item in orders)
             //{  
-                var now = DateTime.Now.Day;
-                List<Order> list = db.Orders.Where(s=>s.OrderDate.Day == now).ToList();
+                var now = DateTime.Now.Month;
+                List<Order> list = db.Orders.Where(s=>s.OrderDate.Month == now).ToList();
                 if(list != null)
                 {
                     total = list.Sum(s => s.OrderTotalPrice);
@@ -120,6 +120,10 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
             }
             List<Order> orders = db.Orders.Where(s=>s.OrderStatus == status).ToList();
             return View(orders.ToPagedList((int)page, (int)pagesize));
+        }
+        public PartialViewResult Chart()
+        {
+            return PartialView();
         }
     }
 }

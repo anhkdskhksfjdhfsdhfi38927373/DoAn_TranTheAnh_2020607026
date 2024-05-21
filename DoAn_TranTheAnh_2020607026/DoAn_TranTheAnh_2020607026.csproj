@@ -405,6 +405,7 @@
     <Content Include="assets\js\carousel-home.js" />
     <Content Include="assets\js\carousel-home.min.js" />
     <Content Include="assets\js\carousel_with_thumbs.js" />
+    <Content Include="assets\js\Chart\My_Chart.js" />
     <Content Include="assets\js\common_scripts.min.js" />
     <Content Include="assets\js\isotope.min.js" />
     <Content Include="assets\js\jquery.cookiebar.js" />
@@ -443,6 +444,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Database\Database_doan.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -545,6 +547,7 @@
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Delete.cshtml" />
     <Content Include="Views\Admin\Select_Order.cshtml" />
+    <Content Include="Views\Admin\Chart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
