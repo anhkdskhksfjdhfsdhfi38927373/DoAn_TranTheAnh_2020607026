@@ -4,10 +4,14 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using PagedList;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Claims;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
+using System.Web.WebPages;
 
 namespace DoAn_TranTheAnh_2020607026.Controllers
 {
@@ -19,7 +23,38 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         {
             if (Session["Admin"] != null)
             {
+                DateTime[] data_date = new DateTime[7];
+                double[] data_doanhthu = new double[7];
+                string[] dates = new string[7];
+                for (int x = 0; x <= 6; x++)
+                {
+                    int y = x - 6;
+                    DateTime now = DateTime.Now.AddDays(y);
+                    data_date[x]=now;
+                    dates[x]= data_date[x].ToString("dd/MM/yyyy");
+                    
+                }
+
+                
+                for (int i = 0; i <= 6; i++)
+                {
+                    DateTime date = data_date[i];
+                    List<Order> orders = db.Orders.Where(
+                        s => s.OrderDate.Day == date.Day && s.OrderDate.Month == date.Month && s.OrderDate.Year == date.Year
+                        ).ToList();
+                    double doanh_thu_1_ngay = 0;
+                    if (orders != null)
+                    {
+                        doanh_thu_1_ngay = orders.Sum(s => s.OrderTotalPrice);
+
+                    }
+                    data_doanhthu[i]=doanh_thu_1_ngay;
+                }
+                ViewBag.lables = data_date;
+                ViewBag.doanhthu = data_doanhthu;
+                ViewBag.date = dates;
                 return View();
+               
             }
             else
             {
@@ -46,7 +81,7 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
             ViewBag.order = orders;
             Order code = db.Orders.FirstOrDefault(s => s.OrderID == id);
             ViewBag.code = code;
-            var orderdetail = db.OrderDetails.Where(s=>s.OrderID==id).ToList();
+            var orderdetail = db.OrderDetails.Where(s => s.OrderID == id).ToList();
             DateTime datetime = code.OrderDate.AddDays(3);
             string time = datetime.ToString("dd / MM / yy");
             ViewBag.timegiao = time;
@@ -63,16 +98,16 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
             //List<Order> orders = db.Orders.ToList();
             //foreach(var item in orders)
             //{  
-                var now = DateTime.Now.Month;
-                List<Order> list = db.Orders.Where(s=>s.OrderDate.Month == now).ToList();
-                if(list != null)
-                {
-                    total = list.Sum(s => s.OrderTotalPrice);
-                }
-                else
-                {
-                    total = 0;
-                }
+            var now = DateTime.Now.Month;
+            List<Order> list = db.Orders.Where(s => s.OrderDate.Month == now).ToList();
+            if (list != null)
+            {
+                total = list.Sum(s => s.OrderTotalPrice);
+            }
+            else
+            {
+                total = 0;
+            }
             //}
             ViewBag.totalprice = total;
             return PartialView("total_price_order");
@@ -94,7 +129,7 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
             db.Orders.Attach(order);
             db.Entry(order).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("OrderList","Admin");
+            return RedirectToAction("OrderList", "Admin");
         }
         public ActionResult Ship(int id)
         {
@@ -118,12 +153,43 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
 
                 pagesize = 8;
             }
-            List<Order> orders = db.Orders.Where(s=>s.OrderStatus == status).ToList();
+            List<Order> orders = db.Orders.Where(s => s.OrderStatus == status).ToList();
             return View(orders.ToPagedList((int)page, (int)pagesize));
         }
-        public PartialViewResult Chart()
+        [HttpPost]
+        public List<Object> Chart()
         {
-            return PartialView();
+            List<object> data = new List<object>();
+            
+            List<DateTime> data_date = new List<DateTime>();
+            List<double> data_doanhthu = new List<double>();
+            for (int x = 0; x <= 6; x++)
+            {
+                int y = x - 6;
+                DateTime now = DateTime.Now.AddDays(y);
+                data_date.Add(now);
+                data_date[x].ToString("dd / MM / yyyy");
+            }
+            for (int i = 0; i <= 6; i++)
+            {
+                DateTime date = data_date[i];
+                List<Order> orders = db.Orders.Where(
+                    s => s.OrderDate.Day == date.Day && s.OrderDate.Month == date.Month && s.OrderDate.Year == date.Year
+                    ).ToList();
+                double doanh_thu_1_ngay = 0;
+                if (orders != null)
+                {
+                    doanh_thu_1_ngay = orders.Sum(s => s.OrderTotalPrice);
+
+                }
+                data_doanhthu.Add(doanh_thu_1_ngay);
+            }
+            ViewBag.lables = data_date;
+            ViewBag.doanhthu = data_doanhthu;
+            data.Add(data_date);
+            data.Add(data_doanhthu);
+            return data;
         }
+        
     }
 }

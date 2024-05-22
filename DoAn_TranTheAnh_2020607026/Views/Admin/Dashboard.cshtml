@@ -4,6 +4,24 @@
     Layout = "~/Views/Shared/LayoutAdmin.cshtml";
 }
 
+@{
+
+    double[] doanhthu = ViewBag.doanhthu as double[];
+    string[] date = ViewBag.date as string[];
+
+
+    var json_doanhthu = Newtonsoft.Json.JsonConvert.SerializeObject(doanhthu);
+    var json_Date = Newtonsoft.Json.JsonConvert.SerializeObject(date);
+    string a1 = date[0];
+    string a2 = date[1];
+    string a3 = date[2];
+    string a4 = date[3];
+    string a5 = date[4];
+    string a6 = date[5];
+    string a7 = date[6];
+
+
+}
 <!-- main-content-wrap -->
 <div class="main-content-inner">
     <!-- main-content-wrap -->
@@ -21,13 +39,13 @@
                         </div>
                         <div>
                             <div class="body-text mb-2">Số đơn hàng</div>
-                            <h4>@Html.Action("total_quantity_order","Admin")</h4>
+                            <h4>@Html.Action("total_quantity_order", "Admin")</h4>
                         </div>
                     </div>
                     @*<div class="box-icon-trending up">
-                        <i class="icon-trending-up"></i>
-                        <div class="body-title number">##%</div>
-                    </div>*@
+                            <i class="icon-trending-up"></i>
+                            <div class="body-title number">##%</div>
+                        </div>*@
                 </div>
 
             </div>
@@ -44,10 +62,10 @@
                         </div>
                         <div>
                             <div class="body-text mb-2">Doanh thu trong tháng</div>
-                            <h4>@Html.Action("total_price_order","Admin")</h4>
+                            <h4>@Html.Action("total_price_order", "Admin")</h4>
                         </div>
                     </div>
-                   
+
                 </div>
 
             </div>
@@ -58,7 +76,7 @@
                     <div class="flex items-center gap14">
                         <div class="image type-white">
                             <img src="~/assets/icon/product-management-svgrepo-com.svg" style="width:48px; height:52px;" viewBox="0 0 48 52" fill="none" />
-                           
+
                             <i class="icon-dollar-sign"></i>
                         </div>
                         <div>
@@ -66,7 +84,7 @@
                             <h4>@Html.Action("Total_product", "Admin")</h4>
                         </div>
                     </div>
-                    
+
                 </div>
 
             </div>
@@ -83,10 +101,10 @@
                         </div>
                         <div>
                             <div class="body-text mb-2">Total User</div>
-                            <h4>@Html.Action("total_User","Admin")</h4>
+                            <h4>@Html.Action("total_User", "Admin")</h4>
                         </div>
                     </div>
-                   
+
                 </div>
 
             </div>
@@ -96,12 +114,57 @@
     <!-- /main-content-wrap -->
 </div>
 <div class="tf-section-5 mb-30" style="width: 260%; margin-left: 30px;">
-    @Html.Action("Chart","Admin")
-</div>
-    <!-- /main-content-wrap -->
-    <!-- bottom-page -->
-    <div class="bottom-page">
-        <div class="body-text">Copyright © 2024 Fashion</div>
-        <i class="icon-heart"></i>
+
+    <div class="wg-box">
+        <div class="flex items-center justify-between">
+            <h5>Doanh thu</h5>
+            <div class="dropdown default">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                </button>
+
+            </div>
+        </div>
+        <div>
+            <canvas id="myChart"></canvas>
+        </div>
     </div>
-    <!-- /bottom-page -->
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/assets/js/jquery.min.js"></script>
+
+<!-- /main-content-wrap -->
+<!-- bottom-page -->
+<div class="bottom-page">
+    <div class="body-text">Copyright © 2024 Fashion</div>
+    <i class="icon-heart"></i>
+</div>
+
+<!-- /bottom-page -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="text/javascript">
+    const ctx = document.getElementById('myChart');
+    var chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            
+            labels: ['@a1','@a2','@a3','@a4','@a5','@a6'],
+          
+            datasets: [{
+                label: 'Doanh thu 7 ngày gần nhất',
+                data: @json_doanhthu,
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
