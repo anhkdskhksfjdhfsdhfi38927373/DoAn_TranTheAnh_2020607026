@@ -64,7 +64,17 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Product_Size.Add(product_Size);
+                Product_Size pro_Size = db.Product_Size.FirstOrDefault(s=>s.ProductID==product_Size.ProductID && s.SizeID==product_Size.SizeID);
+                if(pro_Size == null)
+                {
+                    db.Product_Size.Add(product_Size);
+                }
+                else if(pro_Size!=null)
+                {
+                    pro_Size.Quantity += product_Size.Quantity;
+                    db.Product_Size.Attach(pro_Size);
+                    db.Entry(pro_Size).State = EntityState.Modified;
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

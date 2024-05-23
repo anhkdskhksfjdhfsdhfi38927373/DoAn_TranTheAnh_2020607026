@@ -28,10 +28,10 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
                 string[] dates = new string[7];
                 for (int x = 0; x <= 6; x++)
                 {
-                    int y = x - 6;
-                    DateTime now = DateTime.Now.AddDays(y);
+                    int y = x - 5;
+                    DateTime now = DateTime.Now.AddMonths(y);
                     data_date[x]=now;
-                    dates[x]= data_date[x].ToString("dd/MM/yyyy");
+                    dates[x]=  data_date[x].ToString("MM/yyyy");
                     
                 }
 
@@ -40,15 +40,15 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
                 {
                     DateTime date = data_date[i];
                     List<Order> orders = db.Orders.Where(
-                        s => s.OrderDate.Day == date.Day && s.OrderDate.Month == date.Month && s.OrderDate.Year == date.Year
+                        s =>  s.OrderDate.Month == date.Month && s.OrderDate.Year == date.Year && s.OrderStatus == 4
                         ).ToList();
-                    double doanh_thu_1_ngay = 0;
+                    double doanh_thu_1_thang = 0;
                     if (orders != null)
                     {
-                        doanh_thu_1_ngay = orders.Sum(s => s.OrderTotalPrice);
+                        doanh_thu_1_thang = orders.Sum(s => s.OrderTotalPrice);
 
                     }
-                    data_doanhthu[i]=doanh_thu_1_ngay;
+                    data_doanhthu[i]=doanh_thu_1_thang;
                 }
                 ViewBag.lables = data_date;
                 ViewBag.doanhthu = data_doanhthu;
@@ -99,7 +99,7 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
             //foreach(var item in orders)
             //{  
             var now = DateTime.Now.Month;
-            List<Order> list = db.Orders.Where(s => s.OrderDate.Month == now).ToList();
+            List<Order> list = db.Orders.Where(s => s.OrderDate.Month == now && s.OrderStatus==4).ToList();
             if (list != null)
             {
                 total = list.Sum(s => s.OrderTotalPrice);
@@ -156,40 +156,8 @@ namespace DoAn_TranTheAnh_2020607026.Controllers
             List<Order> orders = db.Orders.Where(s => s.OrderStatus == status).ToList();
             return View(orders.ToPagedList((int)page, (int)pagesize));
         }
-        [HttpPost]
-        public List<Object> Chart()
-        {
-            List<object> data = new List<object>();
-            
-            List<DateTime> data_date = new List<DateTime>();
-            List<double> data_doanhthu = new List<double>();
-            for (int x = 0; x <= 6; x++)
-            {
-                int y = x - 6;
-                DateTime now = DateTime.Now.AddDays(y);
-                data_date.Add(now);
-                data_date[x].ToString("dd / MM / yyyy");
-            }
-            for (int i = 0; i <= 6; i++)
-            {
-                DateTime date = data_date[i];
-                List<Order> orders = db.Orders.Where(
-                    s => s.OrderDate.Day == date.Day && s.OrderDate.Month == date.Month && s.OrderDate.Year == date.Year
-                    ).ToList();
-                double doanh_thu_1_ngay = 0;
-                if (orders != null)
-                {
-                    doanh_thu_1_ngay = orders.Sum(s => s.OrderTotalPrice);
-
-                }
-                data_doanhthu.Add(doanh_thu_1_ngay);
-            }
-            ViewBag.lables = data_date;
-            ViewBag.doanhthu = data_doanhthu;
-            data.Add(data_date);
-            data.Add(data_doanhthu);
-            return data;
-        }
+        
+        
         
     }
 }
