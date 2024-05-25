@@ -473,6 +473,7 @@
     <Content Include="assets\css\fonts\themify9f24.woff" />
     <Content Include="assets\css\fonts\themifyd41d.eot" />
     <Content Include="Baocao\DoAn_TranTheAnh_2020607026 %282%29.docx" />
+    <Content Include="Poster\poster_Doan_TranTheAnh.psd" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -549,6 +550,7 @@
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Delete.cshtml" />
     <Content Include="Views\Admin\Select_Order.cshtml" />
+    <Content Include="Slide\Slide_DoAn_TranTheAnh_2020607026.pptx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
