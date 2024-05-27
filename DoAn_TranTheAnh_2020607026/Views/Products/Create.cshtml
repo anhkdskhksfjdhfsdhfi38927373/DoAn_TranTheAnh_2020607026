@@ -11,19 +11,19 @@
             <h3>Thông tin sản phẩm mới</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
-                    <a href="/Admin/Dashboard"><div class="text-tiny">Dashboard</div></a>
+                    <a href="/Admin/Dashboard"><div class="text-tiny">Trang chủ</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <a href="/Products/Index"><div class="text-tiny">Ecommerce</div></a>
+                    <a href="/Products/Index"><div class="text-tiny">Sản phẩm</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <div class="text-tiny">Add product</div>
+                    <div class="text-tiny">Thêm mới sản phẩm</div>
                 </li>
             </ul>
         </div>
@@ -46,7 +46,7 @@
                         </div>
                     </fieldset>
                     <fieldset class="male">
-                        <div class="body-title mb-10">Brand <span class="tf-color-1">*</span></div>
+                        <div class="body-title mb-10">Thương hiệu <span class="tf-color-1">*</span></div>
                         <div class="select">
                             @Html.DropDownList("BrandID", null, htmlAttributes: new { @class = "" })
                             @Html.ValidationMessageFor(model => model.BrandID, "", new { @class = "text-danger" })
@@ -62,7 +62,7 @@
             </div>
             <div class="wg-box">
                 <fieldset>
-                    <div class="body-title mb-10">Upload images</div>
+                    <div class="body-title mb-10">Upload Ảnh</div>
                     <div class="upload-image mb-16">
                         <div class="item">
                             <img id="output" src="~/assets/images/product/" alt="" style="border-radius: 12px; border: 1px solid #ECF0F4" />
@@ -72,7 +72,7 @@
                                 <span class="icon">
                                     <i class="icon-upload-cloud"></i>
                                 </span>
-                                <span class="text-tiny">Drop your images here or select <span class="tf-color">click to browse</span></span>
+                                <span class="text-tiny"> <span class="tf-color">Tải file lên</span></span>
                                 <input name="ImageFile" id="myFile" type="file" onchange="LoadFile(event)" />
                             </label>
                         </div>
@@ -81,7 +81,7 @@
                 </fieldset>
                 <div class="cols gap22">
                     <fieldset class="name">
-                        <div class="body-title mb-10">Sale Off</div>
+                        <div class="body-title mb-10">Giảm giá</div>
                         <div class=" mb-10">
                             <input type="text" name="SaleOff" placeholder="Giảm giá" />
                         </div>

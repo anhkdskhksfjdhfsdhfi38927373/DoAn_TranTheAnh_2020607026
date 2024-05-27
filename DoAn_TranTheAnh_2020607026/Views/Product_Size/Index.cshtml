@@ -15,19 +15,19 @@
             <h3>Danh sách sản phẩm trong kho</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
-                    <a href="index.html"><div class="text-tiny">Dashboard</div></a>
+                    <a href="/Admin/Dashboard"><div class="text-tiny">Trang chủ</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <a href="#"><div class="text-tiny">Ecommerce</div></a>
+                    <a href="#"><div class="text-tiny">Quản lý</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <div class="text-tiny"> Warehouse Management</div>
+                    <div class="text-tiny">Quản lý kho</div>
                 </li>
             </ul>
         </div>
@@ -35,18 +35,18 @@
         <div class="wg-box">
             <div class="flex items-center justify-between gap10 flex-wrap">
 
-                <a class="tf-button style-1 w208" href="/Product_Size/Create"><i class="icon-plus"></i>Add new</a>
+                <a class="tf-button style-1 w208" href="/Product_Size/Create"><i class="icon-plus"></i>Thêm mới</a>
             </div>
             <div class="wg-table table-all-attribute">
                 <ul class="table-title flex gap20 mb-14">
                     <li>
-                        <div class="body-title">Product</div>
+                        <div class="body-title">Sản phẩm</div>
                     </li>
                     <li>
-                        <div class="body-title" style="margin-left:120px; text-align:center;">Quantity</div>
+                        <div class="body-title" style="margin-left:120px; text-align:center;">Số lượng trong kho</div>
                     </li>
                     <li>
-                        <div class="body-title" style="margin-left:50px">Action</div>
+                        <div class="body-title" style="margin-left:50px"></div>
                     </li>
                 </ul>
                 <ul class="flex flex-column">
@@ -82,7 +82,7 @@
             </div>
             <div class="divider"></div>
             <div class="flex items-center justify-between flex-wrap gap10">
-                <div class="text-tiny">Showing 8 entries</div>
+                <div class="text-tiny"></div>
                 <ul class="wg-pagination">
                     @Html.PagedListPager(Model, page => Url.Action("Index", new { page, PageSize = 8 }))
                 </ul>

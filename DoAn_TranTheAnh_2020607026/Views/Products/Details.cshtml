@@ -8,22 +8,22 @@
     <!-- main-content-wrap -->
     <div class="main-content-wrap">
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-            <h3>Thông tin sản phẩm</h3>
+            <h3>Chi tiết sản phẩm</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
-                    <a href="/Admin/Dashboard"><div class="text-tiny">Dashboard</div></a>
+                    <a href="/Admin/Dashboard"><div class="text-tiny">Trang chủ</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <a href="/Products/Index"><div class="text-tiny">Ecommerce</div></a>
+                    <a href="/Products/Index"><div class="text-tiny">Sản phẩm</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <div class="text-tiny">Deatail product</div>
+                    <div class="text-tiny">Chi tiết sản phẩm</div>
                 </li>
             </ul>
         </div>
@@ -44,7 +44,7 @@
                         </div>
                     </fieldset>
                     <fieldset class="male">
-                        <div class="body-title mb-10">Brand <span class="tf-color-1">*</span></div>
+                        <div class="body-title mb-10">Thương hiệu <span class="tf-color-1">*</span></div>
                         <div class="">
                             <input type="text" value="@Model.Brand.BrandName" readonly />
                         </div>
@@ -59,7 +59,7 @@
             </div>
             <div class="wg-box">
                 <fieldset>
-                    <div class="body-title mb-10">Upload images</div>
+                    <div class="body-title mb-10"> Ảnh</div>
                     <div class="upload-image mb-16">
                         <div class="item">
                             <img id="output" src="~/assets/images/product/@Model.Images" alt="" style="border-radius: 12px; border: 1px solid #ECF0F4" />
@@ -69,7 +69,7 @@
                 </fieldset>
                 <div class="cols gap22">
                     <fieldset class="name">
-                        <div class="body-title mb-10">Sale Off</div>
+                        <div class="body-title mb-10">Giảm giá</div>
                         <div class=" mb-10">
                             <input type="text" value="@Model.SaleOff" name="SaleOff" placeholder="Giảm giá" readonly />
                         </div>
@@ -83,14 +83,14 @@
                     </fieldset>
                 </div>
                 <div class="cols gap10">
-                    <a href="@Url.Action("Edit", "Products", new {id=Model.ProductID})" class="tf-button w-full" type="submit">Edit Product</a>
+                    <a href="@Url.Action("Edit", "Products", new {id=Model.ProductID})" class="tf-button w-full" type="submit">Sửa sản phẩm</a>
 
                     <!-- /form-add-product -->
                 </div>
             </div>
         </form>
         <div class="cols gap10" style="margin-top:20px;">
-            <a href="@Url.Action("Index","Products")" class="tf-button style-1 w-full" type="submit">Product List</a>
+            <a href="@Url.Action("Index","Products")" class="tf-button style-1 w-full" type="submit">Danh sách sản phẩm</a>
         </div>
     </div>
     <!-- /main-content-wrap -->

@@ -13,19 +13,19 @@
             <h3>Danh sách tài khoản</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
-                    <a href="index.html"><div class="text-tiny">Dashboard</div></a>
+                    <a href="/Admin/Dashboard"><div class="text-tiny">Trang chủ</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <a href="#"><div class="text-tiny">User</div></a>
+                    <a href="#"><div class="text-tiny">Tài khoản</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <div class="text-tiny">All User</div>
+                    <div class="text-tiny">Danh sách tài khoản</div>
                 </li>
             </ul>
         </div>
@@ -33,19 +33,19 @@
         <div class="wg-box">
             <div class="flex items-center justify-between gap10 flex-wrap">
 
-                <a class="tf-button style-1 w208" href="/Users/Create"><i class="icon-plus"></i>Add new</a>
+               
             </div>
             <div class="wg-table table-all-user">
                 <ul class="table-title flex gap20 mb-14" style="min-width:151px;">
                     <li>
-                        <div class="body-title">User</div>
+                        <div class="body-title">Tài khoản</div>
                     </li>
 
                     <li>
                         <div class="body-title" style="margin-left:-30px;">Email</div>
                     </li>
                     <li>
-                        <div class="body-title">Action</div>
+                        <div class="body-title"></div>
                     </li>
                 </ul>
                 <ul class="flex flex-column" style="min-width:151px;">
@@ -73,11 +73,7 @@
                                             <i class="icon-edit-3"></i>
                                         </a>
                                     </div>
-                                    <div class="item trash">
-                                        <a href="/Users/Delete/@item.UserID">
-                                            <i class="icon-trash-2"></i>
-                                        </a>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </li>
@@ -86,7 +82,7 @@
             </div>
             <div class="divider"></div>
             <div class="flex items-center justify-between flex-wrap gap10">
-                <div class="text-tiny">Showing 8 entries</div>
+                <div class="text-tiny"></div>
                 <ul class="wg-pagination">
                     @Html.PagedListPager(Model, page => Url.Action("Index", new { page, PageSize = 8 }))
                 </ul>

@@ -8,22 +8,22 @@
     <!-- main-content-wrap -->
     <div class="main-content-wrap">
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-            <h3>Add New User</h3>
+            <h3>Thông tin tài khoản</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
-                    <a href="/Admin/Dashboard"><div class="text-tiny">Dashboard</div></a>
+                    <a href="/Admin/Dashboard"><div class="text-tiny">Trang chủ</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <a href="/Users"><div class="text-tiny">User</div></a>
+                    <a href="#"><div class="text-tiny">Tài khoản</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <div class="text-tiny">Details User</div>
+                    <div class="text-tiny">Chi tiết tài khoản</div>
                 </li>
             </ul>
         </div>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="right flex-grow">
                     <fieldset class="mb-24">
-                        <div class="body-title mb-10">Gender</div>
+                        <div class="body-title mb-10">Giới tính</div>
                         <div class="radio-buttons">
                             @if (Model.Gender == "Nam")
                             {
@@ -89,7 +89,7 @@
                         </div>
                     </fieldset>
                     <fieldset class="mb-24">
-                        <div class="body-title mb-10">Role</div>
+                        <div class="body-title mb-10">Vai trò</div>
                         <div class="radio-buttons">
                             @if (Model.RoleID == 1)
                             {
@@ -118,7 +118,7 @@
                 </div>
             </div>
             <div class="bot">
-                <a href="@Url.Action("Edit", "Users", new {id=Model.UserID})" class="tf-button w180" type="submit">Edit</a>
+                <a href="@Url.Action("Edit", "Users", new {id=Model.UserID})" class="tf-button w180" type="submit">Sửa tài khoản</a>
             </div>
 
         </form>

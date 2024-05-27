@@ -10,10 +10,10 @@
     <!-- main-content-wrap -->
     <div class="main-content-wrap">
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-            <h3>Danh sách danh mục</h3>
+            <h3>Danh sách Slide</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
-                    <a href="@Url.Action("Dashboard","Admin")"><div class="text-tiny">Dashboard</div></a>
+                    <a href="@Url.Action("Dashboard","Admin")"><div class="text-tiny">Trang chủ</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
@@ -25,7 +25,7 @@
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <div class="text-tiny">All Slide</div>
+                    <div class="text-tiny">Danh sách Slide</div>
                 </li>
             </ul>
         </div>
@@ -33,7 +33,7 @@
         <div class="wg-box">
             <div class="flex items-center justify-between gap10 flex-wrap">
                 <div class="wg-filter flex-grow">
-                    <a class="tf-button style-1 w208" href="@Url.Action("Create","Slides")"><i class="icon-plus"></i>Add new</a>
+                    <a class="tf-button style-1 w208" href="@Url.Action("Create","Slides")"><i class="icon-plus"></i>Thêm mới</a>
 
                 </div>
 
@@ -44,7 +44,7 @@
                         <div class="body-title">Slide</div>
                     </li>
                     <li>
-                        <div class="body-title">Action</div>
+                        <div class="body-title"></div>
                     </li>
                 </ul>
                 <ul class="flex flex-column" style="min-width:151px;">
@@ -84,7 +84,7 @@
             </div>
             <div class="divider"></div>
             <div class="flex items-center justify-between flex-wrap gap10">
-                <div class="text-tiny">Showing 8 entries</div>
+                <div class="text-tiny"></div>
                 <ul class="wg-pagination">
                     @Html.PagedListPager(Model, page => Url.Action("Index", new { page, PageSize = 8 }))
                 </ul>

@@ -101,11 +101,11 @@
                         <div class="col-xl-3 col-lg-2 d-lg-flex align-items-center justify-content-end text-end">
                             @if (Session["UserID"] == null)
                             {
-                                <a class="phone_top" href="@Url.Action("Login","Page")" style="color:black;"><strong><img src="~/assets/icon/login.png" style="width:30px; height:30px;" />Login</strong></a>
+                                <a class="phone_top" href="@Url.Action("Login","Page")" style="color:black;"><strong><img src="~/assets/icon/login.png" style="width:30px; height:30px;" />Đăng nhập</strong></a>
                             }
                             @if (Session["UserID"] != null)
                             {
-                                <a class="phone_top" href="@Url.Action("Logout","Page")" style="color:black;"><strong><img src="~/assets/icon/logout.png" style="width:30px; height:30px;" />Logout</strong></a>
+                                <a class="phone_top" href="@Url.Action("Logout","Page")" style="color:black;"><strong><img src="~/assets/icon/logout.png" style="width:30px; height:30px;" />Đăng xuất</strong></a>
                             }
 
 
@@ -127,7 +127,7 @@
                                 <div class="custom-search-input">
                                     @using (Html.BeginForm("Search", "Page", FormMethod.Post))
                                     {
-                                        <input type="text" name="SearchString" placeholder="Search over 10.000 products">
+                                        <input type="text" name="SearchString" placeholder="Tìm kiếm sản phẩm">
                                         <button type="submit"><i class="header-icon_search_custom"></i></button>
                                     }
                                     </div>
@@ -155,8 +155,11 @@
                     <!-- /row -->
                 </div>
                 <div class="search_mob_wp">
-                    <input type="text" class="form-control" placeholder="Search over 10.000 products">
-                    <input type="submit" class="btn_1 full-width" value="Search">
+                    @using (Html.BeginForm("Search", "Page", FormMethod.Post))
+                    {
+                        <input type="text" name="SearchString" placeholder="Tìm kiếm sản phẩm">
+                        <button type="submit"><i class="header-icon_search_custom"></i></button>
+                    }
                 </div>
                 <!-- /search_mobile -->
             </div>

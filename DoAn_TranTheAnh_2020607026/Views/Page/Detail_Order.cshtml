@@ -67,11 +67,11 @@
         <div class="menu-list">
             <ul>
                 <li>
-                    <a href="/Page/Account"><i class="ti-user"></i>&nbsp; My Profile</a>
+                    <a href="/Page/Account"><i class="ti-user"></i>&nbsp; Thông tin tài khoản</a>
                 </li>
 
                 <li>
-                    <a href="/Page/My_order"><i class="ti-package"></i>&nbsp; Orders</a>
+                    <a href="/Page/My_order"><i class="ti-package"></i>&nbsp; Đơn hàng của bạn</a>
                 </li>
             </ul>
         </div>
@@ -139,16 +139,43 @@
                                                 </div>
                                             </div>
                                         </li>
-                                    }or
+                                    }
                                 </ul>
                             </div>
                         </div>
                         <div class="wg-box">
+                            <div class="wg-table table-cart-totals">
+                                <ul class="table-title flex mb-24">
+                                    <li>
+                                        <div class="body-title">Các khoản cần thanh toán</div>
+                                    </li>
+                                    <li>
+                                        <div class="body-title">Giá</div>
+                                    </li>
+                                </ul>
+                                <ul class="flex flex-column gap14">
+                                    <li class="cart-totals-item">
+                                        <span class="body-text">Tổng tiền sản phẩm mua:</span>
+                                        <span class="body-title-2">@String.Format("{0:0,0 VND}", orders.OrderTotalPrice)</span>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li class="cart-totals-item">
+                                        <span class="body-text">Tiền ship:</span>
+                                        <span class="body-title-2">miễn phí</span>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li class="cart-totals-item">
+                                        <span class="body-title">Tổng tiền:</span>
+                                        <span class="body-title tf-color-1">@String.Format("{0:0,0 VND}", orders.OrderTotalPrice)</span>
+                                    </li>
+
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class="right">
                         <div class="wg-box mb-20 gap10">
-                            <div class="body-title">Summary</div>
+                            <div class="body-title">Thông tin đơn hàng</div>
                             <div class="summary-item">
                                 <div class="body-text">Mã đơn hàng</div>
                                 <div class="body-title-2">@orders.OrderCode</div>

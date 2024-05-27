@@ -11,22 +11,22 @@
     <!-- main-content-wrap -->
     <div class="main-content-wrap">
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
-            <h3>All Attributes</h3>
+            <h3>Danh sách thương hiệu</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
-                    <a href="index.html"><div class="text-tiny">Dashboard</div></a>
+                    <a href="/Admin/Dashboard"><div class="text-tiny">Trang chủ</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <a href="#"><div class="text-tiny">Brand</div></a>
+                    <a href="/Brands/Index"><div class="text-tiny">Thương hiệu</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <div class="text-tiny">All brand</div>
+                    <div class="text-tiny">Danh sách thương hiệu</div>
                 </li>
             </ul>
         </div>
@@ -35,18 +35,18 @@
             <div class="flex items-center justify-between gap10 flex-wrap">
                 <div class="wg-filter flex-grow">
                 </div>
-                <a class="tf-button style-1 w208" href="/Brands/Create"><i class="icon-plus"></i>Add new</a>
+                <a class="tf-button style-1 w208" href="/Brands/Create"><i class="icon-plus"></i>Thêm mới</a>
             </div>
             <div class="wg-table table-all-attribute">
                 <ul class="table-title flex gap20 mb-14">
                     <li>
-                        <div class="body-title">Brand ID</div>
+                        <div class="body-title">Mã thương hiệu</div>
                     </li>
                     <li>
-                        <div class="body-title">Brand Name</div>
+                        <div class="body-title">Tên thương hiệu</div>
                     </li>
                     <li>
-                        <div class="body-title">Action</div>
+                        <div class="body-title"></div>
                     </li>
                 </ul>
                 <ul class="flex flex-column">
@@ -83,7 +83,7 @@
             </div>
             <div class="divider"></div>
             <div class="flex items-center justify-between flex-wrap gap10">
-                <div class="text-tiny">Showing 8 entries</div>
+                <div class="text-tiny"></div>
                 <ul class="wg-pagination">
                     @Html.PagedListPager(Model, page => Url.Action("Index", new { page, PageSize = 8 }))
                 </ul>

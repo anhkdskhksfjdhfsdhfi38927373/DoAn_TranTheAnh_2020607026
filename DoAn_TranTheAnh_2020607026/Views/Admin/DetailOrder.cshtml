@@ -79,7 +79,7 @@
                                 <div class="body-title">Các khoản cần thanh toán</div>
                             </li>
                             <li>
-                                <div class="body-title">Price</div>
+                                <div class="body-title">Giá</div>
                             </li>
                         </ul>
                         <ul class="flex flex-column gap14">
@@ -90,13 +90,13 @@
                             <li class="divider"></li>
                             <li class="cart-totals-item">
                                 <span class="body-text">Tiền ship:</span>
-                                <span class="body-title-2">$10.00</span>
+                                <span class="body-title-2">miễn phí</span>
                             </li>
-                            <li class="divider"></li>
+                     
 
                             <li class="divider"></li>
                             <li class="cart-totals-item">
-                                <span class="body-title">Total price:</span>
+                                <span class="body-title">Tổng tiền:</span>
                                 <span class="body-title tf-color-1">@String.Format("{0:0,0 VND}", orders.OrderTotalPrice)</span>
                             </li>
 
@@ -106,7 +106,7 @@
             </div>
             <div class="right">
                 <div class="wg-box mb-20 gap10">
-                    <div class="body-title">Summary</div>
+                    <div class="body-title">Thông tin đơn hàng</div>
                     <div class="summary-item">
                         <div class="body-text">Mã đơn hàng</div>
                         <div class="body-title-2">@orders.OrderCode</div>
@@ -116,7 +116,7 @@
                         <div class="body-title-2">@orders.OrderDate</div>
                     </div>
                     <div class="summary-item">
-                        <div class="body-text">Total</div>
+                        <div class="body-text">Tổng tiền</div>
                         <div class="body-title-2 tf-color-1">@String.Format("{0:0,0 VND}", orders.OrderTotalPrice)</div>
                     </div>
                 </div>

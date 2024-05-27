@@ -11,19 +11,19 @@
             <h3>Thông tin danh mục</h3>
             <ul class="breadcrumbs flex items-center flex-wrap justify-start gap10">
                 <li>
-                    <a href="@Url.Action("Dashboard","Admin")"><div class="text-tiny">Dashboard</div></a>
+                    <a href="@Url.Action("Dashboard","Admin")"><div class="text-tiny">Trang chủ</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <a href="@Url.Action("Index","Categories")"><div class="text-tiny">Category</div></a>
+                    <a href="@Url.Action("Index","Categories")"><div class="text-tiny">Danh mục</div></a>
                 </li>
                 <li>
                     <i class="icon-chevron-right"></i>
                 </li>
                 <li>
-                    <div class="text-tiny">New category</div>
+                    <div class="text-tiny">Tạo mới danh mục</div>
                 </li>
             </ul>
         </div>
@@ -32,11 +32,11 @@
             <form action="/Categories/Create" method="post" enctype="multipart/form-data" class="form-new-product form-style-1">
                 @Html.AntiForgeryToken()
                 <fieldset class="name">
-                    <div class="body-title">Product name <span class="tf-color-1">*</span></div>
-                    <input class="flex-grow" type="text" placeholder="Category name" name="CategoryName" tabindex="0" value="" aria-required="true" required="">
+                    <div class="body-title">Tên danh mục <span class="tf-color-1">*</span></div>
+                    <input class="flex-grow" type="text" placeholder="Tên danh mục" name="CategoryName" tabindex="0" value="" aria-required="true" required="">
                 </fieldset>
                 <fieldset>
-                    <div class="body-title">Upload images <span class="tf-color-1">*</span></div>
+                    <div class="body-title">Upload Ảnh <span class="tf-color-1">*</span></div>
                     <div class="upload-image flex-grow">
                         <div class="item up-load">
                             <div class="item">
@@ -46,7 +46,7 @@
                                 <span class="icon">
                                     <i class="icon-upload-cloud"></i>
                                 </span>
-                                <span class="text-tiny">Drop your images here or select <span class="tf-color">click to browse</span></span>
+                                <span class="text-tiny"> <span class="tf-color">tải file lên</span></span>
                                 <input name="ImageFile" id="myFile" type="file" onchange="LoadFile(event)" />
                             </label>
                         </div>
@@ -57,7 +57,7 @@
 
                 <div class="bot">
                     <div></div>
-                    <button class="tf-button w208" type="submit">Add Category</button>
+                    <button class="tf-button w208" type="submit">Thêm mới danh mục</button>
                 </div>
             </form>
         </div>
